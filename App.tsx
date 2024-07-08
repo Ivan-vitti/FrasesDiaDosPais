@@ -1,8 +1,6 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
+/** npx react-native start --reset-cache
+ * adb reverse tcp:8081 tcp:8081
+ * 
  */
 
 import React from 'react';
