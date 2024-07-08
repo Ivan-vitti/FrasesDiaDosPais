@@ -76,7 +76,7 @@ android {
 
     namespace "com.frasesdiadospais"
     defaultConfig {
-        applicationId "com.frasesdiadospais"
+        applicationId "br.com.vitti.frasesdiadospais"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
