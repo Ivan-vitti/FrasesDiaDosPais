@@ -13,6 +13,8 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import I18n from './src/util/i18n';
 import PremiumScreen from './src/screens/PremiumScreen';
 import HelpScreen from './src/screens/HelpScreen';
+import { StatusBar, TouchableOpacity, } from 'react-native';
+import GlobalStyles, { colors } from './src/Styles/GlobalStyles';
 
 //--------------------------------------------------------------------------------------------------------------------
 const renderTabIcon = (name: string, color: string) => {
@@ -46,18 +48,31 @@ function SettingsStackScreen() {
 const PremiumStack = createNativeStackNavigator();
 function PremiumStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Premium" component={PremiumScreen} />
-    </SettingsStack.Navigator>
+    <PremiumStack.Navigator>
+      <PremiumStack.Screen name="Premium" component={PremiumScreen} />
+    </PremiumStack.Navigator>
   );
 }
 //--------------------------------------------------------------------------------------------------------------------
 const HelpStack = createNativeStackNavigator();
 function HelpStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Help" component={HelpScreen} />
-    </SettingsStack.Navigator>
+    <HelpStack.Navigator>
+      <HelpStack.Screen name="Help" component={HelpScreen}
+        options={{
+          title: I18n.t('help'),
+          headerStyle: {
+            backgroundColor: GlobalStyles.body.backgroundColor,
+          },
+          headerTintColor: GlobalStyles.body.color,
+          headerTitleStyle: {
+            fontFamily: GlobalStyles.body.fontFamily,
+            fontSize: GlobalStyles.body.fontSize,
+            fontWeight: GlobalStyles.body.fontWeight,
+          },
+        }}
+      />
+    </HelpStack.Navigator>
   );
 }
 //--------------------------------------------------------------------------------------------------------------------
@@ -72,14 +87,31 @@ function HelpStackScreen() {
 
 function App(): React.JSX.Element {
   return (
-    <NavigationContainer>
-      <Tab.Navigator screenOptions={{ headerShown: false }}>
-        <Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ title: I18n.t('Fathers_Day_Phrases'), tabBarIcon: ({ color }) => renderTabIcon('user-tie', color) }}
-        />
-        <Tab.Screen name="SettingsStack" component={SettingsStackScreen} options={{ title: I18n.t('settings'), tabBarIcon: ({ color }) => renderTabIcon('user-cog', color) }}
-        />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <>
+      {/* Define a cor de fundo e o estilo da barra de status (no topo da tela) */}
+      <StatusBar backgroundColor={GlobalStyles.body.backgroundColor} barStyle="dark-content" />
+      <NavigationContainer>
+        <Tab.Navigator screenOptions={{
+          headerShown: false,
+          tabBarActiveTintColor: GlobalStyles.iconMediumActive.color,
+          tabBarInactiveTintColor: GlobalStyles.iconMedium.color,
+          tabBarStyle: { backgroundColor: GlobalStyles.body.backgroundColor },
+          tabBarLabelStyle: GlobalStyles.legend,
+
+        }}>
+          <Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ title: I18n.t('Fathers_Day_Phrases'), tabBarIcon: ({ color }) => renderTabIcon('user-tie', color) }}
+          />
+          <Tab.Screen name="SettingsStack" component={SettingsStackScreen} options={{ title: I18n.t('list'), tabBarIcon: ({ color }) => renderTabIcon('clipboard-list', color) }}
+          />
+          <Tab.Screen name="PremiumStack" component={PremiumStackScreen} options={{ title: I18n.t('premium'), tabBarIcon: ({ color }) => renderTabIcon('star', color) }}
+          />
+          <Tab.Screen name="HelpStack" component={HelpStackScreen} options={{ title: I18n.t('help'), tabBarIcon: ({ color }) => renderTabIcon('question-circle', color) }}
+          />
+
+        </Tab.Navigator>
+      </NavigationContainer>
+
+    </>
   );
 }
 
