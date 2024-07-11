@@ -49,7 +49,20 @@ const PremiumStack = createNativeStackNavigator();
 function PremiumStackScreen() {
   return (
     <PremiumStack.Navigator>
-      <PremiumStack.Screen name="Premium" component={PremiumScreen} />
+      <PremiumStack.Screen name="Premium" component={PremiumScreen}
+        options={{
+          title: I18n.t('premium'),
+          headerStyle: {
+            backgroundColor: GlobalStyles.body.backgroundColor,
+          },
+          headerTintColor: GlobalStyles.body.color,
+          headerTitleStyle: {
+            fontFamily: GlobalStyles.body.fontFamily,
+            fontSize: GlobalStyles.body.fontSize,
+            fontWeight: GlobalStyles.body.fontWeight,
+          },
+        }}
+      />
     </PremiumStack.Navigator>
   );
 }

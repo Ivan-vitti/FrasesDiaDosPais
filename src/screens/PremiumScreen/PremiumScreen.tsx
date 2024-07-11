@@ -1,12 +1,51 @@
-import { View, Text, } from "react-native";
+import { View, Text, ScrollView, Image, TouchableOpacity, } from "react-native";
+import GlobalStyles from "../../Styles/GlobalStyles";
+import I18n from '../../util/i18n';
+import { Icon } from "react-native-vector-icons/Icon";
+import React from "react";
+import Styles from "./PremiumScreen.style";
 
+
+
+const imgPremium = require('../../assets/images/premium.png');
+const imgPremium02 = require('../../assets/images/premium02.png');
+
+
+
+const comprar = () =>
+    console.log('compar');
 
 const PremiumScreen = () => {
     return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text>PremiumScreen</Text>
+        <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
+            <ScrollView style={GlobalStyles.body}>
+                <Text style={Styles.title}>{I18n.t('premium_advantages')}</Text>
+
+                <View style={Styles.premiumContainer}>
+                    <Image style={Styles.ImagePremium} source={imgPremium} />
+                    <Text style={Styles.subtitle}>{I18n.t('no_ads')}</Text>
+                </View>
+
+                <View style={Styles.premiumContainer}>
+                    <Image style={Styles.ImagePremium} source={imgPremium} />
+                    <Text style={Styles.subtitle}>{I18n.t('just_one_fee')}</Text>
+                </View>
+
+                <TouchableOpacity style={Styles.buttonPrimary} onPress={() => comprar()}>
+                    <Image source={imgPremium02} style={Styles.ImagePremium} />
+                    <Text style={Styles.buttonTextPrimary}>{I18n.t("be_premium")}</Text>
+
+                </TouchableOpacity>
+
+                <TouchableOpacity style={Styles.buttonPrimary} onPress={() => comprar()}>
+                    <Image source={imgPremium02} style={Styles.ImagePremium} />
+                    <Text style={Styles.buttonTextPrimary}>{I18n.t("restore_purchase")}</Text>
+
+                </TouchableOpacity>
+
+
+            </ScrollView>
         </View>
     );
 }
-
 export default PremiumScreen;
