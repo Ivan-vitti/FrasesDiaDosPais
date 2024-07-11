@@ -6,7 +6,6 @@ import React from "react";
 import Styles from "./PremiumScreen.style";
 
 
-
 const imgPremium = require('../../assets/images/premium.png');
 const imgPremium02 = require('../../assets/images/premium02.png');
 
@@ -40,12 +39,12 @@ const PremiumScreen = () => {
                 <TouchableOpacity style={Styles.buttonPrimary} onPress={() => comprar()}>
                     <Image source={imgPremium02} style={Styles.ImagePremium} />
                     <Text style={Styles.buttonTextPrimary}>{I18n.t("restore_purchase")}</Text>
-
                 </TouchableOpacity>
 
+            </ScrollView >
+        </View >
 
-            </ScrollView>
-        </View>
+
     );
 }
 export default PremiumScreen;
