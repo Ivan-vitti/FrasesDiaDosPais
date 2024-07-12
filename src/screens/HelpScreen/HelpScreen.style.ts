@@ -34,23 +34,26 @@ export const Styles = StyleSheet.create({
     // Estilos para subtítulos
     subtitle: {
         fontSize: 20,                        // Tamanho da fonte
-        textAlign: 'center',
+        textAlign: 'left',
         fontWeight: 'bold',                  // Peso da fonte
         color: colors.textPrimary,           // Cor do texto
         fontFamily: 'Arial, sans-serif',     // Fonte
         marginHorizontal: 15,                // Margem vertical
-        marginTop: 10,                       // Margem superior para espaçamento do topo
+        marginTop: 5,                       // Margem superior para espaçamento do topo
+        marginBottom: 15,                    // Margem inferior para espaçamento do texto abaixo
 
     },
 
     // Estilos para texto regular
     text: {
-        fontSize: 16,                    // Tamanho da fonte
+        fontFamily: 'Helvetica, Arial, sans-serif', // Fonte com fallback
+        fontSize: 16,                               // Tamanho da fonte
         textAlign: 'justify',
-        marginHorizontal: 20,            // Margem horizontal para espaçamento dos lados
-        lineHeight: 22,                  // Altura da linha
-        color: colors.textPrimary,       // Cor do texto
-        marginBottom: 15,                    // Margem inferior para espaçamento da base
+        marginHorizontal: 20,                        // Margem horizontal para espaçamento dos lados
+        lineHeight: 21,                             // Altura da linha
+        color: colors.textPrimary,                   // Cor do texto
+        marginBottom: 15,                           // Margem inferior para espaçamento da base
+        marginTop: 5,                               // Margem superior para espaçamento do texto anterior
 
     },
 

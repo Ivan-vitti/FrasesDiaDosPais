@@ -5,7 +5,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailScreen';
 import SettingsScreen from './src/screens/SettingsScreen';
@@ -13,8 +13,9 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import I18n from './src/util/i18n';
 import PremiumScreen from './src/screens/PremiumScreen';
 import HelpScreen from './src/screens/HelpScreen';
-import { StatusBar, TouchableOpacity, } from 'react-native';
+import { StatusBar, } from 'react-native';
 import GlobalStyles, { colors } from './src/Styles/GlobalStyles';
+import NavigationBarColor from 'react-native-navigation-bar-color';
 
 //--------------------------------------------------------------------------------------------------------------------
 const renderTabIcon = (name: string, color: string) => {
@@ -99,6 +100,15 @@ function HelpStackScreen() {
 //--------------------------------------------------------------------------------------------------------------------
 
 function App(): React.JSX.Element {
+  // Função para mudar a cor da barra de navegação
+  const changeNavigationBarColor = (color: string) => {
+    NavigationBarColor(color, true); // O segundo argumento define se o ícone será claro ou escuro
+  };
+  // useEffect para mudar a cor da barra de navegação quando o app iniciar
+  useEffect(() => {
+    changeNavigationBarColor(colors.background); //  // Azul Muito Claro (fundo)
+  }, []);
+  
   return (
     <>
       {/* Define a cor de fundo e o estilo da barra de status (no topo da tela) */}
