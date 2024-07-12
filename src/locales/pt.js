@@ -20,9 +20,32 @@ export default {
     just_one_fee: 'Valor único, acesso vitalício',
     be_premium: 'Ser Premium',
     restore_purchase: 'Restaurar Compra',
+    phrases: 'Frases',
+
+  //  phrase_of_day: 'Frase do Dia',
+  //  share: 'Compartilhar',
+
+  p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
+  p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',
+  p2: 'Pai, você é meu herói e meu exemplo de amor incondicional.',
+  p3: 'Obrigado por me ensinar o verdadeiro significado do amor, pai.',
+  p4: 'Seu amor é a luz que guia meus passos todos os dias, pai.',
+  p5: 'Pai, seu amor é um tesouro que guardo no coração.',
+  p6: 'Você é o melhor pai do mundo e meu maior exemplo de amor.',
+  p7: 'Nada se compara ao amor que sinto por você, pai.',
+  p8: 'Pai, seu amor é o presente mais precioso que recebi na vida.',
+  p9: 'Com você ao meu lado, sei que nunca estarei sozinho. Te amo, pai!',
+  p10: 'Seu amor é a força que me faz seguir em frente, pai querido.',
+  p11: 'Pai, você é o meu porto seguro, meu refúgio de amor e carinho.',
+  p12: 'O amor de um pai é o alicerce de um lar feliz. Obrigado por tudo!',
+  p13: 'Pai, seu amor é o maior presente que já recebi na vida.',
+  p14: 'Nenhum abraço é tão acolhedor quanto o do meu pai. Te amo além das palavras!',
+  p15: 'Pai, seu amor é o maior exemplo de dedicação e generosidade. Sou grato por tê-lo na minha vida.',
+  p16: 'Pai, seu amor é a essência que torna minha vida mais doce e feliz.',
+  p17: 'Nenhum presente é tão valioso quanto o amor que recebo de você, pai.',
+  p18: 'Com você, aprendi que o amor verdadeiro é feito de pequenos gestos e grandes corações.',
+  p19: 'Pai, seu amor é o farol que ilumina meu caminho nos momentos mais sombrios.',
 
 
 
-
-        
 };

@@ -2,14 +2,11 @@ import React from "react";
 import { View, Text, Button } from "react-native";
 
 
-const HomeScreen = ({ navigation }) => {
+const HomeScreen = () => {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
             <Text>Home Screen = Tela Inicial</Text>
-            <Button
-                title="Go to Details =Vai para detalhes"
-                onPress={() => navigation.navigate('Details=Detalhes')}
-            />
+
         </View>
     );
 }

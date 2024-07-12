@@ -19,8 +19,29 @@ export default {
     just_one_fee: 'One-time payment, lifetime access',
     be_premium: 'Be Premium',
     restore_purchase: 'Restore Purchase',
+    phrases: 'Phrases',
 
 
+    p0: 'Father, your love is the foundation that builds our lives.',
+    p1: "No love is as strong as a father's love for his children.",
+    p2: 'Father, you are my hero and my example of unconditional love.',
+    p3: 'Thank you for teaching me the true meaning of love, Dad.',
+    p4: 'Your love is the light that guides my steps every day, Dad.',
+    p5: 'Father, your love is a treasure I hold in my heart.',
+    p6: 'You are the best father in the world and my greatest example of love.',
+    p7: 'Nothing compares to the love I feel for you, Dad.',
+    p8: 'Father, your love is the most precious gift I have received in life.',
+    p9: 'With you by my side, I know I will never be alone. I love you, Dad!',
+    p10: 'Your love is the strength that keeps me going, dear father.',
+    p11: 'Father, you are my safe harbor, my refuge of love and affection.',
+    p12: "A father's love is the foundation of a happy home. Thank you for everything!",
+    p13: 'Father, your love is the greatest gift I have ever received in life.',
+    p14: "No hug is as comforting as my father's. I love you beyond words!",
+    p15: 'Father, your love is the greatest example of dedication and generosity. I am grateful to have you in my life.',
+    p16: 'Father, your love is the essence that makes my life sweeter and happier.',
+    p17: 'No gift is as valuable as the love I receive from you, Dad.',
+    p18: 'With you, I learned that true love is made of small gestures and big hearts.',
+    p19: 'Father, your love is the beacon that lights my way in the darkest moments.',
 
 
 }

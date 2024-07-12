@@ -7,8 +7,6 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React, { useEffect } from 'react';
 import HomeScreen from './src/screens/HomeScreen';
-import DetailsScreen from './src/screens/DetailScreen';
-import SettingsScreen from './src/screens/SettingsScreen';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import I18n from './src/util/i18n';
 import PremiumScreen from './src/screens/PremiumScreen';
@@ -16,6 +14,7 @@ import HelpScreen from './src/screens/HelpScreen';
 import { StatusBar, } from 'react-native';
 import GlobalStyles, { colors } from './src/Styles/GlobalStyles';
 import NavigationBarColor from 'react-native-navigation-bar-color';
+import PhrasesScreen from './src/screens/PhrasesScreen';
 
 //--------------------------------------------------------------------------------------------------------------------
 const renderTabIcon = (name: string, color: string) => {
@@ -31,18 +30,30 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen} />
-      <HomeStack.Screen name="Details=Detalhes" component={DetailsScreen} />
+
     </HomeStack.Navigator>
   );
 }
 //--------------------------------------------------------------------------------------------------------------------
-const SettingsStack = createNativeStackNavigator();
+const PhrasesStack = createNativeStackNavigator();
 function SettingsStackScreen() {
   return (
-    <SettingsStack.Navigator>
-      <SettingsStack.Screen name="Settings" component={SettingsScreen} />
-      <SettingsStack.Screen name="Details=Detalhes" component={DetailsScreen} />
-    </SettingsStack.Navigator>
+    <PhrasesStack.Navigator>
+      <PhrasesStack.Screen name="phrases" component={PhrasesScreen}
+        options={{
+          title: I18n.t('phrases'),
+          headerStyle: {
+            backgroundColor: GlobalStyles.body.backgroundColor,
+          },
+          headerTintColor: GlobalStyles.body.color,
+          headerTitleStyle: {
+            fontFamily: GlobalStyles.body.fontFamily,
+            fontSize: GlobalStyles.body.fontSize,
+            fontWeight: GlobalStyles.body.fontWeight,
+          },
+        }}
+      />
+    </PhrasesStack.Navigator>
   );
 }
 //--------------------------------------------------------------------------------------------------------------------
@@ -108,7 +119,7 @@ function App(): React.JSX.Element {
   useEffect(() => {
     changeNavigationBarColor(colors.background); //  // Azul Muito Claro (fundo)
   }, []);
-  
+
   return (
     <>
       {/* Define a cor de fundo e o estilo da barra de status (no topo da tela) */}
@@ -124,7 +135,7 @@ function App(): React.JSX.Element {
         }}>
           <Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ title: I18n.t('Fathers_Day_Phrases'), tabBarIcon: ({ color }) => renderTabIcon('user-tie', color) }}
           />
-          <Tab.Screen name="SettingsStack" component={SettingsStackScreen} options={{ title: I18n.t('list'), tabBarIcon: ({ color }) => renderTabIcon('clipboard-list', color) }}
+          <Tab.Screen name="PhrasesStack" component={SettingsStackScreen} options={{ title: I18n.t('phrases'), tabBarIcon: ({ color }) => renderTabIcon('clipboard-list', color) }}
           />
           <Tab.Screen name="PremiumStack" component={PremiumStackScreen} options={{ title: I18n.t('premium'), tabBarIcon: ({ color }) => renderTabIcon('star', color) }}
           />
