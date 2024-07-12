@@ -12,11 +12,13 @@ export const colors = {
   error: '#F44336',          // Vermelho (mensagens de erro)
   success: '#4CAF50',        // Verde (mensagens de sucesso)
   link: '#3498DB',           // Azul Claro (links)
+  iconColorBotão: '#FEDA38',
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575'    // Cor para ícones inativos
+
 };
 
-// Definindo os estilos globais
+
 export const Styles = StyleSheet.create({
 
   // Estilos para títulos principais
@@ -55,8 +57,8 @@ export const Styles = StyleSheet.create({
   buttonPrimary: {
     backgroundColor: colors.primary,     // Cor de fundo do botão
     color: colors.textPrimary,           // Cor do texto do botão
-    marginVertical: 15,                  // Margem vertical
-  //  paddingVertical: 10,                 // Espaçamento vertical interno
+    marginVertical: 15,                  // Margem vertical distancia entre os botoes
+    //  paddingVertical: 10,                 // Espaçamento vertical interno
     paddingHorizontal: 15,               // Espaçamento horizontal interno
     borderRadius: 18,                    // Raio da borda
     flexDirection: 'row',                // Direção dos itens (imagem e texto)
@@ -83,6 +85,7 @@ export const Styles = StyleSheet.create({
     width: 40,                           // Largura da imagem
     height: 40,                          // Altura da imagem
     marginTop: 2,                   // Margem superior para espaçamento do topo
+    flexDirection: 'row',   // Direção dos itens na linha
 
   },
 

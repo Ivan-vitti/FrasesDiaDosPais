@@ -2,6 +2,7 @@ import { View, Text, ScrollView, } from "react-native";
 import GlobalStyles from "../../Styles/GlobalStyles";
 import I18n from '../../util/i18n';
 import Styles from "./HelpScreen.style";
+import React from "react";
 
 
 const HelpScreen = () => {
