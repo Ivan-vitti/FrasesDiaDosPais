@@ -12,9 +12,9 @@ export const colors = {
   error: '#F44336',          // Vermelho (mensagens de erro)
   success: '#4CAF50',        // Verde (mensagens de sucesso)
   link: '#3498DB',           // Azul Claro (links)
-  iconColorBotão: '#FEDA38',
   iconActive: '#3498DB',     // Cor para ícones ativos
-  iconInactive: '#757575'    // Cor para ícones inativos
+  iconInactive: '#757575',    // Cor para ícones inativos
+  iconColorBotão: '#FFFFFF',
 
 };
 

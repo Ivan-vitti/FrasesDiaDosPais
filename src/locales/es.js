@@ -20,7 +20,8 @@ export default {
     be_premium: 'Ser Premium',
     restore_purchase: 'Restaurar Compra',
     phrases: 'Frases',
-
+    share: 'Compartir',
+    phrase_of_day: 'Frase del Día',
 
     p0: 'Padre, tu amor es el cimiento que construye nuestras vidas.',
     p1: 'Ningún amor es tan fuerte como el de un padre por sus hijos.',

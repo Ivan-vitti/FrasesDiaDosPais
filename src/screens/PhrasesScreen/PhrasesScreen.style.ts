@@ -14,13 +14,7 @@ export const colors = {
   link: '#3498DB',           // Azul Claro (links)
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
-  iconColorBotão: '#d6b41b',
-  coracao: '#FF0000',
-  VermelhoClaro: '#FFB6C1',
-  VermelhoMédio: '#FF69B4',
-  VermelhoEscuro: '#C71585',
-  VermelhoVivo: '#FF0000',
-  VermelhoProfundo: '#8B0000',
+
 };
 
 // Definindo os estilos globais

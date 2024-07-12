@@ -21,9 +21,8 @@ export default {
     be_premium: 'Ser Premium',
     restore_purchase: 'Restaurar Compra',
     phrases: 'Frases',
-
-  //  phrase_of_day: 'Frase do Dia',
-  //  share: 'Compartilhar',
+    share: 'Compartilhar',
+    phrase_of_day: 'Frase do Dia',
 
   p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
   p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',

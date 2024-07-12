@@ -15,7 +15,7 @@ const Phrasescreen = () => {
             <FlatList data={PHRASES} renderItem={({ item }) => {
                 return (
                     <View style={Styles.boxPhrase}>
-                        <Icon name={'envelope-o'} size={39} color={colors.iconColorBotão} />
+                        <Icon name={'envelope-o'} size={39} color={colors.textPrimary} />
                             <Text style={Styles.text}>{I18n.t(item.phrase)}</Text>
                     </View>
                 )

@@ -20,6 +20,8 @@ export default {
     be_premium: 'Be Premium',
     restore_purchase: 'Restore Purchase',
     phrases: 'Phrases',
+    share: 'Share',
+    phrase_of_day: 'Quote of the Day',
 
 
     p0: 'Father, your love is the foundation that builds our lives.',
