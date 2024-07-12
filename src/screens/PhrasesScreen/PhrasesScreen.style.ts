@@ -13,7 +13,14 @@ export const colors = {
   success: '#4CAF50',        // Verde (mensagens de sucesso)
   link: '#3498DB',           // Azul Claro (links)
   iconActive: '#3498DB',     // Cor para ícones ativos
-  iconInactive: '#757575'    // Cor para ícones inativos
+  iconInactive: '#757575',   // Cor para ícones inativos
+  iconColorBotão: '#d6b41b',
+  coracao: '#FF0000',
+  VermelhoClaro: '#FFB6C1',
+  VermelhoMédio: '#FF69B4',
+  VermelhoEscuro: '#C71585',
+  VermelhoVivo: '#FF0000',
+  VermelhoProfundo: '#8B0000',
 };
 
 // Definindo os estilos globais
@@ -22,12 +29,12 @@ export const Styles = StyleSheet.create({
   // Estilos para títulos principais
   title: {
     fontSize: 26,                        // Tamanho da fonte
-    textAlign: 'center',                 // Alinhamento do texto
+    textAlign: 'auto',                 // Alinhamento do texto
     fontWeight: 'bold',                  // Peso da fonte
     color: colors.textPrimary,           // Cor do texto
-    marginVertical: 15,                  // Margem vertical
-    marginBottom: 10,                    // Margem inferior para espaçamento da base
-    marginTop: 15,                       // Margem superior para espaçamento do topo
+    //  marginVertical: 15,                  // Margem vertical
+    //   marginBottom: 10,                    // Margem inferior para espaçamento da base
+    //    marginTop: 15,                       // Margem superior para espaçamento do topo
   },
 
   // Estilos para subtítulos
@@ -52,38 +59,31 @@ export const Styles = StyleSheet.create({
     marginHorizontal: 20,                        // Margem horizontal para espaçamento dos lados
     lineHeight: 21,                             // Altura da linha
     color: colors.textPrimary,                   // Cor do texto
-    borderColor: '#000',
-    borderWidth: 1,
+    //   marginBottom: 15,                           // Margem inferior para espaçamento da base
+    //   marginTop: 5,                               // Margem superior para espaçamento do texto anterior
+
+  },
+
+  // Estilos para legenda
+  legend: {
+    fontSize: 14,                        // Tamanho da fonte
+    fontWeight: 'normal',                // Peso da fonte
+    textAlign: 'center',                 // Alinhamento do texto
+    color: colors.textPrimary,       // Cor do texto
+
+  },
+
+  boxPhrase: {
+    flex: 1,
+    flexDirection: 'row',                // Direção dos itens (imagem e texto)
+    borderColor: colors.accent,
+    borderWidth: 1.5,
     borderRadius: 5,
     marginLeft: 10,
     marginRight: 10,
     marginTop: 10,
     padding: 10,
-  //   marginBottom: 15,                           // Margem inferior para espaçamento da base
-  //   marginTop: 5,                               // Margem superior para espaçamento do texto anterior
-
-},
-
-  // Estilos para legenda
-  legend: {
-  fontSize: 14,                        // Tamanho da fonte
-  fontWeight: 'normal',                // Peso da fonte
-  textAlign: 'center',                 // Alinhamento do texto
-  color: colors.textPrimary,       // Cor do texto
-
-},
-
-  boxPhrase: {
-  flex: 1,
-  backgroundColor: '#CCC',
-  borderColor: '#000',
-  borderWidth: 1,
-  borderRadius: 5,
-  marginLeft: 10,
-  marginRight: 10,
-  marginTop: 10,
-  padding: 10,
-},
+  },
 });
 
 export default Styles;

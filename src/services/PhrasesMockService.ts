@@ -11,6 +11,15 @@ const PHRASES = [
   {id: 9, phrase: 'p9'},
   {id: 10, phrase: 'p10'},
   {id: 11, phrase: 'p11'},
+  {id: 12, phrase: 'p12'},
+  {id: 13, phrase: 'p13'},
+  {id: 14, phrase: 'p14'},
+  {id: 15, phrase: 'p15'},
+  {id: 16, phrase: 'p16'},
+  {id: 17, phrase: 'p17'},
+  {id: 18, phrase: 'p18'},
+  {id: 19, phrase: 'p19'},
+
 ];
 
 export default PHRASES;
