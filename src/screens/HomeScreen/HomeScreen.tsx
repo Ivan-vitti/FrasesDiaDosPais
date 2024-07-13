@@ -7,7 +7,6 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Styles, { colors } from "./HomeScreen.style";
 
 
-
 const restaurar = () =>
     console.log('restaurar');
 
