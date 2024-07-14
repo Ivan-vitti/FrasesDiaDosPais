@@ -7,7 +7,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Styles, { colors } from "./HomeScreen.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-const HomeScreen = () => {
+const HomeScreen = ({ navigation }) => {
     const [phrase, setPhrase] = useState('p0');
 
     useEffect(() => {
@@ -29,10 +29,13 @@ const HomeScreen = () => {
         randomPhrase();
     }, []);
 
-    
-    const restaurar = () => {
-        console.log('restaurar');
-    };
+
+    const navShare = () => {
+        navigation.navigate('Share', {
+            phrase: phrase,
+
+        });
+    }
 
     return (
         <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
@@ -41,7 +44,7 @@ const HomeScreen = () => {
                 <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
             </View>
             <View style={GlobalStyles.body}>
-                <TouchableOpacity style={Styles.buttonPrimary} onPress={() => restaurar()}>
+                <TouchableOpacity style={Styles.buttonPrimary} onPress={navShare}>
                     <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
                     <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
                 </TouchableOpacity>

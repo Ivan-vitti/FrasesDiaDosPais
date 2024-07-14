@@ -1,6 +1,4 @@
-import Phrasescreen from "./PhrasesScreen";
+import PhrasesScreen from "./PhrasesScreen";
 
 
-
-
-export default Phrasescreen;
+export default PhrasesScreen;

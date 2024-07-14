@@ -1,7 +1,7 @@
 export default {
     home: 'Home',
     Settings: 'Settings',
-    Fathers_Day_Phrases: 'Fathers Day Phrases',
+    phrases_of_day: 'Phrases of the Day',
     list: 'List',
     premium: 'Premium',
     help: 'Help',
@@ -21,7 +21,7 @@ export default {
     restore_purchase: 'Restore Purchase',
     phrases: 'Phrases',
     share: 'Share',
-    phrase_of_day: 'Quote of the Day',
+    phrase_of_day: 'Affection for Dad Today',
 
 
     p0: 'Father, your love is the foundation that builds our lives.',

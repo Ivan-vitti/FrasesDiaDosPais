@@ -2,7 +2,7 @@
 export default {
     home: 'Inicio',
     settings: 'Configurações',
-    Fathers_Day_Phrases: 'Frases Dia dos Pais',
+    phrases_of_day: 'Frase do Dia',
     list: 'Lista',
     premium: 'Premium',
     help: 'Ajuda',
@@ -22,7 +22,7 @@ export default {
     restore_purchase: 'Restaurar Compra',
     phrases: 'Frases',
     share: 'Compartilhar',
-    phrase_of_day: 'Frase do Dia',
+    phrase_of_day: 'Carinho de Hoje Para o Papai',
 
   p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
   p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',

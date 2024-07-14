@@ -1,7 +1,7 @@
 export default {
     home: 'Comenzar',
     Settings: 'Configuraciones',
-    Fathers_Day_Phrases: 'Frases del Día del Padre',
+    phrases_of_day: 'Frases del Día',
     list: 'Lista',
     premium: 'Premium',
     help: 'Ayuda',
@@ -21,7 +21,7 @@ export default {
     restore_purchase: 'Restaurar Compra',
     phrases: 'Frases',
     share: 'Compartir',
-    phrase_of_day: 'Frase del Día',
+    phrase_of_day: 'Cariño de Hoy para Papá',
 
     p0: 'Padre, tu amor es el cimiento que construye nuestras vidas.',
     p1: 'Ningún amor es tan fuerte como el de un padre por sus hijos.',

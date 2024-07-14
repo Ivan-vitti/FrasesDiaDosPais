@@ -15,10 +15,11 @@ import { StatusBar, } from 'react-native';
 import GlobalStyles, { colors } from './src/Styles/GlobalStyles';
 import NavigationBarColor from 'react-native-navigation-bar-color';
 import PhrasesScreen from './src/screens/PhrasesScreen';
+import ShareScreen from './src/screens/ShareScreen';
 
 //--------------------------------------------------------------------------------------------------------------------
 const renderTabIcon = (name: string, color: string) => {
-  return <Icon name={name} color={color} size={25} />
+  return <Icon name={name} color={color} size={26} />
 };
 //--------------------------------------------------------------------------------------------------------------------
 
@@ -30,8 +31,22 @@ function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen name="Home" component={HomeScreen}
-      options={{
+        options={{
           title: I18n.t('home'),
+          headerStyle: {
+            backgroundColor: GlobalStyles.body.backgroundColor,
+          },
+          headerTintColor: GlobalStyles.body.color,
+          headerTitleStyle: {
+            fontFamily: GlobalStyles.body.fontFamily,
+            fontSize: GlobalStyles.body.fontSize,
+            fontWeight: GlobalStyles.body.fontWeight,
+          },
+        }}
+      />
+      <HomeStack.Screen name="Share" component={ShareScreen}
+        options={{
+          title: I18n.t('share'),
           headerStyle: {
             backgroundColor: GlobalStyles.body.backgroundColor,
           },
@@ -48,12 +63,26 @@ function HomeStackScreen() {
 }
 //--------------------------------------------------------------------------------------------------------------------
 const PhrasesStack = createNativeStackNavigator();
-function SettingsStackScreen() {
+function PhraseStackScreen() {
   return (
     <PhrasesStack.Navigator>
       <PhrasesStack.Screen name="phrases" component={PhrasesScreen}
         options={{
           title: I18n.t('phrases'),
+          headerStyle: {
+            backgroundColor: GlobalStyles.body.backgroundColor,
+          },
+          headerTintColor: GlobalStyles.body.color,
+          headerTitleStyle: {
+            fontFamily: GlobalStyles.body.fontFamily,
+            fontSize: GlobalStyles.body.fontSize,
+            fontWeight: GlobalStyles.body.fontWeight,
+          },
+        }}
+      />
+      <PhrasesStack.Screen name="Share" component={ShareScreen}
+        options={{
+          title: I18n.t('share'),
           headerStyle: {
             backgroundColor: GlobalStyles.body.backgroundColor,
           },
@@ -145,9 +174,9 @@ function App(): React.JSX.Element {
           tabBarLabelStyle: GlobalStyles.legend,
 
         }}>
-          <Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ title: I18n.t('Fathers_Day_Phrases'), tabBarIcon: ({ color }) => renderTabIcon('user-tie', color) }}
+          <Tab.Screen name="HomeStack" component={HomeStackScreen} options={{ title: I18n.t('phrases_of_day'), tabBarIcon: ({ color }) => renderTabIcon('user-tie', color) }}
           />
-          <Tab.Screen name="PhrasesStack" component={SettingsStackScreen} options={{ title: I18n.t('phrases'), tabBarIcon: ({ color }) => renderTabIcon('clipboard-list', color) }}
+          <Tab.Screen name="PhrasesStack" component={PhraseStackScreen} options={{ title: I18n.t('phrases'), tabBarIcon: ({ color }) => renderTabIcon('clipboard-list', color) }}
           />
           <Tab.Screen name="PremiumStack" component={PremiumStackScreen} options={{ title: I18n.t('premium'), tabBarIcon: ({ color }) => renderTabIcon('star', color) }}
           />

@@ -96,3 +96,20 @@ export const Styles = StyleSheet.create({
 });
 
 export default Styles;
+
+
+
+
+/*import {StyleSheet} from 'react-native';
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 10,
+    alignItems: 'center',
+    backgroundColor: '#fff',
+  },
+});
+
+export default styles;
+*/
