@@ -61,7 +61,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
             <BannerAd
                 ref={bannerRef}
-                unitId="ca-app-pub-8667301238982350/7038765928"
+                unitId='ca-app-pub-8667301238982350/7038765928'
                 size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
         </View>
     );
