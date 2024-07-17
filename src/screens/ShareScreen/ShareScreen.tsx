@@ -1,19 +1,21 @@
-import { Share, Text, TouchableOpacity, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import I18n from '../../util/i18n';
 import GlobalStyles from '../../Styles/GlobalStyles';
 import Styles, { colors } from './ShareScreen.style';
 import React from 'react';
 import { useRoute } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
+import Share from 'react-native-share';
+
 
 const ShareScreen = ({ navigation }) => {
     const route = useRoute();
     const phrase = route.params?.phrase;
 
     const share = () => {
- //       console.log(I18n.t(phrase));
+        //       console.log(I18n.t(phrase));
 
-        Share.share({
+        Share.open({   // Utilizando o método correto para abrir o menu de compartilhamento
             message: I18n.t(phrase),
         })
             .then((res) => {

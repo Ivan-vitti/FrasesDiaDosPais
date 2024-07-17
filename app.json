@@ -1,4 +1,9 @@
 {
   "name": "FrasesDiaDosPais",
-  "displayName": "FrasesDiaDosPais"
+  "displayName": "FrasesDiaDosPais",
+    "react-native-google-mobile-ads": {
+      "android_app_id": "ca-app-pub-8667301238982350~4085800537",
+      "ios_app_id": "ca-app-pub-xxxxxxxx~xxxxxxxx"
+
+  }
 }

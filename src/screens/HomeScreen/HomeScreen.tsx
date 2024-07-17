@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
 import I18n from '../../util/i18n';
 import GlobalStyles from "../../Styles/GlobalStyles";
@@ -6,11 +6,21 @@ import PHRASES from "../../services/PhrasesMockService";
 import Icon from "react-native-vector-icons/FontAwesome";
 import Styles, { colors } from "./HomeScreen.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import mobileAds, { BannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
 const HomeScreen = ({ navigation }) => {
     const [phrase, setPhrase] = useState('p0');
+    const bannerRef = useRef<BannerAd>(null);
 
     useEffect(() => {
+
+        mobileAds()
+            .initialize()
+            .then(adapterStatuses => {
+                // Initialization complete!
+            });
+
+
         const randomPhrase = async () => {
             const dataOpen = await AsyncStorage.getItem('dataOpen');
             const dataAtual = new Date().toLocaleDateString();
@@ -49,8 +59,13 @@ const HomeScreen = ({ navigation }) => {
                     <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
                 </TouchableOpacity>
             </View>
+            <BannerAd
+                ref={bannerRef}
+                unitId="ca-app-pub-8667301238982350/7038765928"
+                size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER} />
         </View>
     );
 };
 
 export default HomeScreen;
+
