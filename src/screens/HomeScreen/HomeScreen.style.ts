@@ -11,7 +11,7 @@ export const colors = {
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
   iconColorBotão: '#FFFFFF',
- 
+
 };
 
 // Definindo os estilos globais
@@ -65,33 +65,37 @@ export const Styles = StyleSheet.create({
     minHeight: 60, // Altura mínima para garantir que a caixa não seja muito pequena
   },
 
-    // Estilos para botões principais
-    buttonPrimary: {
-      backgroundColor: colors.primary,     // Cor de fundo do botão
-      color: colors.textPrimary,           // Cor do texto do botão
-      marginVertical: 15,                  // Margem vertical distancia entre os botoes
-      paddingHorizontal: 15,               // Espaçamento horizontal interno
-      borderRadius: 18,                    // Raio da borda
-      flexDirection: 'row',                // Direção dos itens (imagem e texto)
-      alignItems: 'center',                // Alinhamento vertical dos itens
-      justifyContent: 'flex-start',         // Alinha o conteúdo no centro horizontalmente
-      height: 62,                          // Altura total do botão
-      width: '75%',                        // Largura total do botão
-      alignSelf: 'center',                 // Centraliza o botão horizontalmente
-      marginTop: 30,                       // Margem superior para espaçamento do topo
-  
-    },
-  
-    // Estilos para texto dentro dos botões principais
-    buttonTextPrimary: {
-      color: colors.iconColorBotão,        // Cor do texto
-      fontWeight: 'bold',                  // Peso da fonte
-      fontSize: 26,                        // Tamanho da fonte
-      marginLeft: 25,                      // Espaçamento à esquerda da imagem
-      lineHeight: 30,                      // Altura da linha do texto
-  
-    },
+  // Estilos para botões principais
+  buttonPrimary: {
+    backgroundColor: colors.primary,     // Cor de fundo do botão
+    color: colors.textPrimary,           // Cor do texto do botão
+    marginVertical: 15,                  // Margem vertical distancia entre os botoes
+    paddingHorizontal: 15,               // Espaçamento horizontal interno
+    borderRadius: 18,                    // Raio da borda
+    flexDirection: 'row',                // Direção dos itens (imagem e texto)
+    alignItems: 'center',                // Alinhamento vertical dos itens
+    justifyContent: 'flex-start',         // Alinha o conteúdo no centro horizontalmente
+    height: 62,                          // Altura total do botão
+    width: '75%',                        // Largura total do botão
+    alignSelf: 'center',                 // Centraliza o botão horizontalmente
+    marginTop: 30,                       // Margem superior para espaçamento do topo
 
+  },
+
+  // Estilos para texto dentro dos botões principais
+  buttonTextPrimary: {
+    color: colors.iconColorBotão,        // Cor do texto
+    fontWeight: 'bold',                  // Peso da fonte
+    fontSize: 26,                        // Tamanho da fonte
+    marginLeft: 25,                      // Espaçamento à esquerda da imagem
+    lineHeight: 30,                      // Altura da linha do texto
+
+  },
+  bannerAd: {
+    flex: 0,
+    marginVertical: 0, // Ajuste a margem vertical conforme necessário
+    marginHorizontal: 0, // Ajuste a margem horizontal conforme necessário
+  },
 
 });
 

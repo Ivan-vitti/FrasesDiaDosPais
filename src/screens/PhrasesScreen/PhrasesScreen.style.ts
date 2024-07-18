@@ -78,6 +78,17 @@ export const Styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
   },
+  
+  bannerContainer: {
+    position: 'absolute', // Posiciona o banner de forma absoluta
+    bottom: 0, // Posiciona o banner na base da tela
+    width: '100%', // Largura completa da tela
+    alignItems: 'center', // Centraliza o banner horizontalmente
+    backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
+},
+
+
+
 });
 
 export default Styles;
