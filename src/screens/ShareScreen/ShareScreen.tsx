@@ -63,18 +63,19 @@ const ShareScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
-        <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
-            <Text style={Styles.title}>{I18n.t('share')}</Text>
-            <View style={Styles.boxPhrase}>
-                <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
+            <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
+                <Text style={Styles.title}>{I18n.t('share')}</Text>
+                <View style={Styles.boxPhrase}>
+                    <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
+                </View>
+                <View style={GlobalStyles.body}>
+                    <TouchableOpacity style={Styles.buttonPrimary} onPress={share}>
+                        <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
+                        <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
-            <View style={GlobalStyles.body}>
-                <TouchableOpacity style={Styles.buttonPrimary} onPress={share}>
-                    <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
-                    <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
-                </TouchableOpacity>
-            </View>
-            </View>
+            <View style={Styles.bannerContainer}>
                 <BannerAd
                     ref={bannerRef}
                 //    unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-8667301238982350/7038765928'} para desenvolvedor 
@@ -90,6 +91,7 @@ const ShareScreen = ({ navigation }) => {
                         console.error('Ad failed to load: ', error);
                     }}
                 />
+            </View>
         </View >
     );
 }

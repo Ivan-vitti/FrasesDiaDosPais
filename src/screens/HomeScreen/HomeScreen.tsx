@@ -54,6 +54,7 @@ const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
+            <View style={Styles.bannerContainer}>
                 <BannerAd
                     ref={bannerRef}
                     unitId='ca-app-pub-8667301238982350/7038765928'
@@ -61,13 +62,14 @@ const HomeScreen = ({ navigation }) => {
 
                     // Adiciona um log para quando o anúncio carregar com sucesso
                     onAdLoaded={() => {
-                        console.log('Ad loaded');
+                        console.log('Ad loaded So VAiiiiiii');
                     }}
                     // Adiciona um log para quando o anúncio falhar ao carregar
                     onAdFailedToLoad={(error) => {
-                        console.error('Ad failed to load: ', error);
+                        console.error('Ad failed to load: Falha ao carregar o Anuncio ', error);
                     }}
                 />
+            </View>
         </View>
     );
 };

@@ -91,11 +91,13 @@ export const Styles = StyleSheet.create({
     lineHeight: 30,                      // Altura da linha do texto
 
   },
-  bannerAd: {
-    flex: 0,
-    marginVertical: 0, // Ajuste a margem vertical conforme necessário
-    marginHorizontal: 0, // Ajuste a margem horizontal conforme necessário
-  },
+  bannerContainer: {
+    position: 'absolute', // Posiciona o banner de forma absoluta
+    bottom: 0, // Posiciona o banner na base da tela
+    width: '100%', // Largura completa da tela
+    alignItems: 'center', // Centraliza o banner horizontalmente
+    backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
+},
 
 });
 
