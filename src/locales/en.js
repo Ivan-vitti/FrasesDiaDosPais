@@ -22,6 +22,12 @@ export default {
     phrases: 'Phrases',
     share: 'Share',
     phrase_of_day: 'Affection for Dad Today',
+    Only: 'Only',
+    error: 'ERROR ',
+    error_purchase: 'Unable to complete the purchase. Please try again later or contact customer support.',
+    thank_you: 'Thank you for your purchase!',
+    thank_you_premium: 'To ensure everything works correctly, please log out and log back into the app. We appreciate your understanding and support!',
+
 
 
     p0: 'Father, your love is the foundation that builds our lives.',

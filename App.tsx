@@ -16,6 +16,7 @@ import GlobalStyles, { colors } from './src/Styles/GlobalStyles';
 import NavigationBarColor from 'react-native-navigation-bar-color';
 import PhrasesScreen from './src/screens/PhrasesScreen';
 import ShareScreen from './src/screens/ShareScreen';
+import {withIAPContext} from 'react-native-iap';
 
 //--------------------------------------------------------------------------------------------------------------------
 const renderTabIcon = (name: string, color: string) => {
@@ -190,4 +191,4 @@ function App(): React.JSX.Element {
   );
 }
 
-export default App;
+export default withIAPContext(App);

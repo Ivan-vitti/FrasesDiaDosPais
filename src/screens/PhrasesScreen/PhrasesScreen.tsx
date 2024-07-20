@@ -17,7 +17,7 @@ const PhrasesScreen = ({ navigation }) => {
     };
 
     return (
-        <View style={GlobalStyles.body}>            
+        <View style={{ flex: 1, backgroundColor: colors.background }}>
             <FlatList
                 data={PHRASES}
                 renderItem={({ item }) => (
@@ -28,17 +28,18 @@ const PhrasesScreen = ({ navigation }) => {
                         </View>
                     </TouchableOpacity>
                 )}
+                contentContainerStyle={{ paddingBottom: 80 }} // Adiciona espaço na parte inferior
             />
-             <View style={Styles.bannerContainer}>
+            <View style={Styles.bannerContainer}>
                 <BannerAd
-                    ref={bannerRef} // Referência para o BannerAd
+                    ref={bannerRef}
                     unitId='ca-app-pub-8667301238982350/7038765928'
-                    size={BannerAdSize.FULL_BANNER} // Tamanho do banner (FULL_BANNER)
+                    size={BannerAdSize.BANNER}
                     onAdLoaded={() => {
-                        console.log('Ad loaded'); // Evento chamado quando o anúncio é carregado com sucesso
+                        console.log('Ad loaded');
                     }}
                     onAdFailedToLoad={(error) => {
-                        console.error('Ad failed to load: ', error); // Evento chamado quando há falha ao carregar o anúncio
+                        console.error('Ad failed to load: ', error);
                     }}
                 />
             </View>

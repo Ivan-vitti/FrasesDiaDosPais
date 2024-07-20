@@ -23,6 +23,16 @@ export default {
     phrases: 'Frases',
     share: 'Compartilhar',
     phrase_of_day: 'Carinho de Hoje Para o Papai',
+    Only: 'Apenas',
+    error: 'ERRO ',
+    error_purchase: 'Não foi possível concluir a compra. Por favor, tente novamente mais tarde ou entre em contato com o suporte ao cliente.',
+    thank_you: 'Obrigado pela sua compra!',
+    thank_you_premium: 'Para garantir que tudo funcione corretamente, por favor, saia do aplicativo e entre novamente. Agradecemos a sua compreensão e apoio!',
+
+
+
+
+
 
   p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
   p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',

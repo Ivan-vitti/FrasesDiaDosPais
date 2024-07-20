@@ -10,9 +10,7 @@ import Share from 'react-native-share';
 import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from 'react-native-google-mobile-ads';
 
 
-const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/7956245862');
-
-
+const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
 
 
 const ShareScreen = ({ navigation }) => {
@@ -23,19 +21,32 @@ const ShareScreen = ({ navigation }) => {
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
-        const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
+        const onAdLoaded = () => {
             setLoaded(true);
-        });
+            console.log('Interstitial ad loaded So Vaiiiiiii');
+        };
 
-        interstitial.addAdEventListener(AdEventType.CLOSED, () => {
+        const onAdFailedToLoad = (error: any) => {
+            console.error('Interstitial ad failed to load DEU RUImmmmmm: ', error);
+        };
+
+        const onAdClosed = () => {
             shareFinish();
-        });
+        };
 
-        // Start loading the interstitial straight away
+        const unsubscribeLoaded = interstitial.addAdEventListener(AdEventType.LOADED, onAdLoaded);
+        const unsubscribeFailed = interstitial.addAdEventListener(AdEventType.ERROR, onAdFailedToLoad);
+        const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, onAdClosed);
+
+        // Inicia o carregamento do intersticial
         interstitial.load();
 
-        // Unsubscribe from events on unmount
-        return unsubscribe;
+        // Desinscreve os ouvintes ao desmontar o componente
+        return () => {
+            unsubscribeLoaded();
+            unsubscribeFailed();
+            unsubscribeClosed();
+        };
     }, []);
 
     const share = () => {
