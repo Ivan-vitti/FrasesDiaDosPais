@@ -28,7 +28,9 @@ export default {
     error_purchase: 'Não foi possível concluir a compra. Por favor, tente novamente mais tarde ou entre em contato com o suporte ao cliente.',
     thank_you: 'Obrigado pela sua compra!',
     thank_you_premium: 'Para garantir que tudo funcione corretamente, por favor, saia do aplicativo e entre novamente. Agradecemos a sua compreensão e apoio!',
-
+    product_not_purchased:'Produto não comprado',
+    attention: 'Atenção',
+    store_no_connect: 'Sem conexão com a loja',
 
 
 

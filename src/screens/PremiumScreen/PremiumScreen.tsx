@@ -8,12 +8,8 @@ import { requestPurchase, useIAP } from "react-native-iap";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
-
-
-
 const imgPremium = require('../../assets/images/premium.png');
 const imgPremium02 = require('../../assets/images/premium02.png');
-
 
 //const comprar = () =>
 //  console.log('compar');
@@ -73,18 +69,73 @@ const PremiumScreen = ({ navigation }) => {
             console.log(error);
         }
     };
+    // Restaurar compra de um outro aplicativo em outro aparelho
+    const restaurar = async () => {
+        console.log('Restaurar');
+        try {
+            console.log(availablePurchases);
+            if (availablePurchases.length > 0) {
+                availablePurchases.forEach(purchase => {
+                    switch (purchase.productId) {
+                        case 'premium_version':
+                            obrigadoPorSerPremium();
+                            break;
+                    }
+                });
+            } else {
+                Alert.alert(
+                    'Ops!',
+                    I18n.t('product_not_purchased'),
+                    [
+                        { text: 'OK', onPress: () => { } },
+                    ],
+                    { cancelable: true },
+                );
+            }
+
+        } catch (error) {
+            console.log('ERRO restaurar');
+            console.log(error);
+
+            Alert.alert(
+                I18n.t('attention'),
+                I18n.t('store_no_connect'),
+                [
+                    { text: 'OK', onPress: () => { } },
+                ],
+                { cancelable: true },
+            );
+        }
+    }
+
+
+    // Hook para iniciar a tela e pegar as informaçoes na loja.
+    useEffect(() => {
+        const checkProduct = async () => {
+            try {
+                // Consulta os produtos existentes na loja.
+                await getProducts({ skus: ['premium_version'] });
+                products.map(product => {
+                    if (product.productId === 'premium_version') {
+                        // SE Achou, seta o valor
+                        setPrice(product.localizedPrice);
+                    }
+                })
+                // Consulta se o usuario ja fez alguma copmprar desse produto 
+                await getAvailablePurchases();
+            } catch (error) {
+                console.log('ERRO checkProduct');
+                console.log(error);
+            }
+        }
+        if (price === '')
+            checkProduct();
+    });
 
 
 
 
-
-
-
-
-
-
-
-
+    // Caso a compra de erro, executará essa função.
     useEffect(() => {
         if (currentPurchaseError != undefined) {
             console.log('ERRO currentPurchaseError');
@@ -100,7 +151,7 @@ const PremiumScreen = ({ navigation }) => {
         }
     }, [currentPurchaseError]);
 
-
+    // Caso a compra seja efetuada e com sucesso, executara esta função
     useEffect(() => {
         console.log('ERRO currentPurchase');
         console.log(currentPurchase);

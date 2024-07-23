@@ -27,6 +27,15 @@ export default {
     error_purchase: 'Unable to complete the purchase. Please try again later or contact customer support.',
     thank_you: 'Thank you for your purchase!',
     thank_you_premium: 'To ensure everything works correctly, please log out and log back into the app. We appreciate your understanding and support!',
+    product_not_purchased: 'Product not purchased',
+    attention: 'Attention',
+    store_no_connect: 'No store connection',
+
+
+
+
+
+
 
 
 

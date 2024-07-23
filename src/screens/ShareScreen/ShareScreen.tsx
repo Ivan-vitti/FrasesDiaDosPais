@@ -8,6 +8,7 @@ import { useRoute } from '@react-navigation/native';
 import Icon from "react-native-vector-icons/FontAwesome";
 import Share from 'react-native-share';
 import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from 'react-native-google-mobile-ads';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
 const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
@@ -15,12 +16,23 @@ const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982
 
 const ShareScreen = ({ navigation }) => {
 
+    const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const bannerRef = useRef<BannerAd>(null);
     const route = useRoute();
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
 
     useEffect(() => {
+
+        // Verifica se o usuario é premium
+        const checkPremium = async () => {
+            const premium = await AsyncStorage.getItem('premium');
+            if (premium === 'S') {
+                setPremium(true);
+            }
+        }
+        checkPremium();
+
         const onAdLoaded = () => {
             setLoaded(true);
             console.log('Interstitial ad loaded So Vaiiiiiii');
@@ -50,8 +62,7 @@ const ShareScreen = ({ navigation }) => {
     }, []);
 
     const share = () => {
-
-        if (loaded) {
+        if (loaded && !premium) {
             interstitial.show();
         } else {
             shareFinish();
@@ -87,24 +98,27 @@ const ShareScreen = ({ navigation }) => {
                 </View>
             </View>
             <View style={Styles.bannerContainer}>
-                <BannerAd
-                    ref={bannerRef}
-                //    unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-8667301238982350/7038765928'} para desenvolvedor 
-                    unitId='ca-app-pub-8667301238982350/7038765928'
-                    size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                {!premium ?
+                    <BannerAd
+                        ref={bannerRef}
+                        //    unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-8667301238982350/7038765928'} para desenvolvedor 
+                        unitId='ca-app-pub-8667301238982350/7038765928'
+                        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
 
-                    // Adiciona um log para quando o anúncio carregar com sucesso
-                    onAdLoaded={() => {
-                        console.log('Ad loaded');
-                    }}
-                    // Adiciona um log para quando o anúncio falhar ao carregar
-                    onAdFailedToLoad={(error) => {
-                        console.error('Ad failed to load: ', error);
-                    }}
-                />
+                        // Adiciona um log para quando o anúncio carregar com sucesso
+                        onAdLoaded={() => {
+                            console.log('Ad loaded');
+                        }}
+                        // Adiciona um log para quando o anúncio falhar ao carregar
+                        onAdFailedToLoad={(error) => {
+                            console.error('Ad failed to load: ', error);
+                        }}
+                    />
+                    : null}
             </View>
-        </View >
+        </View>
     );
 }
+
 
 export default ShareScreen;

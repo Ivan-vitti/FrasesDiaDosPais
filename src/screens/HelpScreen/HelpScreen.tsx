@@ -2,11 +2,28 @@ import { View, Text, ScrollView, } from "react-native";
 import GlobalStyles from "../../Styles/GlobalStyles";
 import I18n from '../../util/i18n';
 import Styles, { colors } from "./HelpScreen.style";
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const HelpScreen = () => {
+
+    const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const bannerRef = useRef<BannerAd>(null);
+
+
+    // Verifica se o usuario é premium
+    useEffect(() => {
+        const checkPremium = async () => {
+            const premium = await AsyncStorage.getItem('premium');
+            if (premium === 'S') {
+                setPremium(true);
+            }
+        }
+        checkPremium();
+    }, []);
+
+
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
@@ -23,17 +40,19 @@ const HelpScreen = () => {
             </ScrollView>
 
             <View style={[Styles.bannerContainer, { position: 'absolute', bottom: 0, width: '100%' }]}>
-                <BannerAd
-                    ref={bannerRef} // Referência para o BannerAd
-                    unitId='ca-app-pub-8667301238982350/7038765928' 
-                    size={BannerAdSize.BANNER} // Tamanho do banner (BANNER)
-                    onAdLoaded={() => {
-                        console.log('Ad loaded'); // Evento chamado quando o anúncio é carregado com sucesso
-                    }}
-                    onAdFailedToLoad={(error) => {
-                        console.error('Ad failed to load: ', error); // Evento chamado quando há falha ao carregar o anúncio
-                    }}
-                />
+                {!premium ?
+                    <BannerAd
+                        ref={bannerRef} // Referência para o BannerAd
+                        unitId='ca-app-pub-8667301238982350/7038765928'
+                        size={BannerAdSize.BANNER} // Tamanho do banner (BANNER)
+                        onAdLoaded={() => {
+                            console.log('Ad loaded'); // Evento chamado quando o anúncio é carregado com sucesso
+                        }}
+                        onAdFailedToLoad={(error) => {
+                            console.error('Ad failed to load: ', error); // Evento chamado quando há falha ao carregar o anúncio
+                        }}
+                    />
+                    : null}
             </View>
         </View>
     );

@@ -8,11 +8,22 @@ import Styles, { colors } from "./HomeScreen.style";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
+
 const HomeScreen = ({ navigation }) => {
+
+    const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const [phrase, setPhrase] = useState('p0');
     const bannerRef = useRef<BannerAd>(null);
 
+    // Verifica se o usuario é premium
     useEffect(() => {
+        const checkPremium = async () => {
+            const premium = await AsyncStorage.getItem('premium');
+            if (premium === 'S') {
+                setPremium(true);
+            }
+        }
+        checkPremium();
 
         const randomPhrase = async () => {
             const dataOpen = await AsyncStorage.getItem('dataOpen');
@@ -55,24 +66,26 @@ const HomeScreen = ({ navigation }) => {
                 </View>
             </View>
             <View style={Styles.bannerContainer}>
-                <BannerAd
-                    ref={bannerRef}
-                    unitId='ca-app-pub-8667301238982350/7038765928'
-                    size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
+                {!premium ?
+                    <BannerAd
+                        ref={bannerRef}
+                        unitId='ca-app-pub-8667301238982350/7038765928'
+                        size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
 
-                    // Adiciona um log para quando o anúncio carregar com sucesso
-                    onAdLoaded={() => {
-                        console.log('Ad loaded So VAiiiiiii');
-                    }}
-                    // Adiciona um log para quando o anúncio falhar ao carregar
-                    onAdFailedToLoad={(error) => {
-                        console.error('Ad failed to load: Falha ao carregar o Anuncio ', error);
-                    }}
-                />
+                        // Adiciona um log para quando o anúncio carregar com sucesso
+                        onAdLoaded={() => {
+                            console.log('Ad loaded So VAiiiiiii');
+                        }}
+                        // Adiciona um log para quando o anúncio falhar ao carregar
+                        onAdFailedToLoad={(error) => {
+                            console.error('Ad failed to load: Falha ao carregar o Anuncio ', error);
+                        }}
+                    />
+                    : null}
             </View>
         </View>
     );
-};
+}
 
 export default HomeScreen;
 
