@@ -188,7 +188,12 @@ const PremiumScreen = ({ navigation }) => {
                     <Image style={Styles.ImagePremium} source={imgPremium} />
                     <Text style={Styles.subtitle}>{I18n.t('just_one_fee')}</Text>
                 </View>
-
+                {price != '' ?
+                    <View style={Styles.premiumContainer}>
+                        <Image style={Styles.ImagePremium} source={imgPremium} />
+                        <Text style={Styles.subtitle}>{I18n.t('Only')} {price}</Text>
+                    </View>
+                    : null}
                 <View style={GlobalStyles.body}>
                     <TouchableOpacity style={Styles.buttonPrimary} onPress={() => comprar()}>
                         <Image source={imgPremium02} style={Styles.ImagePremium} />
@@ -202,14 +207,6 @@ const PremiumScreen = ({ navigation }) => {
                         <Text style={Styles.buttonTextPrimary}>{I18n.t("restore_purchase")}</Text>
                     </TouchableOpacity>
                 </View>
-
-                {price != '' ?
-                    <View style={Styles.premiumContainer}>
-                        <Image style={Styles.ImagePremium} source={imgPremium} />
-                        <Text style={Styles.subtitle}>{I18n.t('Only')} {price}</Text>
-                    </View>
-                    : null}
-
             </ScrollView >
         </View >
 

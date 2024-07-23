@@ -30,7 +30,7 @@ export default {
     product_not_purchased: 'Producto_no_comprado',
     attention: 'Atención',
     store_no_connect: 'Sin conexión con la tienda',
-
+    erro: 'Ops!!! ',
 
 
 
