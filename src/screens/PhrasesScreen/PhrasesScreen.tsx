@@ -14,6 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const PhrasesScreen = ({ navigation }) => {
 
     const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
+    const [selectedPhrase, setSelectedPhrase] = useState<string | null>(null); // Adiciona estado para a frase selecionada
     const bannerRef = useRef<BannerAd>(null);
 
     const navShare = (phrase: string) => {
@@ -38,9 +39,16 @@ const PhrasesScreen = ({ navigation }) => {
             <FlatList
                 data={PHRASES}
                 renderItem={({ item }) => (
-                    <TouchableOpacity onPress={() => navShare(item.phrase)}>
+                    <TouchableOpacity onPress={() => {
+                        navShare(item.phrase);
+                        setSelectedPhrase(item.phrase); // Atualiza a frase selecionada
+                    }}>
                         <View style={Styles.boxPhrase}>
-                            <Icon name={'envelope-o'} size={39} color={colors.textPrimary} />
+                            <Icon
+                                name={'envelope-o'}
+                                size={39}
+                                color={selectedPhrase === item.phrase ? 'red' : colors.textPrimary} // Define a cor com base na seleção
+                            />
                             <Text style={Styles.text}>{I18n.t(item.phrase)}</Text>
                         </View>
                     </TouchableOpacity>
