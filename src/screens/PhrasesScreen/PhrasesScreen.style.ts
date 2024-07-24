@@ -14,59 +14,12 @@ export const colors = {
   link: '#3498DB',           // Azul Claro (links)
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
-
 };
 
 // Definindo os estilos globais
 export const Styles = StyleSheet.create({
 
-  // Estilos para títulos principais
-  title: {
-    fontSize: 26,                        // Tamanho da fonte
-    textAlign: 'auto',                 // Alinhamento do texto
-    fontWeight: 'bold',                  // Peso da fonte
-    color: colors.textPrimary,           // Cor do texto
-    //  marginVertical: 15,                  // Margem vertical
-    //   marginBottom: 10,                    // Margem inferior para espaçamento da base
-    //    marginTop: 15,                       // Margem superior para espaçamento do topo
-  },
-
-  // Estilos para subtítulos
-  subtitle: {
-    fontSize: 20,                        // Tamanho da fonte
-    textAlign: 'left',
-    fontWeight: 'bold',                  // Peso da fonte
-    color: colors.textPrimary,           // Cor do texto
-    fontFamily: 'Arial, sans-serif',     // Fonte
-    marginHorizontal: 15,                // Margem vertical
-    marginTop: 5,                       // Margem superior para espaçamento do topo
-    marginBottom: 15,                    // Margem inferior para espaçamento do texto abaixo
-
-  },
-
-  // Estilos para texto regular
-  text: {
-    flex: 1,
-    fontFamily: 'Helvetica, Arial, sans-serif', // Fonte com fallback
-    fontSize: 18,                               // Tamanho da fonte
-    textAlign: 'justify',
-    marginHorizontal: 20,                        // Margem horizontal para espaçamento dos lados
-    lineHeight: 21,                             // Altura da linha
-    color: colors.textPrimary,                   // Cor do texto
-    //   marginBottom: 15,                           // Margem inferior para espaçamento da base
-    //   marginTop: 5,                               // Margem superior para espaçamento do texto anterior
-
-  },
-
-  // Estilos para legenda
-  legend: {
-    fontSize: 14,                        // Tamanho da fonte
-    fontWeight: 'normal',                // Peso da fonte
-    textAlign: 'center',                 // Alinhamento do texto
-    color: colors.textPrimary,       // Cor do texto
-
-  },
-
+  // Estilos para a caixa de frase
   boxPhrase: {
     flex: 1,
     flexDirection: 'row',                // Direção dos itens (imagem e texto)
@@ -78,17 +31,26 @@ export const Styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
   },
-  
+
+  // Estilos para o banner
   bannerContainer: {
     position: 'absolute', // Posiciona o banner de forma absoluta
     bottom: 0, // Posiciona o banner na base da tela
     width: '100%', // Largura completa da tela
     alignItems: 'center', // Centraliza o banner horizontalmente
     backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
-},
+  },
 
-
-
+  // Estilos para texto regular
+  text: {
+    flex: 1,
+    fontFamily: 'Helvetica, Arial, sans-serif', // Fonte com fallback
+    fontSize: 18,                               // Tamanho da fonte
+    textAlign: 'justify',
+    marginHorizontal: 20,                        // Margem horizontal para espaçamento dos lados
+    lineHeight: 21,                             // Altura da linha
+    color: colors.textPrimary,                   // Cor do texto
+  },
 });
 
 export default Styles;

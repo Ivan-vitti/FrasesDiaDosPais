@@ -19,7 +19,6 @@ export const colors = {
 // Definindo os estilos globais
 export const Styles = StyleSheet.create({
 
-
     // Estilos para títulos principais
     title: {
         fontSize: 26,                        // Tamanho da fonte
@@ -41,7 +40,6 @@ export const Styles = StyleSheet.create({
         marginHorizontal: 15,                // Margem vertical
         marginTop: 5,                       // Margem superior para espaçamento do topo
         marginBottom: 15,                    // Margem inferior para espaçamento do texto abaixo
-
     },
 
     // Estilos para texto regular
@@ -54,54 +52,6 @@ export const Styles = StyleSheet.create({
         color: colors.textPrimary,                   // Cor do texto
         marginBottom: 15,                           // Margem inferior para espaçamento da base
         marginTop: 5,                               // Margem superior para espaçamento do texto anterior
-
-    },
-
-    // Estilos para legenda
-    legend: {
-        fontSize: 14,                        // Tamanho da fonte
-        fontWeight: 'normal',                // Peso da fonte
-        textAlign: 'center',                 // Alinhamento do texto
-        color: colors.textPrimary,       // Cor do texto
-
-    },
-
-    // Estilos para botões secundários
-    buttonSecondary: {
-        backgroundColor: colors.secondary,   // Cor de fundo do botão
-        color: '#FFFFFF',                    // Cor do texto do botão (mantida como branca para contraste)
-        paddingVertical: 15,                 // Espaçamento vertical interno
-        paddingHorizontal: 20,               // Espaçamento horizontal interno
-        borderRadius: 15,                    // Raio da borda
-        cursor: 'pointer',                   // Cursor do mouse
-        borderWidth: 1,                      // Largura da borda
-        borderColor: colors.secondary,       // Cor da borda
-        flexDirection: 'row',                // Direção dos itens (imagem e texto)
-        alignItems: 'center',                // Alinhamento vertical dos itens
-    },
-
-    // Estilos para texto dentro dos botões secundários
-    buttonTextSecondary: {
-        color: '#FFFFFF',                    // Cor do texto
-        fontWeight: 'bold',                  // Peso da fonte
-        fontSize: 18,                        // Tamanho da fonte
-        marginLeft: 20,                      // Espaçamento à esquerda da imagem
-    },
-
-    // Estilos para imagem
-    ImagePremium: {
-        width: 33,                           // Largura da imagem
-        height: 33,                          // Altura da imagem
-        marginTop: 5,                   // Margem superior para espaçamento do topo
-            
-    },
-
-    // Novo estilo para A imagem ficar na frente da fraze
-    premiumContainer: {
-        flexDirection: 'row',   // Direção dos itens na linha
-        marginLeft: 30,
-        marginRight: 40,
-        marginBottom: 20,
     },
 
     bannerContainer: {
@@ -111,7 +61,6 @@ export const Styles = StyleSheet.create({
         alignItems: 'center', // Centraliza o banner horizontalmente
         backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
     },
-
 });
 
 export default Styles;

@@ -85,28 +85,6 @@ export const GlobalStyles = StyleSheet.create({
 
     },
 
-    // Estilos para legenda
-    legend: {
-        fontSize: 14,                        // Tamanho da fonte
-        fontWeight: 'normal',                // Peso da fonte
-        textAlign: 'center',                 // Alinhamento do texto
-        color: colors.textPrimary,       // Cor do texto
-
-    },
-
-    // Estilos para campos de entrada (inputs)
-    input: {
-        backgroundColor: '#FFFFFF',          // Cor de fundo do campo
-        borderWidth: 1,                      // Largura da borda
-        borderColor: colors.divider,         // Cor da borda
-        borderRadius: 5,                     // Raio da borda
-        padding: 10,                         // Espaçamento interno
-        fontSize: 14,                        // Tamanho da fonte
-        color: colors.textPrimary,           // Cor do texto
-        width: '100%',                       // Largura total
-        marginBottom: 10,                    // Margem inferior
-    },
-
     // Estilos para botões principais
     buttonPrimary: {
         backgroundColor: colors.primary,     // Cor de fundo do botão
