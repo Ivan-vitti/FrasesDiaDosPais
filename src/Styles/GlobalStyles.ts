@@ -123,7 +123,7 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 22,                        // Tamanho da fonte
         marginLeft: 20,                      // Espaçamento à esquerda da imagem
         lineHeight: 26,                      // Altura da linha do texto
-        
+
     },
 
     // Estilos para texto dentro dos botões secundários
@@ -150,8 +150,8 @@ export const GlobalStyles = StyleSheet.create({
         width: 33,                           // Largura da imagem
         height: 33,                          // Altura da imagem
         marginTop: 5,                   // Margem superior para espaçamento do topo
-        
-        
+
+
     },
 
     // Novo estilo para A imagem ficar na frente da fraze
@@ -160,6 +160,13 @@ export const GlobalStyles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 40,
         marginBottom: 20,
+    },
+    // Estilos para legenda
+    legend: {
+        fontSize: 14,
+        fontWeight: 'normal',
+        textAlign: 'center',
+        color: colors.textPrimary,
     },
 
 });
