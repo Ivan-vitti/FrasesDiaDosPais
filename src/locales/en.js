@@ -31,6 +31,8 @@ export default {
     attention: 'Attention',
     store_no_connect: 'No store connection',
     erro: 'Ops!!! ',
+    personalize: 'Personalize',
+
 
 
 

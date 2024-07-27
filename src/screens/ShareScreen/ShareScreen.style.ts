@@ -69,7 +69,7 @@ export const Styles = StyleSheet.create({
     buttonPrimary: {
       backgroundColor: colors.primary,     // Cor de fundo do botão
       color: colors.textPrimary,           // Cor do texto do botão
-      marginVertical: 15,                  // Margem vertical distancia entre os botoes
+      marginVertical: 5,                  // Margem vertical distancia entre os botoes
       paddingHorizontal: 15,               // Espaçamento horizontal interno
       borderRadius: 18,                    // Raio da borda
       flexDirection: 'row',                // Direção dos itens (imagem e texto)
@@ -78,7 +78,7 @@ export const Styles = StyleSheet.create({
       height: 62,                          // Altura total do botão
       width: '75%',                        // Largura total do botão
       alignSelf: 'center',                 // Centraliza o botão horizontalmente
-      marginTop: 30,                       // Margem superior para espaçamento do topo
+      marginTop: 20,                       // Margem superior para espaçamento do topo
   
     },
   

@@ -31,6 +31,7 @@ export default {
     attention: 'Atención',
     store_no_connect: 'Sin conexión con la tienda',
     erro: 'Ops!!! ',
+    personalize: 'Personalizar',
 
 
 

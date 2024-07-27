@@ -1,4 +1,4 @@
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Button, Text, TouchableOpacity, View } from 'react-native';
 
 import I18n from '../../util/i18n';
 import GlobalStyles from '../../Styles/GlobalStyles';
@@ -9,6 +9,7 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Share from 'react-native-share';
 import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from 'react-native-google-mobile-ads';
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import CustomizationScreen from '../CustomizationModal';
 
 
 const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
@@ -21,6 +22,7 @@ const ShareScreen = ({ navigation }) => {
     const route = useRoute();
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
+    const [isCustomizationVisible, setIsCustomizationVisible] = useState(false);
 
     useEffect(() => {
 
@@ -85,18 +87,28 @@ const ShareScreen = ({ navigation }) => {
 
     return (
         <View style={{ flex: 1 }}>
+            
             <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
                 <Text style={Styles.title}>{I18n.t('share')}</Text>
                 <View style={Styles.boxPhrase}>
                     <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
                 </View>
+
                 <View style={GlobalStyles.body}>
                     <TouchableOpacity style={Styles.buttonPrimary} onPress={share}>
                         <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
                         <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
                     </TouchableOpacity>
                 </View>
+
+                <View style={GlobalStyles.body}>
+                    <TouchableOpacity style={Styles.buttonPrimary} onPress={() => setIsCustomizationVisible(true)}>
+                        <Icon name={'edit'} size={40} color={colors.iconColorBotão} />
+                        <Text style={Styles.buttonTextPrimary}>{I18n.t('personalize')}</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
+
             <View>
                 {!premium ?
                     <BannerAd
@@ -116,9 +128,16 @@ const ShareScreen = ({ navigation }) => {
                     />
                     : null}
             </View>
+
+            {/* Exibir o modal de personalização quando isCustomizationVisible for verdadeiro */}
+            {isCustomizationVisible && (
+                <CustomizationScreen
+                    onClose={() => setIsCustomizationVisible(false)} // Fecha o modal
+                    visible={undefined}
+                />
+            )}
         </View>
     );
-}
-
+};
 
 export default ShareScreen;
