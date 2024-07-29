@@ -32,9 +32,25 @@ export default {
     store_no_connect: 'Sin conexión con la tienda',
     erro: 'Ops!!! ',
     personalize: 'Personalizar',
+    Background_image: 'Imagen de Fondo',
+    Gallery: 'Galería',
+    Color: 'Color',
+    Camera: 'Cámara',
+    Font: 'Fuente',
+    Font_color: 'Color de Fuente',
+    Size: 'Tamaño',
+    Alignment: 'Alineación',
+    Horizontal: 'Horizontal',
+    Vertical: 'Vertical',
+    Close: 'Cerrar',
+    Select_Font: 'Seleccionar Fuente',
 
 
 
+
+
+
+    //----------------------FRASES--------------------------------------------------------------------
 
     p0: 'Padre, tu amor es el cimiento que construye nuestras vidas.',
     p1: 'Ningún amor es tan fuerte como el de un padre por sus hijos.',

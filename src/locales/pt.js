@@ -33,9 +33,23 @@ export default {
   store_no_connect: 'Sem conexão com a loja',
   erro: 'Ops!!! ',
   personalize: 'Personalizar',
+  Background_image: 'Imagem de Fundo',
+  Gallery: 'Galeria',
+  Color: 'Cor',
+  Camera: 'Câmera',
+  Font: 'Fonte',
+  Font_color: 'Cor da Fonte',
+  Size: 'Tamanho',
+  Alignment: 'Alinhamento',
+  Horizontal: 'Horizontal',
+  Vertical: 'Vertical',
+  Close: 'Fechar',
+  Select_Font: 'Selecionar Fonte',
 
 
 
+
+//----------------------FRASES--------------------------------------------------------------------
 
   p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
   p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',

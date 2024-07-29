@@ -32,14 +32,24 @@ export default {
     store_no_connect: 'No store connection',
     erro: 'Ops!!! ',
     personalize: 'Personalize',
+    Background_image: 'Background Image',
+    Gallery: 'Gallery',
+    Color: 'Color',
+    Camera: 'Camera',
+    Font: 'Font',
+    Font_color: 'Font Color',
+    Size: 'Size',
+    Alignment: 'Alignment',
+    Horizontal: 'Horizontal',
+    Vertical: 'Vertical',
+    Close: 'Close',
+    Select_Font: 'Select Font',
 
 
 
 
 
-
-
-
+    //----------------------FRASES--------------------------------------------------------------------
 
     p0: 'Father, your love is the foundation that builds our lives.',
     p1: "No love is as strong as a father's love for his children.",

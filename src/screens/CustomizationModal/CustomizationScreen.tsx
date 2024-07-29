@@ -1,59 +1,60 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Styles, { colors } from './Customization.style';
+import Styles from './Customization.style';
+import I18n from '../../util/i18n';
 
-const CustomizationScreen = ({ visible, onClose }) => {
+
+const CustomizationScreen = ({ visible, onClose, }) => {
+
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
-                <View style={Styles.modalContainer}>
-                    <Text style={Styles.Title}>Imagem de Fundo</Text>
+                <View style={Styles.Container}>
+                    <Text style={Styles.Title}>{I18n.t('Background_image')}</Text>
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="image" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Galeria</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Gallery')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="tint" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Cor</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Color')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="camera" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Câmera</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Camera')}</Text>
                         </TouchableOpacity>
                     </View>
-
-                    <Text style={Styles.Title}>Fonte</Text>
+                    <Text style={Styles.Title}>{I18n.t('Font')}</Text>
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="font" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Fonte</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Font')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="tint" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Cor da Fonte</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Font_color')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="text-height" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Tamanho</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Size')}</Text>
                         </TouchableOpacity>
                     </View>
-
-                    <Text style={Styles.Title}>Alinhamento</Text>
+                    <Text style={Styles.Title}>{I18n.t('Alignment')}</Text>
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="align-left" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Horizontal</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Horizontal')}</Text>
                         </TouchableOpacity>
                         <TouchableOpacity style={Styles.modalButton}>
                             <Icon name="align-center" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>Vertical</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Vertical')}</Text>
                         </TouchableOpacity>
                     </View>
                     <TouchableOpacity style={Styles.FecharButton} onPress={onClose}>
                         <Icon name="check" style={Styles.iconStyle} />
-                        <Text style={Styles.subtitle}>Fechar</Text>
+                        <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
                     </TouchableOpacity>
                 </View>
             </View>

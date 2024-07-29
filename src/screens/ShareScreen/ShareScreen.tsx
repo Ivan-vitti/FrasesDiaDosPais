@@ -12,6 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomizationScreen from '../CustomizationModal';
 
 
+
 const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
 
 
@@ -128,14 +129,10 @@ const ShareScreen = ({ navigation }) => {
                     />
                     : null}
             </View>
-
-            {/* Exibir o modal de personalização quando isCustomizationVisible for verdadeiro */}
-            {isCustomizationVisible && (
-                <CustomizationScreen
-                    onClose={() => setIsCustomizationVisible(false)} // Fecha o modal
-                    visible={undefined}
-                />
-            )}
+            <CustomizationScreen
+                visible={isCustomizationVisible}
+                onClose={() => setIsCustomizationVisible(false)}            
+            />
         </View>
     );
 };

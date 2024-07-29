@@ -21,7 +21,7 @@ const Styles = StyleSheet.create({
     alignItems: 'center', // Centraliza o conteúdo horizontalmente
     backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo escuro semi-transparente para o modal
   },
-  modalContainer: {
+  Container: {
     width: '90%', // Largura do modal em 90% da tela
     backgroundColor: colors.background, // Cor de fundo do modal definida pelas cores do aplicativo
     borderRadius: 15, // Bordas arredondadas do modal
