@@ -11,7 +11,8 @@ export const colors = {
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
   iconColorBotão: '#FFFFFF',
- 
+  contorno:'#000033',  // cor de contorno do texto
+
 };
 
 // Definindo os estilos globais
@@ -65,38 +66,41 @@ export const Styles = StyleSheet.create({
     minHeight: 60, // Altura mínima para garantir que a caixa não seja muito pequena
   },
 
-    // Estilos para botões principais
-    buttonPrimary: {
-      backgroundColor: colors.primary,     // Cor de fundo do botão
-      color: colors.textPrimary,           // Cor do texto do botão
-      marginVertical: 5,                   // Margem vertical distancia entre os botoes
-      paddingHorizontal: 15,               // Espaçamento horizontal interno
-      borderRadius: 15,                    // Raio da borda
-      flexDirection: 'row',                // Direção dos itens (imagem e texto)
-      alignItems: 'center',                // Alinhamento vertical dos itens
-      justifyContent: 'flex-start',         // Alinha o conteúdo no centro horizontalmente
-      height: 48,                          // Altura total do botão
-      width: '80%',                        // Largura total do botão
-      alignSelf: 'center',                 // Centraliza o botão horizontalmente
-      marginTop: 12,                       // Margem superior para espaçamento do topo
-  
-    },
-  
-    // Estilos para texto dentro dos botões principais
-    buttonTextPrimary: {
-      color: colors.iconColorBotão,        // Cor do texto
-      fontWeight: 'bold',                  // Peso da fonte
-      fontSize: 22,                        // Tamanho da fonte
-      marginLeft: 15,                      // Espaçamento à esquerda da imagem
-      lineHeight: 25,                      // Altura da linha do texto
-  
-    },
-    bannerContainer: {
-      position: 'absolute', // Posiciona o banner de forma absoluta
-      bottom: 0, // Posiciona o banner na base da tela
-      width: '100%', // Largura completa da tela
-      alignItems: 'center', // Centraliza o banner horizontalmente
-      backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
+  // Estilos para botões principais
+  buttonPrimary: {
+    backgroundColor: colors.primary,     // Cor de fundo do botão
+    color: colors.textPrimary,           // Cor do texto do botão
+    marginVertical: 5,                   // Margem vertical distancia entre os botoes
+    paddingHorizontal: 15,               // Espaçamento horizontal interno
+    borderRadius: 15,                    // Raio da borda
+    flexDirection: 'row',                // Direção dos itens (imagem e texto)
+    alignItems: 'center',                // Alinhamento vertical dos itens
+    justifyContent: 'flex-start',         // Alinha o conteúdo no centro horizontalmente
+    height: 48,                          // Altura total do botão
+    width: '80%',                        // Largura total do botão
+    alignSelf: 'center',                 // Centraliza o botão horizontalmente
+    marginTop: 12,                       // Margem superior para espaçamento do topo
+
+  },
+
+  // Estilos para texto dentro dos botões principais
+  buttonTextPrimary: {
+    color: colors.iconColorBotão,        // Cor do texto
+    fontWeight: 'bold',                  // Peso da fonte
+    fontSize: 22,                        // Tamanho da fonte
+    marginLeft: 15,                      // Espaçamento à esquerda da imagem
+    lineHeight: 25,                      // Altura da linha do texto
+    textShadowColor: colors.contorno,   // Cor da sombra
+    textShadowOffset: { width: 2, height: 1.5 }, // Offset da sombra
+    textShadowRadius: 2,                 // Raio da sombra
+
+  },
+  bannerContainer: {
+    position: 'absolute', // Posiciona o banner de forma absoluta
+    bottom: 0, // Posiciona o banner na base da tela
+    width: '100%', // Largura completa da tela
+    alignItems: 'center', // Centraliza o banner horizontalmente
+    backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
   },
 
 
