@@ -44,6 +44,9 @@ export default {
     Vertical: 'Vertical',
     Close: 'Cerrar',
     Select_Font: 'Seleccionar Fuente',
+    Edit_the_Phrase: 'Editar la Frase',
+    Share_Text: 'Compartir Texto',
+    Share_Image: 'Compartir Imagen',
 
 
 

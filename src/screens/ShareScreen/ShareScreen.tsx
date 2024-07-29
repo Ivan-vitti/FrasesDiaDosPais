@@ -9,7 +9,8 @@ import Icon from "react-native-vector-icons/FontAwesome";
 import Share from 'react-native-share';
 import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from 'react-native-google-mobile-ads';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CustomizationScreen from '../CustomizationModal';
+import CustomizationScreen from '../Customize.Imagen';
+import CustomButton from './CustomButton';
 
 
 
@@ -87,42 +88,50 @@ const ShareScreen = ({ navigation }) => {
     };
 
     return (
-        <View style={{ flex: 1 }}>
-            
+        <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
-                <Text style={Styles.title}>{I18n.t('share')}</Text>
                 <View style={Styles.boxPhrase}>
                     <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
                 </View>
+            </View>
 
-                <View style={GlobalStyles.body}>
-                    <TouchableOpacity style={Styles.buttonPrimary} onPress={share}>
-                        <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
-                        <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
-                    </TouchableOpacity>
-                </View>
 
-                <View style={GlobalStyles.body}>
-                    <TouchableOpacity style={Styles.buttonPrimary} onPress={() => setIsCustomizationVisible(true)}>
-                        <Icon name={'edit'} size={40} color={colors.iconColorBotão} />
-                        <Text style={Styles.buttonTextPrimary}>{I18n.t('personalize')}</Text>
-                    </TouchableOpacity>
-                </View>
+            <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: 10 }}>
+                <CustomButton
+                    iconName="image"
+                    title={I18n.t('Share_Image')}
+                    onPress={() => {/* Lógica para compartilhar imagem */ }}
+                />
+
+                <CustomButton
+                    iconName="share-alt-square"
+                    title={I18n.t('Share_Text')}
+                    onPress={share}
+                />
+                
+                <CustomButton
+                    iconName="pencil"
+                    title={I18n.t('Edit_the_Phrase')}
+                    onPress={() => {/* Lógica para editar a frase */ }}
+                />
+
+                <CustomButton
+                    iconName="edit"
+                    title={I18n.t('personalize')}
+                    onPress={() => setIsCustomizationVisible(true)}
+                />
+
             </View>
 
             <View>
                 {!premium ?
                     <BannerAd
                         ref={bannerRef}
-                        //    unitId={__DEV__ ? TestIds.BANNER : 'ca-app-pub-8667301238982350/7038765928'} para desenvolvedor 
                         unitId='ca-app-pub-8667301238982350/7038765928'
                         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-
-                        // Adiciona um log para quando o anúncio carregar com sucesso
                         onAdLoaded={() => {
                             console.log('Ad loaded');
                         }}
-                        // Adiciona um log para quando o anúncio falhar ao carregar
                         onAdFailedToLoad={(error) => {
                             console.error('Ad failed to load: ', error);
                         }}
@@ -131,7 +140,7 @@ const ShareScreen = ({ navigation }) => {
             </View>
             <CustomizationScreen
                 visible={isCustomizationVisible}
-                onClose={() => setIsCustomizationVisible(false)}            
+                onClose={() => setIsCustomizationVisible(false)}
             />
         </View>
     );

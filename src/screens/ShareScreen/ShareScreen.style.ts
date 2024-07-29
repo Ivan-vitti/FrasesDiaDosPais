@@ -69,16 +69,16 @@ export const Styles = StyleSheet.create({
     buttonPrimary: {
       backgroundColor: colors.primary,     // Cor de fundo do botão
       color: colors.textPrimary,           // Cor do texto do botão
-      marginVertical: 5,                  // Margem vertical distancia entre os botoes
+      marginVertical: 5,                   // Margem vertical distancia entre os botoes
       paddingHorizontal: 15,               // Espaçamento horizontal interno
-      borderRadius: 18,                    // Raio da borda
+      borderRadius: 15,                    // Raio da borda
       flexDirection: 'row',                // Direção dos itens (imagem e texto)
       alignItems: 'center',                // Alinhamento vertical dos itens
       justifyContent: 'flex-start',         // Alinha o conteúdo no centro horizontalmente
-      height: 62,                          // Altura total do botão
-      width: '75%',                        // Largura total do botão
+      height: 48,                          // Altura total do botão
+      width: '80%',                        // Largura total do botão
       alignSelf: 'center',                 // Centraliza o botão horizontalmente
-      marginTop: 20,                       // Margem superior para espaçamento do topo
+      marginTop: 12,                       // Margem superior para espaçamento do topo
   
     },
   
@@ -86,9 +86,9 @@ export const Styles = StyleSheet.create({
     buttonTextPrimary: {
       color: colors.iconColorBotão,        // Cor do texto
       fontWeight: 'bold',                  // Peso da fonte
-      fontSize: 26,                        // Tamanho da fonte
-      marginLeft: 25,                      // Espaçamento à esquerda da imagem
-      lineHeight: 30,                      // Altura da linha do texto
+      fontSize: 22,                        // Tamanho da fonte
+      marginLeft: 15,                      // Espaçamento à esquerda da imagem
+      lineHeight: 25,                      // Altura da linha do texto
   
     },
     bannerContainer: {
@@ -103,3 +103,4 @@ export const Styles = StyleSheet.create({
 });
 
 export default Styles;
+

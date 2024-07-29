@@ -4,8 +4,14 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Customization.style';
 import I18n from '../../util/i18n';
 
+interface CustomizationScreenProps {
+    visible: boolean;  // Defina explicitamente o tipo boolean para visible
+    onClose: () => void;  // Defina explicitamente o tipo function para onClose
+//    onSelectFont: (font: string) => void;  // Defina explicitamente o tipo function para onSelectFont
+}
 
-const CustomizationScreen = ({ visible, onClose, }) => {
+
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose,}) => {
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
@@ -52,6 +58,7 @@ const CustomizationScreen = ({ visible, onClose, }) => {
                             <Text style={Styles.subtitle}>{I18n.t('Vertical')}</Text>
                         </TouchableOpacity>
                     </View>
+                    
                     <TouchableOpacity style={Styles.FecharButton} onPress={onClose}>
                         <Icon name="check" style={Styles.iconStyle} />
                         <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>

@@ -22,7 +22,6 @@ export const GlobalStyles = StyleSheet.create({
     // Estilos para o corpo da página
     body: {
         backgroundColor: colors.background,  // Cor de fundo do corpo
-        color: colors.textPrimary,           // Cor do texto principal
         fontFamily: 'Arial, sans-serif',     // Fonte padrão
         fontSize: 24,                        // Tamanho da fonte
         lineHeight: 24,                      // Altura da linha
@@ -39,16 +38,9 @@ export const GlobalStyles = StyleSheet.create({
         maxWidth: 1200,                      // Largura máxima
         margin: 0,                           // Margem
         padding: 15,                         // Espaçamento interno
-        shadowColor: '#000',                 // Cor da sombra
-        shadowOffset: {                      // Deslocamento da sombra
-            width: 0,                        // Deslocamento horizontal da sombra
-            height: 2,                       // Deslocamento vertical da sombra
-        },
         shadowOpacity: 0.25,                 // Opacidade da sombra
         shadowRadius: 3.84,                  // Raio da sombra
-        elevation: 5,                        // Elevação da sombra (para Android)
         borderRadius: 5,                     // Raio da borda
-        backgroundColor: '#FFFFFF',          // Cor de fundo do container
     },
 
     // Estilos para títulos principais
