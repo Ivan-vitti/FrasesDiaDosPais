@@ -4,13 +4,11 @@ import Styles, { colors } from './ShareScreen.style';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRoute } from '@react-navigation/native';
 import Share from 'react-native-share';
-import { AdEventType, BannerAd, BannerAdSize, InterstitialAd,} from 'react-native-google-mobile-ads';
+import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, } from 'react-native-google-mobile-ads';
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import CustomizationScreen from '../Customize.Imagen';
 import CustomButton from './CustomButton';
-
 import ImageCustomization from './ImageCustomization';
-import { launchImageLibrary } from 'react-native-image-picker';
+import CustomizationScreen from './CustomizationScreen';
 
 
 
@@ -21,13 +19,18 @@ const ShareScreen = ({ navigation }) => {
 
     const [imageUri, setImageUri] = useState<string | null>(null); // Inicializa como null
 
+    const handleCloseCustomization = () => {
+        setCustomizationVisible(false);
+    };
+    const [isCustomizationVisible, setCustomizationVisible] = useState(false);
+
+
 
     const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const bannerRef = useRef<BannerAd>(null);
     const route = useRoute();
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
-    const [isCustomizationVisible, setIsCustomizationVisible] = useState(false);
 
     useEffect(() => {
 
@@ -90,23 +93,6 @@ const ShareScreen = ({ navigation }) => {
             });
     };
 
-
-
-    // Função para selecionar a imagem da galeria
-    const selectImage = async () => {
-        const result = await launchImageLibrary({
-            mediaType: 'photo',
-            quality: 1,
-        });
-
-        if (!result.didCancel && result.assets && result.assets.length > 0) {
-            const uri = result.assets[0].uri || null; // Garante que uri seja string ou null
-            setImageUri(uri); // Atualiza a URI da imagem selecionada
-        }
-    };
-
-
-
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[Styles.container,]}>
@@ -139,10 +125,7 @@ const ShareScreen = ({ navigation }) => {
                 <CustomButton
                     iconName="edit"
                     title={I18n.t('personalize')}
-                    onPress={() => {
-                        setIsCustomizationVisible(true);
-                        selectImage(); // Chama a função para selecionar a imagem ao abrir a tela de personalização
-                    }}
+                    onPress={() => setCustomizationVisible(true)} // Abre o modal de personalização
                 />
             </View>
 
@@ -161,10 +144,12 @@ const ShareScreen = ({ navigation }) => {
                     />
                     : null}
             </View>
-            <CustomizationScreen
-                visible={isCustomizationVisible}
-                onClose={() => setIsCustomizationVisible(false)}
+
+            <CustomizationScreen 
+                visible={isCustomizationVisible} 
+                onClose={handleCloseCustomization} 
             />
+            
         </View>
     );
 };
