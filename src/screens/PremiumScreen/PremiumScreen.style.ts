@@ -15,6 +15,7 @@ export const colors = {
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
   iconColorBotão: '#FFFFFF', // Cor do ícone do botão
+  contorno: '#000033',        // cor de contorno do texto
 };
 
 export const Styles = StyleSheet.create({
@@ -70,6 +71,9 @@ export const Styles = StyleSheet.create({
     fontSize: 22,                        // Tamanho da fonte
     marginLeft: 15,                      // Espaçamento à esquerda da imagem
     lineHeight: 28,                      // Altura da linha do texto
+    textShadowColor: colors.contorno,   // Cor da sombra
+    textShadowOffset: { width: 2, height: 1.5 }, // Offset da sombra
+    textShadowRadius: 2,                 // Raio da sombra
   },
 
   // Estilos para imagem

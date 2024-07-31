@@ -13,7 +13,9 @@ export const colors = {
     success: '#4CAF50',        // Verde (mensagens de sucesso)
     link: '#3498DB',           // Azul Claro (links)
     iconActive: '#3498DB',     // Cor para ícones ativos
-    iconInactive: '#757575'    // Cor para ícones inativos
+    iconInactive: '#757575',    // Cor para ícones inativos
+    contorno:'#000033',        // cor de contorno do texto
+
 };
 
 // Definindo os estilos globais
@@ -115,6 +117,9 @@ export const GlobalStyles = StyleSheet.create({
         fontSize: 22,                        // Tamanho da fonte
         marginLeft: 20,                      // Espaçamento à esquerda da imagem
         lineHeight: 26,                      // Altura da linha do texto
+        textShadowColor: colors.contorno,   // Cor da sombra
+        textShadowOffset: { width: 2, height: 1.5 }, // Offset da sombra
+        textShadowRadius: 2,                 // Raio da sombra
 
     },
 

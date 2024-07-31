@@ -1,16 +1,16 @@
-import { Button, Text, TouchableOpacity, View } from 'react-native';
-
+import { View } from 'react-native';
 import I18n from '../../util/i18n';
-import GlobalStyles from '../../Styles/GlobalStyles';
 import Styles, { colors } from './ShareScreen.style';
 import React, { useEffect, useRef, useState } from 'react';
 import { useRoute } from '@react-navigation/native';
-import Icon from "react-native-vector-icons/FontAwesome";
 import Share from 'react-native-share';
-import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, TestIds } from 'react-native-google-mobile-ads';
+import { AdEventType, BannerAd, BannerAdSize, InterstitialAd,} from 'react-native-google-mobile-ads';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomizationScreen from '../Customize.Imagen';
 import CustomButton from './CustomButton';
+
+import ImageCustomization from './ImageCustomization';
+import { launchImageLibrary } from 'react-native-image-picker';
 
 
 
@@ -18,6 +18,9 @@ const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982
 
 
 const ShareScreen = ({ navigation }) => {
+
+    const [imageUri, setImageUri] = useState<string | null>(null); // Inicializa como null
+
 
     const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const bannerRef = useRef<BannerAd>(null);
@@ -87,20 +90,38 @@ const ShareScreen = ({ navigation }) => {
             });
     };
 
+
+
+    // Função para selecionar a imagem da galeria
+    const selectImage = async () => {
+        const result = await launchImageLibrary({
+            mediaType: 'photo',
+            quality: 1,
+        });
+
+        if (!result.didCancel && result.assets && result.assets.length > 0) {
+            const uri = result.assets[0].uri || null; // Garante que uri seja string ou null
+            setImageUri(uri); // Atualiza a URI da imagem selecionada
+        }
+    };
+
+
+
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
-            <View style={[GlobalStyles.container, { backgroundColor: GlobalStyles.body.backgroundColor }]}>
-                <View style={Styles.boxPhrase}>
-                    <Text style={Styles.subtitle}>{I18n.t(phrase)}</Text>
-                </View>
+            <View style={[Styles.container,]}>
+                {/* Substitua a caixa de frase pela nova funcionalidade */}
+                <ImageCustomization
+                    imageUri={imageUri}
+                    phrase={phrase ? I18n.t(phrase) : 'Frase não disponível'} // Frase padrão caso phrase seja indefinida
+                />
             </View>
-
 
             <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: 10 }}>
                 <CustomButton
                     iconName="image"
                     title={I18n.t('Share_Image')}
-                    onPress={() => {/* Lógica para compartilhar imagem */ }}
+                    onPress={() => { /* Lógica para compartilhar imagem */ }}
                 />
 
                 <CustomButton
@@ -108,19 +129,21 @@ const ShareScreen = ({ navigation }) => {
                     title={I18n.t('Share_Text')}
                     onPress={share}
                 />
-                
+
                 <CustomButton
                     iconName="pencil"
                     title={I18n.t('Edit_the_Phrase')}
-                    onPress={() => {/* Lógica para editar a frase */ }}
+                    onPress={() => { /* Lógica para editar a frase */ }}
                 />
 
                 <CustomButton
                     iconName="edit"
                     title={I18n.t('personalize')}
-                    onPress={() => setIsCustomizationVisible(true)}
+                    onPress={() => {
+                        setIsCustomizationVisible(true);
+                        selectImage(); // Chama a função para selecionar a imagem ao abrir a tela de personalização
+                    }}
                 />
-
             </View>
 
             <View>

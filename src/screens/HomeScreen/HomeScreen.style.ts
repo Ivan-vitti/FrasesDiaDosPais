@@ -11,6 +11,7 @@ export const colors = {
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
   iconColorBotão: '#FFFFFF',
+  contorno: '#000033',  // cor de contorno do texto
 
 };
 
@@ -89,6 +90,10 @@ export const Styles = StyleSheet.create({
     fontSize: 26,                        // Tamanho da fonte
     marginLeft: 25,                      // Espaçamento à esquerda da imagem
     lineHeight: 30,                      // Altura da linha do texto
+    textShadowColor: colors.contorno,   // Cor da sombra
+    textShadowOffset: { width: 2, height: 1.5 }, // Offset da sombra
+    textShadowRadius: 2,                 // Raio da sombra
+
 
   },
   bannerContainer: {
@@ -97,7 +102,7 @@ export const Styles = StyleSheet.create({
     width: '100%', // Largura completa da tela
     alignItems: 'center', // Centraliza o banner horizontalmente
     backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
-},
+  },
 
 });
 
