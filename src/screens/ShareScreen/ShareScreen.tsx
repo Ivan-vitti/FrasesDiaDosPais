@@ -10,7 +10,7 @@ import CustomButton from './CustomButton';
 import ImageCustomization from './ImageCustomization';
 import CustomizationScreen from './CustomizationScreen';
 import ViewShot, { captureRef } from 'react-native-view-shot'; // Adicionei a importação do ViewShot
-import ImageGallery from './ImageGallery'; 
+import ImageGallery from './ImageGallery';
 
 
 
@@ -119,8 +119,11 @@ const ShareScreen = ({ navigation }) => {
     };
 
 
-    const handleSelectImage = (selectedImageUri: string) => {
-        setImageUri(selectedImageUri); // Atualiza o estado imageUri com a imagem selecionada
+    // Função atualizada para lidar com a seleção de imagem
+    const handleSelectImage = (selectedImageUri: string | null) => {
+        if (selectedImageUri) {
+            setImageUri(selectedImageUri); // Atualiza o estado com a imagem selecionada
+        }
         setGalleryVisible(false); // Fecha a galeria
     };
 
@@ -180,6 +183,7 @@ const ShareScreen = ({ navigation }) => {
                 visible={isCustomizationVisible}
                 onClose={handleCloseCustomization}
                 onOpenGallery={handleOpenGallery} // Passa a função para abrir a galeria
+                onImageSelected={handleSelectImage}
             />
 
             <ImageGallery

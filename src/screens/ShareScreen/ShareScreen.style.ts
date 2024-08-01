@@ -1,7 +1,6 @@
-
 import { StyleSheet, Dimensions } from 'react-native';
 
-const { height } = Dimensions.get('window'); // Obtém a altura da tela
+const { height, width } = Dimensions.get('window'); // Obtém a altura e largura da tela
 
 // Definindo as cores
 export const colors = {
@@ -14,7 +13,7 @@ export const colors = {
   iconActive: '#3498DB',     // Cor para ícones ativos
   iconInactive: '#757575',   // Cor para ícones inativos
   iconColorBotão: '#FFFFFF',
-  contorno: '#000033',  // cor de contorno do texto
+  contorno: '#000033',       // Cor de contorno do texto
 };
 
 // Definindo os estilos globais
@@ -91,10 +90,11 @@ export const Styles = StyleSheet.create({
 
 
   image: {
-    borderRadius: 20, // Aplica bordas arredondadas à imagem
+    borderRadius: 10, // Aplica bordas arredondadas à imagem
     resizeMode: 'contain', // Mude para 'contain' se quiser que a imagem se ajuste sem cortar
+    width: '100%', 
+    height: '100%',
   },
-
 
   // Estilos para botões principais
   buttonPrimary: {
@@ -145,34 +145,61 @@ export const Styles = StyleSheet.create({
     borderWidth: 1,
     padding: 10,
     textAlignVertical: 'top',
-    marginBottom: 20,
+    margin: 10,
   },
-  //---------------------------------------------------------------------------------------------------
-
-  imageGalleryItem: {
-    width: '30%', // Ajuste conforme necessário
-    height: 100,  // Ajuste conforme necessário
-    margin: 5,
+  saveButton: {
+    backgroundColor: '#3498DB',
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginHorizontal: 10,
+    borderRadius: 5,
+  },
+  saveButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
   },
 
+  // Estilos para modal
+  modalBackground: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Fundo semitransparente
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
   modalContainer: {
     flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 10,  // Adiciona preenchimento para espaçamento interno
+  },
+
+  imageGalleryItem: {
+    width: '48%', // Ajuste para duas imagens por coluna
+    height: 200,  // Ajuste conforme necessário
+    margin: 5,
   },
 
   closeButton: {
     marginTop: 20,
     padding: 10,
-    backgroundColor: '#3498DB',
+    backgroundColor: colors.primary,
     borderRadius: 5,
+    alignSelf: 'center',  // Centraliza o botão
+  },
+  
+  closeButtonText: {
+    color: colors.iconColorBotão,
+    fontWeight: 'bold',
+    fontSize: 18,
+  },
+  
+  galleryContainer: {
+    flex: 1,
+    width: '100%',  // Largura completa da galeria
   },
 
-  closeButtonText: {
-    color: '#fff',
-    fontWeight: 'bold',
-  },
 
 
 

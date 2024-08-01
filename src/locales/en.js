@@ -47,6 +47,9 @@ export default {
     Edit_the_Phrase: 'Edit the Phrase',
     Share_Text: 'Share Text',
     Share_Image: 'Share Image',
+    Select_a_Frame: 'Select a Frame',
+    Back: 'Back',
+    Choose_the_image_source: 'Choose the image source',
 
 
 

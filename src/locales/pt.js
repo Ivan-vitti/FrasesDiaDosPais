@@ -48,12 +48,13 @@ export default {
   Edit_the_Phrase: 'Editar a Frase',
   Share_Text: 'Compartilhar Texto',
   Share_Image: 'Compartilhar Imagem',
-  
+  Select_a_Frame: 'Selecione uma Moldura',
+  Back: 'Voltar',
+  Choose_the_image_source: 'Escolha a origem da imagem',
 
 
 
-
-//----------------------FRASES--------------------------------------------------------------------
+  //----------------------FRASES--------------------------------------------------------------------
 
   p0: 'Pai, seu amor é o alicerce que constrói nossas vidas.',
   p1: 'Nenhum amor é tão forte quanto o de um pai por seus filhos.',

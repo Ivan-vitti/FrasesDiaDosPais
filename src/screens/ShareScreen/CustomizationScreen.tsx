@@ -4,25 +4,47 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Customization.style';
 import I18n from '../../util/i18n';
 
+import ImageSourceModal from './ImageSourceModal'; // Importe o modal
+
+
+
 interface CustomizationScreenProps {
     visible: boolean;  // Defina explicitamente o tipo boolean para visible
     onClose: () => void;  // Defina explicitamente o tipo function para onClose
     onOpenGallery: () => void; // Adicione esta linha
+    onImageSelected: (uri: string) => void; // Adicione esta linha
 }
 
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery}) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected }) => {
+
+    const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
+
+    const handleOpenImageSourceModal = () => {
+        setImageSourceModalVisible(true);
+    };
+
+    const handleCloseImageSourceModal = () => {
+        setImageSourceModalVisible(false);
+    };
+
+    const handleSelectSource = (source: string) => {
+        onImageSelected(source); // Passa o URI da imagem selecionada para a tela de compartilhamento
+        handleCloseImageSourceModal(); // Fechar o modal após a seleção
+    };
+
+
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
                 <View style={Styles.Container}>
-                    
+
                     <Text style={Styles.Title}>{I18n.t('Background_image')}</Text>
-                    
+
 
                     <View style={Styles.DireçãoRow}>
-                    <TouchableOpacity style={Styles.modalButton} onPress={onOpenGallery}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={onOpenGallery}>
                             <Icon name="image" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Gallery')}</Text>
                         </TouchableOpacity>
@@ -32,7 +54,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                             <Text style={Styles.subtitle}>{I18n.t('Color')}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={Styles.modalButton}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={handleOpenImageSourceModal}>
                             <Icon name="camera" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Camera')}</Text>
                         </TouchableOpacity>
@@ -74,14 +96,19 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                             <Text style={Styles.subtitle}>{I18n.t('Vertical')}</Text>
                         </TouchableOpacity>
                     </View>
-                    
-                    
+
+
                     <TouchableOpacity style={Styles.FecharButton} onPress={onClose}>
                         <Icon name="check" style={Styles.iconStyle} />
                         <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
                     </TouchableOpacity>
 
-
+                    {/* Modal de Seleção de Origem da Imagem */}
+                    <ImageSourceModal
+                        visible={isImageSourceModalVisible}
+                        onClose={handleCloseImageSourceModal}
+                        onSelectSource={handleSelectSource}
+                    />
                 </View>
             </View>
         </Modal>

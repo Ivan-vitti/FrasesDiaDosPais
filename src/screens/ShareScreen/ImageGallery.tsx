@@ -1,6 +1,9 @@
 import React from 'react';
-import { Modal, View, FlatList, TouchableOpacity, Image, Text } from 'react-native';
+import { Modal, View, FlatList, TouchableOpacity, Image, Text, Dimensions, ScrollView } from 'react-native';
 import Styles from './ShareScreen.style'; // Importando os estilos do ShareScreen
+import I18n from '../../util/i18n';
+
+const { width } = Dimensions.get('window');
 
 interface ImageGalleryProps {
     visible: boolean;
@@ -13,7 +16,7 @@ const images = [
     require('../../assets/images/Moldura.png'),
     require('../../assets/images/Moldura02.jpg'),
     require('../../assets/images/Moldura03.jpg'),
-    require('../../assets/images/Moldura04.jpg'),
+    require('../../assets/images/Moldura04.png'),
     require('../../assets/images/Moldura05.png'),
     require('../../assets/images/Moldura06.jpg'),
     require('../../assets/images/Moldura07.png'),
@@ -26,6 +29,16 @@ const images = [
     require('../../assets/images/Moldura14.jpg'),
     require('../../assets/images/Moldura15.jpg'),
     require('../../assets/images/Moldura16.png'),
+    require('../../assets/images/Moldura17.png'),
+    require('../../assets/images/Moldura18.png'),
+    require('../../assets/images/Moldura19.png'),
+    require('../../assets/images/Moldura20.png'),
+    require('../../assets/images/Moldura21.png'),
+    require('../../assets/images/Moldura22.png'),
+    require('../../assets/images/Moldura23.png'),
+    require('../../assets/images/Moldura24.png'),
+    require('../../assets/images/Moldura25.png'),
+
     // Adicione mais imagens conforme necessário
 ];
 
@@ -36,20 +49,24 @@ const ImageGallery = ({ visible, onClose, onSelectImage }: ImageGalleryProps) =>
         onSelectImage(imageUri); // Passe o URI da imagem
     };
 
+    const renderItem = ({ item }: { item: any }) => (
+        <TouchableOpacity onPress={() => handleSelectImage(item)} style={Styles.imageGalleryItem}>
+            <Image source={item} style={Styles.image} />
+        </TouchableOpacity>
+    );
+
     return (
-        <Modal visible={visible} animationType="slide" transparent={false}>
-            <View style={{ flex: 1 }}>
+        <Modal visible={visible} animationType="slide" transparent={true}>
+            <View style={Styles.modalContainer}>
+                <Text style={Styles.title}>{I18n.t('Select_a_Frame')}</Text>
                 <FlatList
                     data={images}
+                    numColumns={2} // Número de colunas ajustado para 2
                     keyExtractor={(item, index) => index.toString()}
-                    renderItem={({ item }) => (
-                        <TouchableOpacity onPress={() => handleSelectImage(item)}>
-                            <Image source={item} style={{ width: '100%', height: 200 }} />
-                        </TouchableOpacity>
-                    )}
+                    renderItem={renderItem}
                 />
-                <TouchableOpacity onPress={onClose} style={{ padding: 20 }}>
-                    <Text>Fechar</Text>
+                <TouchableOpacity onPress={onClose} style={Styles.closeButton}>
+                    <Text style={Styles.closeButtonText}>{I18n.t('Close')}</Text>
                 </TouchableOpacity>
             </View>
         </Modal>

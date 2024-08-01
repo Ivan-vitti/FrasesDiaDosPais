@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
 
 // Definição das cores do aplicativo
 export const colors = {
@@ -63,6 +65,22 @@ const Styles = StyleSheet.create({
     fontSize: 35,            // Tamanho do ícone
     color: colors.iconActive, // Cor do ícone
   },
+
+  iconImage: {
+    width: 40,  // Largura da imagem
+    height: 40, // Altura da imagem
+    marginHorizontal: 10,
+  },
+  //-----------------------------------------------------------------tela para escolher imagem interna do cell
+  Column: {
+    flex: 1, // Permite que as colunas ocupem espaço igual
+    alignItems: 'center', // Centraliza o conteúdo dentro da coluna
+  },
+  iconLabel: {
+    marginTop: 5, // Espaçamento acima da legenda
+    textAlign: 'center', // Centraliza a legenda
+  },
+
 
 
 });
