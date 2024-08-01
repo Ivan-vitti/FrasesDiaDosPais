@@ -10,6 +10,7 @@ import CustomButton from './CustomButton';
 import ImageCustomization from './ImageCustomization';
 import CustomizationScreen from './CustomizationScreen';
 import ViewShot, { captureRef } from 'react-native-view-shot'; // Adicionei a importação do ViewShot
+import ImageGallery from './ImageGallery'; 
 
 
 
@@ -17,6 +18,8 @@ const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982
 
 
 const ShareScreen = ({ navigation }) => {
+
+    const [isGalleryVisible, setGalleryVisible] = useState(false); // Novo estado para controlar a visibilidade da galeria
 
     const [imageUri, setImageUri] = useState<string | null>(null); // Inicializa como null
     const [isCustomizationVisible, setCustomizationVisible] = useState(false);
@@ -111,6 +114,16 @@ const ShareScreen = ({ navigation }) => {
         setCustomizationVisible(false);
     };
 
+    const handleOpenGallery = () => { // Função para abrir a galeria
+        setGalleryVisible(true);
+    };
+
+
+    const handleSelectImage = (selectedImageUri: string) => {
+        setImageUri(selectedImageUri); // Atualiza o estado imageUri com a imagem selecionada
+        setGalleryVisible(false); // Fecha a galeria
+    };
+
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[Styles.container]}>
@@ -166,6 +179,13 @@ const ShareScreen = ({ navigation }) => {
             <CustomizationScreen
                 visible={isCustomizationVisible}
                 onClose={handleCloseCustomization}
+                onOpenGallery={handleOpenGallery} // Passa a função para abrir a galeria
+            />
+
+            <ImageGallery
+                visible={isGalleryVisible}
+                onClose={() => setGalleryVisible(false)}
+                onSelectImage={handleSelectImage} // Passa a função que será chamada quando a imagem for selecionada
             />
 
         </View>

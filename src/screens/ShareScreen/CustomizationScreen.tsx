@@ -7,11 +7,11 @@ import I18n from '../../util/i18n';
 interface CustomizationScreenProps {
     visible: boolean;  // Defina explicitamente o tipo boolean para visible
     onClose: () => void;  // Defina explicitamente o tipo function para onClose
-//    onSelectFont: (font: string) => void;  // Defina explicitamente o tipo function para onSelectFont
+    onOpenGallery: () => void; // Adicione esta linha
 }
 
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose,}) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery}) => {
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
@@ -22,7 +22,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                     
 
                     <View style={Styles.DireçãoRow}>
-                        <TouchableOpacity style={Styles.modalButton}>
+                    <TouchableOpacity style={Styles.modalButton} onPress={onOpenGallery}>
                             <Icon name="image" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Gallery')}</Text>
                         </TouchableOpacity>

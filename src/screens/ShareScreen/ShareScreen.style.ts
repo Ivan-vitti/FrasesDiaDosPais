@@ -78,7 +78,7 @@ export const Styles = StyleSheet.create({
     backgroundColor: colors.background,
     overflow: 'hidden', // Evita que o conteúdo saia da caixa
 
-    
+
   },
 
   imageBackground: {
@@ -89,11 +89,11 @@ export const Styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  
+
   image: {
     borderRadius: 20, // Aplica bordas arredondadas à imagem
     resizeMode: 'contain', // Mude para 'contain' se quiser que a imagem se ajuste sem cortar
-},
+  },
 
 
   // Estilos para botões principais
@@ -136,7 +136,7 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    
+
   },
 
   input: {
@@ -147,6 +147,35 @@ export const Styles = StyleSheet.create({
     textAlignVertical: 'top',
     marginBottom: 20,
   },
+  //---------------------------------------------------------------------------------------------------
+
+  imageGalleryItem: {
+    width: '30%', // Ajuste conforme necessário
+    height: 100,  // Ajuste conforme necessário
+    margin: 5,
+  },
+
+  modalContainer: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  closeButton: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#3498DB',
+    borderRadius: 5,
+  },
+
+  closeButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+  },
+
+
+
 });
 
 export default Styles;
