@@ -70,13 +70,14 @@ export const Styles = StyleSheet.create({
   },
 
   boxPhrase: {
-    width: '95%', // Ajuste a largura da caixa
-    alignSelf: 'center', // Centraliza a caixa horizontalmente
-    height: height * 0.5, // Define a altura da caixa para 50% da altura da tela
-    justifyContent: 'center', // Ajusta o conteúdo verticalmente
-    margin: 10,
-    padding: 10,
-    alignItems: 'center', // Centraliza horizontalmente
+    width: '100%', // Largura total
+    height: height * 0.5, // Altura da caixa para 50% da altura da tela
+    alignSelf: 'center',
+    justifyContent: 'flex-start', // Alinha o conteúdo para o topo
+    padding: 0, // Remove padding
+    backgroundColor: colors.background,
+    overflow: 'hidden', // Evita que o conteúdo saia da caixa
+    paddingTop: 30, // Adiciona um espaço no topo
   },
 
   imageBackground: {
@@ -85,11 +86,12 @@ export const Styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'contain', // Ajusta para contain para manter a proporção
+    resizeMode: 'contain', // Usar 'cover' para preencher a caixa
   },
 
   image: {
     borderRadius: 20, // Aplica bordas arredondadas à imagem
+
   },
   // Estilos para botões principais
   buttonPrimary: {
@@ -130,9 +132,7 @@ export const Styles = StyleSheet.create({
   // Estilos para a tela de edição
   container: {
     flex: 1,
-    padding: 0, // Se necessário, ajuste o padding
     justifyContent: 'center',
-    alignItems: 'center',
   },
 
   input: {

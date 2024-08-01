@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import I18n from '../../util/i18n';
 import Styles, { colors } from './ShareScreen.style';
 import React, { useEffect, useRef, useState } from 'react';
@@ -9,6 +9,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomButton from './CustomButton';
 import ImageCustomization from './ImageCustomization';
 import CustomizationScreen from './CustomizationScreen';
+import ViewShot, { captureRef } from 'react-native-view-shot'; // Adicionei a importação do ViewShot
 
 
 
@@ -18,19 +19,13 @@ const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982
 const ShareScreen = ({ navigation }) => {
 
     const [imageUri, setImageUri] = useState<string | null>(null); // Inicializa como null
-
-    const handleCloseCustomization = () => {
-        setCustomizationVisible(false);
-    };
     const [isCustomizationVisible, setCustomizationVisible] = useState(false);
-
-
-
     const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const bannerRef = useRef<BannerAd>(null);
     const route = useRoute();
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
+    const viewShotRef = useRef(null); // Adicionei a referência para ViewShot
 
     useEffect(() => {
 
@@ -93,23 +88,46 @@ const ShareScreen = ({ navigation }) => {
             });
     };
 
+    //-----------------------------------------------------------------------------------------------------------------------------------
+
+    const shareImage = async () => { // Função para compartilhar a imagem
+        try {
+            const uri = await captureRef(viewShotRef, { // Captura a referência ViewShot
+                format: 'jpg',
+                quality: 0.8,
+            });
+
+            await Share.open({
+                url: uri,
+                message: I18n.t(phrase),
+            });
+        } catch (error) {
+            console.error('Error capturing and sharing image:', error);
+        }
+    };
+
+
+    const handleCloseCustomization = () => {
+        setCustomizationVisible(false);
+    };
+
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
-            <View style={[Styles.container,]}>
-                {/* Substitua a caixa de frase pela nova funcionalidade */}
-                <ImageCustomization
-                    imageUri={imageUri}
-                    phrase={phrase ? I18n.t(phrase) : 'Frase não disponível'} // Frase padrão caso phrase seja indefinida
-                />
+            <View style={[Styles.container]}>
+                <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
+                    <ImageCustomization
+                        imageUri={imageUri}
+                        phrase={phrase ? I18n.t(phrase) : 'Frase não disponível'} // Verifique se isso é uma string ou um objeto JSX
+                    />
+                </ViewShot>
             </View>
 
             <View style={{ flex: 1, justifyContent: 'flex-end', paddingBottom: 10 }}>
                 <CustomButton
                     iconName="image"
                     title={I18n.t('Share_Image')}
-                    onPress={() => { /* Lógica para compartilhar imagem */ }}
+                    onPress={shareImage}
                 />
-
                 <CustomButton
                     iconName="share-alt-square"
                     title={I18n.t('Share_Text')}
@@ -145,11 +163,11 @@ const ShareScreen = ({ navigation }) => {
                     : null}
             </View>
 
-            <CustomizationScreen 
-                visible={isCustomizationVisible} 
-                onClose={handleCloseCustomization} 
+            <CustomizationScreen
+                visible={isCustomizationVisible}
+                onClose={handleCloseCustomization}
             />
-            
+
         </View>
     );
 };
