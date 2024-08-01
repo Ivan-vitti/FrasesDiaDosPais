@@ -7,7 +7,7 @@ const ImageCustomization = ({ imageUri, phrase }) => {
     return (
         <View style={Styles.boxPhrase}>
             <ImageBackground
-                source={imageUri ? { uri: imageUri } : require('../../assets/images/Moldura.png')}
+                source={imageUri ? { uri: imageUri } : require('../../assets/images/Moldura16.png')}
                 style={Styles.imageBackground}
                 imageStyle={Styles.image}>
 

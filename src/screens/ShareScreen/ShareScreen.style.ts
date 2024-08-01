@@ -34,7 +34,7 @@ export const Styles = StyleSheet.create({
   // Estilos para Subtitulos 
   subtitle: {
     fontWeight: 'bold',
-    fontSize: 26,
+    fontSize: 25,
     textAlign: 'center', // Alinhamento horizontal centralizado
     marginHorizontal: 20, // Ajuste para garantir que o texto quebre em várias linhas
     lineHeight: 32,
@@ -70,14 +70,15 @@ export const Styles = StyleSheet.create({
   },
 
   boxPhrase: {
-    width: '100%', // Largura total
+    width: '98%', // Largura total
     height: height * 0.5, // Altura da caixa para 50% da altura da tela
     alignSelf: 'center',
     justifyContent: 'flex-start', // Alinha o conteúdo para o topo
     padding: 0, // Remove padding
     backgroundColor: colors.background,
     overflow: 'hidden', // Evita que o conteúdo saia da caixa
-    paddingTop: 30, // Adiciona um espaço no topo
+
+    
   },
 
   imageBackground: {
@@ -86,13 +87,15 @@ export const Styles = StyleSheet.create({
     height: '100%',
     justifyContent: 'center',
     alignItems: 'center',
-    resizeMode: 'contain', // Usar 'cover' para preencher a caixa
   },
 
+  
   image: {
     borderRadius: 20, // Aplica bordas arredondadas à imagem
+    resizeMode: 'contain', // Mude para 'contain' se quiser que a imagem se ajuste sem cortar
+},
 
-  },
+
   // Estilos para botões principais
   buttonPrimary: {
     backgroundColor: colors.primary,     // Cor de fundo do botão
@@ -106,7 +109,7 @@ export const Styles = StyleSheet.create({
     height: 48,                          // Altura total do botão
     width: '80%',                        // Largura total do botão
     alignSelf: 'center',                 // Centraliza o botão horizontalmente
-    marginTop: 12,                       // Margem superior para espaçamento do topo
+    marginTop: 10,                       // Margem superior para espaçamento do topo
   },
 
   // Estilos para texto dentro dos botões principais
@@ -133,6 +136,7 @@ export const Styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
+    
   },
 
   input: {
