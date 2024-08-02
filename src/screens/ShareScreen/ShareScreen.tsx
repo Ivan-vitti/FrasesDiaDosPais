@@ -77,10 +77,14 @@ const ShareScreen = ({ navigation }) => {
     }, []);
 
     const share = () => {
-        if (loaded && !premium) {
-            interstitial.show();
+        if (loaded && !premium) { // Verifica se o anúncio foi carregado
+            interstitial.show() // Tenta mostrar o anúncio
+                .catch((error) => {
+                    console.error('Error showing interstitial ad:', error); // Captura qualquer erro ao tentar mostrar o anúncio
+                    shareFinish(); // Chama a função shareFinish para continuar o compartilhamento
+                });
         } else {
-            shareFinish();
+            shareFinish(); // Se o usuário é premium ou o anúncio não está carregado, compartilhe diretamente
         }
     };
 
