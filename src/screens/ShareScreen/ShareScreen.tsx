@@ -77,15 +77,8 @@ const ShareScreen = ({ navigation }) => {
     }, []);
 
     const share = () => {
-        if (loaded && !premium) { // Verifica se o anúncio foi carregado
-            interstitial.show() // Tenta mostrar o anúncio
-                .catch((error) => {
-                    console.error('Error showing interstitial ad:', error); // Captura qualquer erro ao tentar mostrar o anúncio
-                    shareFinish(); // Chama a função shareFinish para continuar o compartilhamento
-                });
-        } else {
-            shareFinish(); // Se o usuário é premium ou o anúncio não está carregado, compartilhe diretamente
-        }
+        // Remove a lógica para mostrar o anúncio intersticial ao compartilhar texto
+        shareFinish(); // Compartilha o texto diretamente
     };
 
     const shareFinish = () => {
@@ -105,29 +98,29 @@ const ShareScreen = ({ navigation }) => {
 
     //-----------------------------------------------------------------------------------------------------------------------------------
 
-    const shareImage = async () => { // Função para compartilhar a imagem
-        if (loaded && !premium) { // Verifica se o anúncio está carregado e se o usuário não é premium
-            interstitial.show(); // Exibe o anúncio intersticial
-    
-            // Aguarda o fechamento do anúncio antes de compartilhar a imagem
-            interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
-                try {
-                    const uri = await captureRef(viewShotRef, { // Captura a referência ViewShot
-                        format: 'jpg',
-                        quality: 0.8,
-                    });
-    
-                    await Share.open({
-                        url: uri,
-                        message: I18n.t(phrase),
-                    });
-                } catch (error) {
-                    console.error('Error capturing and sharing image:', error);
-                }
+    const shareImage = async () => {
+        try {
+            const uri = await captureRef(viewShotRef, {
+                format: 'jpg',
+                quality: 0.8,
             });
-        } else {
-            // Se o anúncio não for exibido, compartilhe diretamente
-            shareFinish();
+    
+            if (loaded && !premium) {
+                await interstitial.show(); // Aguarda a exibição do anúncio
+                await Share.open({
+                    url: uri,
+                    message: I18n.t(phrase),
+                });
+                interstitial.load(); // Recarrega o anúncio após ser exibido
+            } else {
+                // Compartilha a imagem diretamente se o usuário for premium ou o anúncio não estiver carregado
+                await Share.open({
+                    url: uri,
+                    message: I18n.t(phrase),
+                });
+            }
+        } catch (error) {
+            console.error('Error capturing and sharing image:', error);
         }
     };
 
