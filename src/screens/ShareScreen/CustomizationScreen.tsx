@@ -100,7 +100,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
 
                     <TouchableOpacity style={Styles.FecharButton} onPress={onClose}>
                         <Icon name="check" style={Styles.iconStyle} />
-                        <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
+                        <Text style={Styles.subtitle}>{I18n.t('Ok')}</Text>
                     </TouchableOpacity>
 
                     {/* Modal de Seleção de Origem da Imagem */}
