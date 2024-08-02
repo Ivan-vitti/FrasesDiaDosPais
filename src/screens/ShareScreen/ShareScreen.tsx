@@ -113,7 +113,9 @@ const ShareScreen = ({ navigation }) => {
                 message: editedPhrase ? editedPhrase : I18n.t(phrase),
             });
         } catch (error) {
-            console.error('Error capturing and sharing image:', error);
+            if (error instanceof Error && error.message !== 'User did not share') { // MODIFICAR ESTA LINHA
+                console.error('Error capturing and sharing image:', error);
+            }
         }
     };
 
