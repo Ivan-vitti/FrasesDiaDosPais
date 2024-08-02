@@ -65,7 +65,7 @@ const HomeScreen = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
-            <View >
+            <View style={{ backgroundColor: colors.background}}>
                 {!premium ?
                     <BannerAd
                         ref={bannerRef}

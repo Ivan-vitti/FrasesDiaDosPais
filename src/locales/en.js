@@ -50,6 +50,7 @@ export default {
     Select_a_Frame: 'Select a Frame',
     Back: 'Back',
     Choose_the_image_source: 'Choose the image source',
+    Ok: 'OK',
 
 
 

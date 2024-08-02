@@ -50,6 +50,7 @@ export default {
     Select_a_Frame: 'Selecciona un Marco',
     Back:'Volver',
     Choose_the_image_source: 'Elige la fuente de la imagen',
+    Ok: 'OK',
 
 
 

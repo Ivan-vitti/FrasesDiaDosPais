@@ -11,7 +11,7 @@ import ImageCustomization from './ImageCustomization';
 import CustomizationScreen from './CustomizationScreen';
 import ViewShot, { captureRef } from 'react-native-view-shot'; // Adicionei a importação do ViewShot
 import ImageGallery from './ImageGallery';
-
+import EditPhrase from './EditPhrase'; // Importar o novo modal
 
 
 const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
@@ -29,6 +29,13 @@ const ShareScreen = ({ navigation }) => {
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
     const viewShotRef = useRef(null); // Adicionei a referência para ViewShot
+
+    const [isEditModalVisible, setEditModalVisible] = useState(false); // Novo estado para controlar a visibilidade do modal de edição
+    const [editedPhrase, setEditedPhrase] = useState<string | null>(null); // Estado para armazenar a frase editada temporariamente
+
+
+
+
 
     useEffect(() => {
 
@@ -78,10 +85,11 @@ const ShareScreen = ({ navigation }) => {
     };
 
     const shareFinish = () => {
-        console.log(I18n.t(phrase));
+        // ALTERAÇÃO AQUI: Use editedPhrase se disponível**
+        const message = editedPhrase ? editedPhrase : I18n.t(phrase);
 
-        Share.open({   // Utilizando o método correto para abrir o menu de compartilhamento
-            message: I18n.t(phrase),
+        Share.open({
+            message: message,
         })
             .then((res) => {
                 console.log(res);
@@ -102,7 +110,7 @@ const ShareScreen = ({ navigation }) => {
 
             await Share.open({
                 url: uri,
-                message: I18n.t(phrase),
+                message: editedPhrase ? editedPhrase : I18n.t(phrase),
             });
         } catch (error) {
             console.error('Error capturing and sharing image:', error);
@@ -127,13 +135,22 @@ const ShareScreen = ({ navigation }) => {
         setGalleryVisible(false); // Fecha a galeria
     };
 
+    const handleSaveEditedPhrase = (newPhrase: string) => {
+        // ALTERAÇÃO AQUI: Salve a nova frase editada
+        setEditedPhrase(newPhrase);
+    };
+
+
+
+
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[Styles.container]}>
                 <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
                     <ImageCustomization
                         imageUri={imageUri}
-                        phrase={phrase ? I18n.t(phrase) : 'Frase não disponível'} // Verifique se isso é uma string ou um objeto JSX
+
+                        phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
                     />
                 </ViewShot>
             </View>
@@ -153,7 +170,7 @@ const ShareScreen = ({ navigation }) => {
                 <CustomButton
                     iconName="pencil"
                     title={I18n.t('Edit_the_Phrase')}
-                    onPress={() => { /* Lógica para editar a frase */ }}
+                    onPress={() => setEditModalVisible(true)} // Abre o modal de edição
                 />
 
                 <CustomButton
@@ -192,6 +209,12 @@ const ShareScreen = ({ navigation }) => {
                 onSelectImage={handleSelectImage} // Passa a função que será chamada quando a imagem for selecionada
             />
 
+            <EditPhrase
+                visible={isEditModalVisible}
+                phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
+                onClose={() => setEditModalVisible(false)}
+                onSave={handleSaveEditedPhrase}
+            />
         </View>
     );
 };

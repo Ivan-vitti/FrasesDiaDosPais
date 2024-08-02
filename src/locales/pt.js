@@ -51,6 +51,7 @@ export default {
   Select_a_Frame: 'Selecione uma Moldura',
   Back: 'Voltar',
   Choose_the_image_source: 'Escolha a origem da imagem',
+  Ok: 'OK',
 
 
 

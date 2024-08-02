@@ -80,8 +80,27 @@ const Styles = StyleSheet.create({
     marginTop: 5, // Espaçamento acima da legenda
     textAlign: 'center', // Centraliza a legenda
   },
+  // Estilo apra a tela EditPhrase
+  textInput: {
+    height: 180, // Aumenta a altura do TextInput
+    borderColor: colors.secondary, // Cor da borda usando a cor secundária
+    borderWidth: 2, // Espessura da borda
+    borderRadius: 10, // Bordas arredondadas
+    padding: 10, // Espaçamento interno
+    marginTop: 10, // Espaçamento superior
+    width: '100%', // Largura total
+    fontSize: 16, // Tamanho da fonte
+    color: colors.textPrimary, // Cor do texto
+    backgroundColor: colors.background, // Cor de fundo do TextInput
+    textAlignVertical: 'top', // Alinha o texto no topo
+  },
 
-
+  buttonContainer: {
+    flexDirection: 'row', // Coloca os botões em linha
+    justifyContent: 'space-between', // Espaça igualmente os botões
+    width: '70%', // Ocupa toda a largura disponível
+    marginTop: 20, // Espaçamento superior
+  },
 
 });
 
