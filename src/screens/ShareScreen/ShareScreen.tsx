@@ -36,7 +36,6 @@ const ShareScreen = ({ navigation }) => {
 
 
 
-
     useEffect(() => {
 
         // Verifica se o usuario é premium
@@ -76,10 +75,39 @@ const ShareScreen = ({ navigation }) => {
         };
     }, []);
 
-    const share = () => {
-        // Remove a lógica para mostrar o anúncio intersticial ao compartilhar texto
-        shareFinish(); // Compartilha o texto diretamente
-    };
+
+
+//-----------------------------------------------------------------------------------------------------------------
+
+const share = () => {
+    // Remove a lógica para mostrar o anúncio intersticial ao compartilhar texto
+    if (loaded && !premium) {
+        // Verifica se o anúncio está carregado antes de tentar mostrá-lo
+        if (interstitial.loaded) {
+            interstitial.show(); // Aguarda a exibição do anúncio
+
+            // Aguarda até que o anúncio seja fechado
+            const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
+                // Compartilha o texto após o anúncio ser fechado
+                const message = editedPhrase ? editedPhrase : I18n.t(phrase);
+                await Share.open({ message: message });
+                unsubscribeClosed(); // Remove o listener após ser usado
+                interstitial.load(); // Recarrega o anúncio após ser exibido
+            });
+        } else {
+            console.error('Interstitial ad not loaded');
+            // Compartilha o texto diretamente se o anúncio não estiver carregado
+            const message = editedPhrase ? editedPhrase : I18n.t(phrase);
+            Share.open({ message: message });
+        }
+    } else {
+        // Compartilha o texto diretamente se o usuário for premium
+        const message = editedPhrase ? editedPhrase : I18n.t(phrase);
+        Share.open({ message: message });
+    }
+};
+
+//-----------------------------------------------------------------------------------------------------------------
 
     const shareFinish = () => {
         // ALTERAÇÃO AQUI: Use editedPhrase se disponível**
@@ -106,14 +134,30 @@ const ShareScreen = ({ navigation }) => {
             });
     
             if (loaded && !premium) {
-                await interstitial.show(); // Aguarda a exibição do anúncio
-                await Share.open({
-                    url: uri,
-                    message: I18n.t(phrase),
-                });
-                interstitial.load(); // Recarrega o anúncio após ser exibido
+                // Verifica se o anúncio está carregado antes de tentar mostrá-lo
+                if (interstitial.loaded) {
+                    await interstitial.show(); // Aguarda a exibição do anúncio
+    
+                    // Aguarda até que o anúncio seja fechado
+                    const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
+                        // Compartilha a imagem após o anúncio ser fechado
+                        await Share.open({
+                            url: uri,
+                            message: I18n.t(phrase),
+                        });
+                        unsubscribeClosed(); // Remove o listener após ser usado
+                        interstitial.load(); // Recarrega o anúncio após ser exibido
+                    });
+                } else {
+                    console.error('Interstitial ad not loaded');
+                    // Compartilha a imagem diretamente se o anúncio não estiver carregado
+                    await Share.open({
+                        url: uri,
+                        message: I18n.t(phrase),
+                    });
+                }
             } else {
-                // Compartilha a imagem diretamente se o usuário for premium ou o anúncio não estiver carregado
+                // Compartilha a imagem diretamente se o usuário for premium
                 await Share.open({
                     url: uri,
                     message: I18n.t(phrase),
@@ -124,6 +168,7 @@ const ShareScreen = ({ navigation }) => {
         }
     };
 
+//---------------------------------------------------------------------------------------------------------------------
 
     const handleCloseCustomization = () => {
         setCustomizationVisible(false);
