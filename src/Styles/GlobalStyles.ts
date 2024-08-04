@@ -23,6 +23,7 @@ export const GlobalStyles = StyleSheet.create({
 
     // Estilos para o corpo da página
     body: {
+        color: colors.textPrimary,           // Cor do texto (adicionada)
         backgroundColor: colors.background,  // Cor de fundo do corpo
         fontFamily: 'Arial, sans-serif',     // Fonte padrão
         fontSize: 24,                        // Tamanho da fonte

@@ -51,6 +51,7 @@ export default {
     Back:'Volver',
     Choose_the_image_source: 'Elige la fuente de la imagen',
     Ok: 'OK',
+    Choose_Color: "Elige el color de fondo",
 
 
 
