@@ -1,17 +1,27 @@
 import React, { useState } from 'react';
-import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { Modal, View, Text, TouchableOpacity, StyleSheet, ScrollView } from 'react-native';
 import Styles from './Customization.style';
 import I18n from '../../util/i18n';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const colors = [
-    '#FF5733', // Vermelho
-    '#33FF57', // Verde
-    '#3357FF', // Azul
-    '#F1C40F', // Amarelo
-    '#9B59B6', // Roxo
-    '#2ECC71', // Verde Claro
-];
+// Paleta de cores expandida
+const colorShades = {
+    gray: [
+        '#000000', '#404040', '#595959', '#737373', '#8C8C8C', '#A6A6A6', '#BFBFBF', '#D9D9D9', '#F2F2F2', '#FFFFFF'
+    ],
+    blue: [
+        '#000080', '#00008B', '#0000CD', '#0000FF', '#4169E1', '#4682B4', '#5F9FD7', '#87CEEB', '#ADD8E6', '#E0FFFF'
+    ],
+    green: [
+        '#003300', '#004d00', '#006600', '#008000', '#00a000', '#66cdaa', '#9acd32', '#32cd32', '#98fb98', '#f0fff0'
+    ],
+    red: [
+        '#8b0000', '#a52a2a', '#b22222', '#dc143c', '#ff0000', '#ff6347', '#ff7f50', '#ff8c00', '#ffa07a', '#ffd700'
+    ],
+    yellow: [
+        '#ffd700', '#ffea00', '#fff000', '#ffffe0', '#ffff00', '#fffff0', '#fafad2', '#fffacd', '#f0e68c', '#e0e0e0'
+    ],
+};
 
 interface ColorBackgroundProps {
     visible: boolean;
@@ -32,17 +42,23 @@ const ColorBackground: React.FC<ColorBackgroundProps> = ({ visible, onClose, onC
                 <View style={Styles.Container}>
                     <Text style={Styles.Title}>{I18n.t('Choose_Color')}</Text>
                     
-                    <View style={styles.colorContainer}>
-                        {colors.map((color) => (
-                            <TouchableOpacity
-                                key={color}
-                                style={[styles.colorButton, { backgroundColor: color }]}
-                                onPress={() => handleColorSelect(color)}
-                            >
-                                {selectedColor === color && <Icon name="check" style={styles.checkIcon} />}
-                            </TouchableOpacity>
+                    <ScrollView style={styles.scrollContainer}>
+                        {Object.entries(colorShades).map(([colorName, shades]) => (
+                            <View key={colorName} style={styles.colorRow}>
+                                {shades.map((shade) => (
+                                    <TouchableOpacity
+                                        key={shade}
+                                        style={[styles.colorButton, { backgroundColor: shade }, selectedColor === shade && styles.selectedButton]}
+                                        onPress={() => handleColorSelect(shade)}
+                                        accessible={true}
+                                        accessibilityLabel={`Select ${shade}`} // Adiciona acessibilidade
+                                    >
+                                        {selectedColor === shade && <Icon name="check" style={styles.checkIcon} />}
+                                    </TouchableOpacity>
+                                ))}
+                            </View>
                         ))}
-                    </View>
+                    </ScrollView>
 
                     <View style={Styles.buttonContainer}>
                         <TouchableOpacity style={Styles.modalButton} onPress={onClose}>
@@ -69,23 +85,34 @@ const ColorBackground: React.FC<ColorBackgroundProps> = ({ visible, onClose, onC
 };
 
 const styles = StyleSheet.create({
-    colorContainer: {
+    scrollContainer: {
+        maxHeight: '70%', // Limita a altura do ScrollView
+    },
+    colorRow: {
         flexDirection: 'row',
-        justifyContent: 'space-around',
-        marginVertical: 20,
+        flexWrap: 'wrap', // Permite que os botões de cor se movam para a linha seguinte
+        justifyContent: 'flex-start', // Alinha os botões à esquerda
+        marginVertical: 10,
     },
     colorButton: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
+        width: 50, // Aumentado para 60 pixels
+        height: 50, // Aumentado para 60 pixels
+        borderRadius: 25, // Botões arredondados
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 2,
         borderColor: 'transparent', // Cor do contorno padrão
+        marginRight: 10, // Espaço entre os botões
+        marginBottom: 10, // Espaço entre as linhas
+    }, // Espaço entre as linhas
+
+    selectedButton: {
+        borderColor: '#FFFFFF', // Adiciona um contorno quando a cor é selecionada
     },
     checkIcon: {
         color: '#FFFFFF', // Cor do ícone de verificação
         position: 'absolute',
+        fontSize: 30, // Aumenta o tamanho do ícone de verificação
     },
 });
 
