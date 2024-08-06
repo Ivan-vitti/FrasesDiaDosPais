@@ -102,6 +102,7 @@ const Styles = StyleSheet.create({
     marginTop: 20, // Espaçamento superior
   },
 
+
 });
 
 // Exporta os estilos para serem utilizados em outros componentes
