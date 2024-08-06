@@ -4,22 +4,65 @@ import Styles from './Customization.style';
 import I18n from '../../util/i18n';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-// Paleta de cores expandida
+// Paleta de cores com tons únicos
 const colorShades = {
     gray: [
-        '#000000', '#404040', '#595959', '#737373', '#8C8C8C', '#A6A6A6', '#BFBFBF', '#D9D9D9', '#F2F2F2', '#FFFFFF'
+        '#000000', // Black
+        '#696969', // DimGray
+        '#808080', // Gray
+        '#A9A9A9', // DarkGray
+        '#C0C0C0', // Silver
+        '#D3D3D3', // LightGrey
+        '#DCDCDC', // Gainsboro
+        '#FFFFFF'  // White
     ],
     blue: [
-        '#000080', '#00008B', '#0000CD', '#0000FF', '#4169E1', '#4682B4', '#5F9FD7', '#87CEEB', '#ADD8E6', '#E0FFFF'
+        '#6A5ACD', // SlateBlue
+        '#483D8B', // DarkSlateBlue
+        '#191970', // MidnightBlue
+        '#000080', // Navy
+        '#00008B', // DarkBlue
+        '#0000CD', // MediumBlue
+        '#0000FF', // Blue
+        '#6495ED', // CornflowerBlue
+        '#ADD8E6', // LightBlue
+        '#87CEFA'  // LightSkyBlue
     ],
     green: [
-        '#003300', '#004d00', '#006600', '#008000', '#00a000', '#66cdaa', '#9acd32', '#32cd32', '#98fb98', '#f0fff0'
+        '#2F4F4F', // DarkSlateGray
+        '#00FA9A', // MediumSpringGreen
+        '#00FF7F', // SpringGreen
+        '#98FB98', // PaleGreen
+        '#90EE90', // LightGreen
+        '#8FBC8F', // DarkSeaGreen
+        '#3CB371', // MediumSeaGreen
+        '#2E8B57', // SeaGreen
+        '#66CDAA', // MediumAquamarine
+        '#7FFF00'  // Chartreuse
     ],
     red: [
-        '#8b0000', '#a52a2a', '#b22222', '#dc143c', '#ff0000', '#ff6347', '#ff7f50', '#ff8c00', '#ffa07a', '#ffd700'
+        '#CD5C5C', // IndianRed
+        '#F08080', // LightCoral
+        '#FA8072', // Salmon
+        '#E9967A', // DarkSalmon
+        '#FFA07A', // LightSalmon
+        '#DC143C', // Crimson
+        '#FF0000', // Red
+        '#B22222', // FireBrick
+        '#FF6347', // Tomato
+        '#FF4500'  // OrangeRed
     ],
     yellow: [
-        '#ffd700', '#ffea00', '#fff000', '#ffffe0', '#ffff00', '#fffff0', '#fafad2', '#fffacd', '#f0e68c', '#e0e0e0'
+        '#FFD700', // Gold
+        '#FFFF00', // Yellow
+        '#FFFFE0', // LightYellow
+        '#FFFACD', // LemonChiffon
+        '#FAFAD2', // LightGoldenrodYellow
+        '#FFEFD5', // PapayaWhip
+        '#FFE4B5', // Moccasin
+        '#FFDAB9', // PeachPuff
+        '#FFEBCD', // BlanchedAlmond
+        '#FFF8DC'  // Cornsilk
     ],
 };
 
@@ -32,6 +75,7 @@ interface ColorBackgroundProps {
 const ColorBackground: React.FC<ColorBackgroundProps> = ({ visible, onClose, onConfirm }) => {
     const [selectedColor, setSelectedColor] = useState<string | null>(null); // Estado para armazenar a cor selecionada
 
+    // Função para tratar a seleção de cor
     const handleColorSelect = (color: string) => {
         setSelectedColor(color); // Armazena a cor selecionada no estado
     };
@@ -41,7 +85,7 @@ const ColorBackground: React.FC<ColorBackgroundProps> = ({ visible, onClose, onC
             <View style={Styles.FundoBackground}>
                 <View style={Styles.Container}>
                     <Text style={Styles.Title}>{I18n.t('Choose_Color')}</Text>
-                    
+
                     <ScrollView style={styles.scrollContainer}>
                         {Object.entries(colorShades).map(([colorName, shades]) => (
                             <View key={colorName} style={styles.colorRow}>
@@ -53,7 +97,11 @@ const ColorBackground: React.FC<ColorBackgroundProps> = ({ visible, onClose, onC
                                         accessible={true}
                                         accessibilityLabel={`Select ${shade}`} // Adiciona acessibilidade
                                     >
-                                        {selectedColor === shade && <Icon name="check" style={styles.checkIcon} />}
+                                        {selectedColor === shade && (
+                                            <View style={styles.checkIconContainer}>
+                                                <Icon name="check" style={styles.checkIcon} />
+                                            </View>
+                                        )}
                                     </TouchableOpacity>
                                 ))}
                             </View>
@@ -95,8 +143,8 @@ const styles = StyleSheet.create({
         marginVertical: 10,
     },
     colorButton: {
-        width: 50, // Aumentado para 60 pixels
-        height: 50, // Aumentado para 60 pixels
+        width: 50, // Aumenta o tamanho do botão de cor
+        height: 50,
         borderRadius: 25, // Botões arredondados
         justifyContent: 'center',
         alignItems: 'center',
@@ -104,14 +152,18 @@ const styles = StyleSheet.create({
         borderColor: 'transparent', // Cor do contorno padrão
         marginRight: 10, // Espaço entre os botões
         marginBottom: 10, // Espaço entre as linhas
-    }, // Espaço entre as linhas
-
+    },
     selectedButton: {
         borderColor: '#FFFFFF', // Adiciona um contorno quando a cor é selecionada
     },
+    checkIconContainer: {
+        borderWidth: 2, // Adiciona a borda ao contorno do ícone
+        borderColor: '#000000', // Cor do contorno do ícone
+        borderRadius: 15, // Bordas arredondadas
+        padding: 2, // Espaçamento interno
+    },
     checkIcon: {
         color: '#FFFFFF', // Cor do ícone de verificação
-        position: 'absolute',
         fontSize: 30, // Aumenta o tamanho do ícone de verificação
     },
 });
