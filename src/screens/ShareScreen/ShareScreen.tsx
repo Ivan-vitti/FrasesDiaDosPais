@@ -1,3 +1,4 @@
+
 import { View, Text } from 'react-native';
 import I18n from '../../util/i18n';
 import Styles, { colors } from './ShareScreen.style';

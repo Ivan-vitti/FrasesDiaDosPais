@@ -169,7 +169,7 @@ export const Styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 10,  // Adiciona preenchimento para espaçamento interno
