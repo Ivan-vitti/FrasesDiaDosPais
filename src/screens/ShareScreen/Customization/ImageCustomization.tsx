@@ -1,6 +1,6 @@
 import React from 'react';
 import { ImageBackground, Text, View } from 'react-native';
-import Styles from './ShareScreen.style';
+import Styles from '../ShareScreen.style';
 
 const ImageCustomization = ({ imageUri, phrase }) => {
     console.log('Selected Image URI:', imageUri);
@@ -8,7 +8,7 @@ const ImageCustomization = ({ imageUri, phrase }) => {
     return (
         <View style={Styles.boxPhrase}>
             <ImageBackground
-                source={imageUri ? { uri: imageUri } : require('../../assets/images/Moldura.png')}
+                source={imageUri ? { uri: imageUri } : require('../../../assets/images/Moldura.png')}
                 style={Styles.imageBackground}
                 imageStyle={Styles.image}
             >

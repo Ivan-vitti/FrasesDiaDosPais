@@ -8,10 +8,10 @@ import Share from 'react-native-share';
 import { AdEventType, BannerAd, BannerAdSize, InterstitialAd, } from 'react-native-google-mobile-ads';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import CustomButton from './CustomButton';
-import ImageCustomization from './ImageCustomization';
-import CustomizationScreen from './CustomizationScreen';
+import ImageCustomization from './Customization/ImageCustomization';
+import CustomizationScreen from './Customization/CustomizationScreen';
 import ViewShot, { captureRef } from 'react-native-view-shot'; // Adicionei a importação do ViewShot
-import ImageGallery from './ImageGallery';
+import ImageGallery from './Customization/ImageGallery';
 import EditPhrase from './EditPhrase'; // Importar o novo modal
 
 
@@ -34,6 +34,7 @@ const ShareScreen = ({ navigation }) => {
     const [isEditModalVisible, setEditModalVisible] = useState(false); // Novo estado para controlar a visibilidade do modal de edição
     const [editedPhrase, setEditedPhrase] = useState<string | null>(null); // Estado para armazenar a frase editada temporariamente
 
+    const [backgroundColorImageUri, setBackgroundColorImageUri] = useState<string | null>(null);
 
 
 
@@ -78,40 +79,39 @@ const ShareScreen = ({ navigation }) => {
 
 
 
-//-----------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
 
-const share = () => {
-    // Remove a lógica para mostrar o anúncio intersticial ao compartilhar texto
-    if (loaded && !premium) {
-        // Verifica se o anúncio está carregado antes de tentar mostrá-lo
-        if (interstitial.loaded) {
-            interstitial.show(); // Aguarda a exibição do anúncio
+    const share = () => {
+        // Remove a lógica para mostrar o anúncio intersticial ao compartilhar texto
+        if (loaded && !premium) {
+            // Verifica se o anúncio está carregado antes de tentar mostrá-lo
+            if (interstitial.loaded) {
+                interstitial.show(); // Aguarda a exibição do anúncio
 
-            // Aguarda até que o anúncio seja fechado
-            const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
-                // Compartilha o texto após o anúncio ser fechado
+                // Aguarda até que o anúncio seja fechado
+                const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
+                    // Compartilha o texto após o anúncio ser fechado
+                    const message = editedPhrase ? editedPhrase : I18n.t(phrase);
+                    await Share.open({ message: message });
+                    unsubscribeClosed(); // Remove o listener após ser usado
+                    interstitial.load(); // Recarrega o anúncio após ser exibido
+                });
+            } else {
+                console.error('Interstitial ad not loaded');
+                // Compartilha o texto diretamente se o anúncio não estiver carregado
                 const message = editedPhrase ? editedPhrase : I18n.t(phrase);
-                await Share.open({ message: message });
-                unsubscribeClosed(); // Remove o listener após ser usado
-                interstitial.load(); // Recarrega o anúncio após ser exibido
-            });
+                Share.open({ message: message });
+            }
         } else {
-            console.error('Interstitial ad not loaded');
-            // Compartilha o texto diretamente se o anúncio não estiver carregado
+            // Compartilha o texto diretamente se o usuário for premium
             const message = editedPhrase ? editedPhrase : I18n.t(phrase);
             Share.open({ message: message });
         }
-    } else {
-        // Compartilha o texto diretamente se o usuário for premium
-        const message = editedPhrase ? editedPhrase : I18n.t(phrase);
-        Share.open({ message: message });
-    }
-};
+    };
 
-//-----------------------------------------------------------------------------------------------------------------
+    //-----------------------------------------------------------------------------------------------------------------
 
     const shareFinish = () => {
-        // ALTERAÇÃO AQUI: Use editedPhrase se disponível**
         const message = editedPhrase ? editedPhrase : I18n.t(phrase);
 
         Share.open({
@@ -133,12 +133,12 @@ const share = () => {
                 format: 'jpg',
                 quality: 0.8,
             });
-    
+
             if (loaded && !premium) {
                 // Verifica se o anúncio está carregado antes de tentar mostrá-lo
                 if (interstitial.loaded) {
                     await interstitial.show(); // Aguarda a exibição do anúncio
-    
+
                     // Aguarda até que o anúncio seja fechado
                     const unsubscribeClosed = interstitial.addAdEventListener(AdEventType.CLOSED, async () => {
                         // Compartilha a imagem após o anúncio ser fechado
@@ -169,7 +169,7 @@ const share = () => {
         }
     };
 
-//---------------------------------------------------------------------------------------------------------------------
+    //---------------------------------------------------------------------------------------------------------------------
 
     const handleCloseCustomization = () => {
         setCustomizationVisible(false);
@@ -193,6 +193,10 @@ const share = () => {
         setEditedPhrase(newPhrase);
     };
 
+    const handleColorSelected = (colorImagePath: string) => {
+        setBackgroundColorImageUri(colorImagePath); // Salva o caminho da imagem gerada a partir da cor de fundo
+        setCustomizationVisible(false); // Fecha a tela de customização
+    };
 
 
 
@@ -201,8 +205,7 @@ const share = () => {
             <View style={[Styles.container]}>
                 <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
                     <ImageCustomization
-                        imageUri={imageUri}
-
+                        imageUri={backgroundColorImageUri || imageUri} // Use a imagem da cor de fundo se disponível
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
                     />
                 </ViewShot>
@@ -254,7 +257,8 @@ const share = () => {
                 onClose={handleCloseCustomization}
                 onOpenGallery={handleOpenGallery} // Passa a função para abrir a galeria
                 onImageSelected={handleSelectImage}
-            />
+                onColorSelected={handleColorSelected} // Passa a função para lidar com a seleção de cor
+/>
 
             <ImageGallery
                 visible={isGalleryVisible}

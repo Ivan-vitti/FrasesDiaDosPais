@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal, View, Text, TouchableOpacity } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Customization.style';
-import I18n from '../../util/i18n';
+import I18n from '../../../util/i18n';
 import ImageSourceModal from './ImageSourceModal'; // Importe o modal
 
 import ColorBackground from './ColorBackground';
@@ -14,13 +14,17 @@ interface CustomizationScreenProps {
     onClose: () => void;  // Defina explicitamente o tipo function para onClose
     onOpenGallery: () => void; // Adicione esta linha
     onImageSelected: (uri: string) => void; // Adicione esta linha
+    onColorSelected: (colorImagePath: string) => void;
 }
 
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected }) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected, onColorSelected }) => {
 
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
     const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false); // Novo estado para o modal de cor
+
+    const [selectedColor, setSelectedColor] = useState<string | null>(null);
+
 
 
     const handleOpenImageSourceModal = () => {
@@ -47,9 +51,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
         setColorBackgroundVisible(false);
     };
 
-    const handleColorBackgroundConfirm = () => {
+    const handleColorBackgroundConfirm = (color: string) => {
         setColorBackgroundVisible(false);
-        // Adicione a lógica para confirmar a seleção de cor
+        setSelectedColor(color); // Armazena a cor selecionada
+        onColorSelected(color); // Passa a cor selecionada para a tela de compartilhamento
     };
 
 
@@ -130,6 +135,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         onClose={handleCloseImageSourceModal}
                         onSelectSource={handleSelectSource}
                     />
+
                     {/* Modal de Seleção de Cor */}
                     <ColorBackground
                         visible={isColorBackgroundVisible}

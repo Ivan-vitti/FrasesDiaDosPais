@@ -53,6 +53,7 @@ export default {
   Choose_the_image_source: 'Escolha a origem da imagem',
   Ok: 'OK',
   Choose_Color: "Escolha a cor de fundo",
+  frames: 'Molduras',
 
 
 

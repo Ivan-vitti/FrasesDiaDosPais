@@ -92,7 +92,7 @@ export const Styles = StyleSheet.create({
   image: {
     borderRadius: 10, // Aplica bordas arredondadas à imagem
     resizeMode: 'contain', // Mude para 'contain' se quiser que a imagem se ajuste sem cortar
-    width: '100%', 
+    width: '100%',
     height: '100%',
   },
 
@@ -188,13 +188,13 @@ export const Styles = StyleSheet.create({
     borderRadius: 5,
     alignSelf: 'center',  // Centraliza o botão
   },
-  
+
   closeButtonText: {
     color: colors.iconColorBotão,
     fontWeight: 'bold',
     fontSize: 18,
   },
-  
+
   galleryContainer: {
     flex: 1,
     width: '100%',  // Largura completa da galeria

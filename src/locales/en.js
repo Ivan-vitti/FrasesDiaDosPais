@@ -52,6 +52,8 @@ export default {
     Choose_the_image_source: 'Choose the image source',
     Ok: 'OK',
     Choose_Color: "Choose the background color",
+    frames: 'Frames',
+
 
 
 

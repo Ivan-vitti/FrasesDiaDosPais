@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Modal, View, Text, TextInput, TouchableOpacity } from 'react-native';
 import I18n from '../../util/i18n';
-import Styles from './Customization.style'; // Importando os estilos
+import Styles from './Customization/Customization.style';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 

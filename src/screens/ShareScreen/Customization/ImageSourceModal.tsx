@@ -2,7 +2,7 @@ import React from 'react';
 import { Modal, View, Text, TouchableOpacity, Image } from 'react-native';
 import Styles, { colors } from './Customization.style'; // Importa os estilos e as cores
 import Icon from 'react-native-vector-icons/FontAwesome';
-import I18n from '../../util/i18n';
+import I18n from '../../../util/i18n';
 import { launchCamera, launchImageLibrary, CameraOptions, ImageLibraryOptions, MediaType } from 'react-native-image-picker';
 
 interface ImageSourceModalProps {
