@@ -44,6 +44,7 @@ export const Styles = StyleSheet.create({
   },
 
   textContainer: {
+    flex: 1,
     // Define a largura da caixa de texto
     width: '85%', // Ajuste a largura conforme necessário
     // Cria um espaço em volta do texto
@@ -54,6 +55,16 @@ export const Styles = StyleSheet.create({
     // Alinha o conteúdo ao centro
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  textContainer01: {
+    flex: 1,
+    padding: 10, // Espaço em volta do texto
+    backgroundColor: 'transparent', // Sem cor de fundo
+    borderColor: 'transparent', // Sem borda
+    alignItems: 'center', // Alinha horizontalmente ao centro
+    justifyContent: 'center', // Alinha verticalmente ao centro
+    textAlign: 'center', // Centraliza o texto
   },
 
 
@@ -76,9 +87,18 @@ export const Styles = StyleSheet.create({
     padding: 0, // Remove padding
     backgroundColor: colors.background,
     overflow: 'hidden', // Evita que o conteúdo saia da caixa
-
-
   },
+
+  boxPhrase01: {
+    width: '98%', // Largura quase total
+    height: height * 0.5, // Altura da caixa para 50% da altura da tela
+    alignSelf: 'center', // Centraliza a caixa horizontalmente
+    justifyContent: 'center', // Alinha o conteúdo verticalmente no centro
+    padding: 0, // Remove padding
+    overflow: 'hidden', // Evita que o conteúdo saia da caixa
+},
+
+
 
   imageBackground: {
     flex: 1,
