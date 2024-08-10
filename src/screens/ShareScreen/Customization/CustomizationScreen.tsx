@@ -4,29 +4,21 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import Styles from './Customization.style';
 import I18n from '../../../util/i18n';
 import ImageSourceModal from './ImageSourceModal'; // Importe o modal
-
-import ColorBackground from './ColorBackground';
-
-
+import ColorBackground from './ColorBackground'; // Importe o modal de seleção de cor
 
 interface CustomizationScreenProps {
-    visible: boolean;  // Defina explicitamente o tipo boolean para visible
-    onClose: () => void;  // Defina explicitamente o tipo function para onClose
-    onOpenGallery: () => void; // Adicione esta linha
-    onImageSelected: (uri: string) => void; // Adicione esta linha
-    onColorSelected: (colorImagePath: string) => void;
+    visible: boolean;
+    onClose: () => void;
+    onOpenGallery: () => void;
+    onImageSelected: (uri: string) => void;
+    onColorConfirm: (color: string) => void; // Adicione esta prop
 }
 
-
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected, onColorSelected }) => {
-
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected, onColorConfirm }) => {
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
-    const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false); // Novo estado para o modal de cor
+    const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false);
 
-    const [selectedColor, setSelectedColor] = useState<string | null>(null);
-
-
-
+    // Abre o modal para escolher a origem da imagem
     const handleOpenImageSourceModal = () => {
         setImageSourceModalVisible(true);
     };
@@ -37,12 +29,11 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
 
     const handleSelectSource = (source: string) => {
         onImageSelected(source); // Passa o URI da imagem selecionada para a tela de compartilhamento
-        handleCloseImageSourceModal(); // Fechar o modal após a seleção
+        setImageSourceModalVisible(false); // Fecha o modal após a seleção
+        onClose(); // Fecha o modal principal após a seleção da imagem
     };
 
-
-    //--------------------cor de fundo----------------------------------- 
-
+    // Abre o modal para escolher a cor de fundo
     const handleOpenColorBackgroundModal = () => {
         setColorBackgroundVisible(true);
     };
@@ -51,23 +42,16 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
         setColorBackgroundVisible(false);
     };
 
-    const handleColorBackgroundConfirm = (color: string) => {
-        setColorBackgroundVisible(false);
-        setSelectedColor(color); // Armazena a cor selecionada
-        onColorSelected(color); // Passa a cor selecionada para a tela de compartilhamento
+    const handleColorConfirm = (color: string) => {
+        onColorConfirm(color); // Chama a função recebida para passar a cor
+        handleCloseColorBackgroundModal(); // Fecha o modal de seleção de cor
     };
-
-
-    //------------------------------------------------------------------
-
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
                 <View style={Styles.Container}>
-
                     <Text style={Styles.Title}>{I18n.t('Background_image')}</Text>
-
 
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton} onPress={onOpenGallery}>
@@ -86,9 +70,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         </TouchableOpacity>
                     </View>
 
-
                     <Text style={Styles.Title}>{I18n.t('Font')}</Text>
-
 
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton}>
@@ -107,9 +89,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         </TouchableOpacity>
                     </View>
 
-
                     <Text style={Styles.Title}>{I18n.t('Alignment')}</Text>
-
 
                     <View style={Styles.DireçãoRow}>
                         <TouchableOpacity style={Styles.modalButton}>
@@ -123,7 +103,6 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         </TouchableOpacity>
                     </View>
 
-
                     <TouchableOpacity style={Styles.FecharButton} onPress={onClose}>
                         <Icon name="check" style={Styles.iconStyle} />
                         <Text style={Styles.subtitle}>{I18n.t('Ok')}</Text>
@@ -135,14 +114,13 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         onClose={handleCloseImageSourceModal}
                         onSelectSource={handleSelectSource}
                     />
-
+                    
                     {/* Modal de Seleção de Cor */}
                     <ColorBackground
                         visible={isColorBackgroundVisible}
                         onClose={handleCloseColorBackgroundModal}
-                        onConfirm={handleColorBackgroundConfirm}
+                        onConfirm={handleColorConfirm} // Passa a função
                     />
-
                 </View>
             </View>
         </Modal>

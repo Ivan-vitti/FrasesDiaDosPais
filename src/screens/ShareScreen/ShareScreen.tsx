@@ -19,22 +19,21 @@ const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982
 
 
 const ShareScreen = ({ navigation }) => {
-
-    const [isGalleryVisible, setGalleryVisible] = useState(false); // Novo estado para controlar a visibilidade da galeria
-
-    const [imageUri, setImageUri] = useState<string | null>(null); // Inicializa como null
+    const [isGalleryVisible, setGalleryVisible] = useState(false);
+    const [imageUri, setImageUri] = useState<string | null>(null);
     const [isCustomizationVisible, setCustomizationVisible] = useState(false);
-    const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
+    const [premium, setPremium] = useState(false);
+
+    const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // Novo estado para a cor de fundo
+
     const bannerRef = useRef<BannerAd>(null);
     const route = useRoute();
     const phrase = route.params?.phrase;
     const [loaded, setLoaded] = useState(false);
-    const viewShotRef = useRef(null); // Adicionei a referência para ViewShot
+    const viewShotRef = useRef(null);
+    const [isEditModalVisible, setEditModalVisible] = useState(false);
+    const [editedPhrase, setEditedPhrase] = useState<string | null>(null);
 
-    const [isEditModalVisible, setEditModalVisible] = useState(false); // Novo estado para controlar a visibilidade do modal de edição
-    const [editedPhrase, setEditedPhrase] = useState<string | null>(null); // Estado para armazenar a frase editada temporariamente
-
-    const [backgroundColorImageUri, setBackgroundColorImageUri] = useState<string | null>(null);
 
 
 
@@ -193,9 +192,8 @@ const ShareScreen = ({ navigation }) => {
         setEditedPhrase(newPhrase);
     };
 
-    const handleColorSelected = (colorImagePath: string) => {
-        setBackgroundColorImageUri(colorImagePath); // Salva o caminho da imagem gerada a partir da cor de fundo
-        setCustomizationVisible(false); // Fecha a tela de customização
+    const handleColorConfirm = (color: string) => {
+        setBackgroundColor(color); // Atualiza a cor de fundo com a cor selecionada
     };
 
 
@@ -203,10 +201,11 @@ const ShareScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[Styles.container]}>
-                <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
+            <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
                     <ImageCustomization
-                        imageUri={backgroundColorImageUri || imageUri} // Use a imagem da cor de fundo se disponível
+                        imageUri={imageUri}
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
+                        backgroundColor={backgroundColor} // Certifique-se de passar a cor de fundo
                     />
                 </ViewShot>
             </View>
@@ -255,10 +254,10 @@ const ShareScreen = ({ navigation }) => {
             <CustomizationScreen
                 visible={isCustomizationVisible}
                 onClose={handleCloseCustomization}
-                onOpenGallery={handleOpenGallery} // Passa a função para abrir a galeria
+                onOpenGallery={handleOpenGallery}
                 onImageSelected={handleSelectImage}
-                onColorSelected={handleColorSelected} // Passa a função para lidar com a seleção de cor
-/>
+                onColorConfirm={handleColorConfirm} // Passa a função de confirmação da cor
+            />
 
             <ImageGallery
                 visible={isGalleryVisible}
