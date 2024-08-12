@@ -23,9 +23,7 @@ const ShareScreen = ({ navigation }) => {
     const [imageUri, setImageUri] = useState<string | null>(null);
     const [isCustomizationVisible, setCustomizationVisible] = useState(false);
     const [premium, setPremium] = useState(false);
-
     const [backgroundColor, setBackgroundColor] = useState('#FFFFFF'); // Novo estado para a cor de fundo
-
     const bannerRef = useRef<BannerAd>(null);
     const route = useRoute();
     const phrase = route.params?.phrase;
@@ -34,7 +32,7 @@ const ShareScreen = ({ navigation }) => {
     const [isEditModalVisible, setEditModalVisible] = useState(false);
     const [editedPhrase, setEditedPhrase] = useState<string | null>(null);
 
-
+    const [fontColor, setFontColor] = useState<string>('#000000'); // Novo estado para a cor da fonte
 
 
     useEffect(() => {
@@ -191,20 +189,19 @@ const ShareScreen = ({ navigation }) => {
         setGalleryVisible(false); // Fecha a galeria
     };
 
-
-
-
     const handleSaveEditedPhrase = (newPhrase: string) => {
         // ALTERAÇÃO AQUI: Salve a nova frase editada
         setEditedPhrase(newPhrase);
     };
 
-    const handleColorConfirm = (color: string) => {
-        setBackgroundColor(color); // Atualiza a cor de fundo com a cor selecionada
-        setImageUri(null); // Remove a moldura anterior, se necessário
-
+    const handleColorConfirm = (color: string, target: 'background' | 'font') => {
+        if (target === 'background') {
+            setBackgroundColor(color); // Atualiza a cor de fundo
+            setImageUri(null); // Remove a moldura anterior, se necessário
+        } else if (target === 'font') {
+            setFontColor(color); // Atualiza a cor da fonte
+        }
     };
-
 
 
     return (
@@ -214,8 +211,10 @@ const ShareScreen = ({ navigation }) => {
                     <ImageCustomization
                         imageUri={imageUri}
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
-                        backgroundColor={backgroundColor} // Certifique-se de passar a cor de fundo
+                        backgroundColor={backgroundColor} // Passa a cor de fundo
+                        fontColor={fontColor} // Passa a cor da fonte
                     />
+
                 </ViewShot>
             </View>
 
@@ -265,7 +264,8 @@ const ShareScreen = ({ navigation }) => {
                 onClose={handleCloseCustomization}
                 onOpenGallery={handleOpenGallery}
                 onImageSelected={handleSelectImage}
-                onColorConfirm={handleColorConfirm} // Passa a função de confirmação da cor
+                onColorConfirm={(color) => handleColorConfirm(color, 'background')} // Para a cor de fundo
+                onFontColorConfirm={(color) => handleColorConfirm(color, 'font')} // Para a cor da fonte
             />
 
             <ImageGallery

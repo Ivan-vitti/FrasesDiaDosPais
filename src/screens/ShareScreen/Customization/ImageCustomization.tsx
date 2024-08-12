@@ -6,9 +6,10 @@ interface ImageCustomizationProps {
     imageUri: string | null;  // URI da imagem selecionada
     phrase: string;           // Frase a ser exibida
     backgroundColor: string;  // Cor de fundo escolhida
+    fontColor: string;        // Cor da fonte escolhida
 }
 
-const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phrase, backgroundColor }) => {
+const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phrase, backgroundColor, fontColor }) => {
     console.log('Selected Image URI:', imageUri);
 
     // Verifica se a cor de fundo foi escolhida (não é branco) e se não há imagem
@@ -18,9 +19,9 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phras
     return (
         <View style={[Styles.boxPhrase01, { backgroundColor }]}>
             {showColorBox ? ( // Se a cor foi escolhida, exibe apenas a cor de fundo e a frase
-                <View style={[Styles.boxPhrase, { backgroundColor }]}>             
+                <View style={[Styles.boxPhrase, { backgroundColor }]}>
                     <View style={Styles.textContainer01}>
-                        <Text style={Styles.subtitle}>
+                        <Text style={[Styles.subtitle, { color: fontColor }]}>
                             {phrase.split(' ').length > 5 ? ( // Divide a frase em partes se tiver mais de 5 palavras
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}
@@ -40,7 +41,7 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phras
                     imageStyle={Styles.image} // Estilo da imagem
                 >
                     <View style={Styles.textContainer}>
-                        <Text style={Styles.subtitle}>
+                        <Text style={[Styles.subtitle, { color: fontColor }]}>
                             {phrase.split(' ').length > 5 ? ( // Divide a frase em partes se tiver mais de 5 palavras
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}

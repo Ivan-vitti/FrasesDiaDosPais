@@ -5,6 +5,7 @@ import Styles from './Customization.style';
 import I18n from '../../../util/i18n';
 import ImageSourceModal from './ImageSourceModal'; // Importe o modal
 import ColorBackground from './ColorBackground'; // Importe o modal de seleção de cor
+import FontColor from './FontColor'; // Certifique-se de que você tenha este componente
 
 interface CustomizationScreenProps {
     visible: boolean;
@@ -12,11 +13,20 @@ interface CustomizationScreenProps {
     onOpenGallery: () => void;
     onImageSelected: (uri: string) => void;
     onColorConfirm: (color: string) => void; // Adicione esta prop
+    onFontColorConfirm: (color: string) => void; // Adicione esta prop para cor da fonte
 }
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onClose, onOpenGallery, onImageSelected, onColorConfirm }) => {
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ 
+    visible, 
+    onClose, 
+    onOpenGallery, 
+    onImageSelected, 
+    onColorConfirm, 
+    onFontColorConfirm 
+}) => {
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
     const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false);
+    const [isFontColorVisible, setFontColorVisible] = useState(false); // Corrigido para usar o estado certo
 
     // Abre o modal para escolher a origem da imagem
     const handleOpenImageSourceModal = () => {
@@ -42,9 +52,23 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
         setColorBackgroundVisible(false);
     };
 
+    // Abre o seletor de cor da fonte
+    const handleOpenFontColorPicker = () => {
+        setFontColorVisible(true); // Corrigido para abrir o modal
+    };
+
+    const handleCloseFontColorModal = () => {
+        setFontColorVisible(false);
+    };
+
     const handleColorConfirm = (color: string) => {
-        onColorConfirm(color); // Chama a função recebida para passar a cor
-        handleCloseColorBackgroundModal(); // Fecha o modal de seleção de cor
+        onColorConfirm(color); // Chama a função recebida para passar a cor de fundo
+        handleCloseColorBackgroundModal(); // Fecha o modal de seleção de cor de fundo
+    };
+
+    const handleFontColorConfirm = (color: string) => {
+        onFontColorConfirm(color); // Chama a função recebida para passar a cor da fonte
+        handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
     };
 
     return (
@@ -78,7 +102,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                             <Text style={Styles.subtitle}>{I18n.t('Font')}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={Styles.modalButton}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={handleOpenFontColorPicker}>
                             <Icon name="tint" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Font_color')}</Text>
                         </TouchableOpacity>
@@ -114,12 +138,19 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ visible, onCl
                         onClose={handleCloseImageSourceModal}
                         onSelectSource={handleSelectSource}
                     />
-                    
-                    {/* Modal de Seleção de Cor */}
+
+                    {/* Modal de Seleção de Cor de Fundo */}
                     <ColorBackground
                         visible={isColorBackgroundVisible}
                         onClose={handleCloseColorBackgroundModal}
                         onConfirm={handleColorConfirm} // Passa a função
+                    />
+
+                    {/* Modal de Seleção de Cor da Fonte */}
+                    <FontColor
+                        visible={isFontColorVisible}
+                        onClose={handleCloseFontColorModal} // Corrigido para usar a função de fechamento correta
+                        onConfirm={handleFontColorConfirm}
                     />
                 </View>
             </View>
