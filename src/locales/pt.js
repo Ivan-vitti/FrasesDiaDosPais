@@ -54,6 +54,8 @@ export default {
   Ok: 'OK',
   Choose_Color: "Escolha a cor de fundo",
   frames: 'Molduras',
+  Font_Color_School: 'Escola a cor da fonte',
+
 
 
 

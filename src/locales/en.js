@@ -53,8 +53,7 @@ export default {
     Ok: 'OK',
     Choose_Color: "Choose the background color",
     frames: 'Frames',
-
-
+    Font_Color_School: 'Font Color School ',
 
 
 
