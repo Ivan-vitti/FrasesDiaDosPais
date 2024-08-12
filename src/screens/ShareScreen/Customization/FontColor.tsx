@@ -32,7 +32,7 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm }) =>
         >
             <View style={Styles.FundoBackground}>
                 <View style={Styles.Container}>
-                    <Text style={Styles.Title}>{I18n.t('Choose_Font_Color')}</Text>
+                    <Text style={Styles.Title}>{I18n.t('Font_Color_School')}</Text>
                     <ScrollView contentContainerStyle={{ flexGrow: 0.3 }}>
                         <ColorPicker
                             color={selectedColor}
