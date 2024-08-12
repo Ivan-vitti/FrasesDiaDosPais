@@ -143,7 +143,7 @@ const ShareScreen = ({ navigation }) => {
                         // Compartilha a imagem após o anúncio ser fechado
                         await Share.open({
                             url: uri,
-                            message: I18n.t(phrase),
+                            //    message: I18n.t(phrase), // Para compartilhar a frase junto com a imagem 
                         });
                         unsubscribeClosed(); // Remove o listener após ser usado
                         interstitial.load(); // Recarrega o anúncio após ser exibido
@@ -153,14 +153,14 @@ const ShareScreen = ({ navigation }) => {
                     // Compartilha a imagem diretamente se o anúncio não estiver carregado
                     await Share.open({
                         url: uri,
-                        message: I18n.t(phrase),
+                        //    message: I18n.t(phrase), // Para compartilhar a frase junto com a imagem 
                     });
                 }
             } else {
                 // Compartilha a imagem diretamente se o usuário for premium
                 await Share.open({
                     url: uri,
-                    message: I18n.t(phrase),
+                    //    message: I18n.t(phrase), // Para compartilhar a frase junto com a imagem 
                 });
             }
         } catch (error) {
