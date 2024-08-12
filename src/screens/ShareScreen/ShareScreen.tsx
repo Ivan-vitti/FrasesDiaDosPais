@@ -179,13 +179,20 @@ const ShareScreen = ({ navigation }) => {
     };
 
 
+
     // Função atualizada para lidar com a seleção de imagem
     const handleSelectImage = (selectedImageUri: string | null) => {
         if (selectedImageUri) {
-            setImageUri(selectedImageUri); // Atualiza o estado com a imagem selecionada
+            setImageUri(selectedImageUri); // Atualiza a moldura selecionada
+            setBackgroundColor(''); // Redefine ou mantenha o estado de cor de fundo
+        } else {
+            setBackgroundColor('defaultColor'); // Se desejar manter uma cor de fundo padrão
         }
         setGalleryVisible(false); // Fecha a galeria
     };
+
+
+
 
     const handleSaveEditedPhrase = (newPhrase: string) => {
         // ALTERAÇÃO AQUI: Salve a nova frase editada
@@ -194,6 +201,8 @@ const ShareScreen = ({ navigation }) => {
 
     const handleColorConfirm = (color: string) => {
         setBackgroundColor(color); // Atualiza a cor de fundo com a cor selecionada
+        setImageUri(null); // Remove a moldura anterior, se necessário
+
     };
 
 
@@ -201,7 +210,7 @@ const ShareScreen = ({ navigation }) => {
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>
             <View style={[Styles.container]}>
-            <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
+                <ViewShot ref={viewShotRef} options={{ format: 'jpg', quality: 0.9 }}>
                     <ImageCustomization
                         imageUri={imageUri}
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
