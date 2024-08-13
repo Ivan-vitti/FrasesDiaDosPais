@@ -32,7 +32,6 @@ export const Styles = StyleSheet.create({
 
   // Estilos para Subtitulos 
   subtitle: {
-    fontWeight: 'bold',
     fontSize: 25,
     textAlign: 'center', // Alinhamento horizontal centralizado
     marginHorizontal: 20, // Ajuste para garantir que o texto quebre em várias linhas
@@ -97,8 +96,6 @@ export const Styles = StyleSheet.create({
     padding: 0, // Remove padding
     overflow: 'hidden', // Evita que o conteúdo saia da caixa
 },
-
-
 
   imageBackground: {
     flex: 1,

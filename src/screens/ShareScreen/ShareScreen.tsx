@@ -15,6 +15,7 @@ import ImageGallery from './Customization/ImageGallery';
 import EditPhrase from './EditPhrase'; // Importar o novo modal
 
 
+
 const interstitial = InterstitialAd.createForAdRequest('ca-app-pub-8667301238982350/4109936984');
 
 
@@ -31,8 +32,9 @@ const ShareScreen = ({ navigation }) => {
     const viewShotRef = useRef(null);
     const [isEditModalVisible, setEditModalVisible] = useState(false);
     const [editedPhrase, setEditedPhrase] = useState<string | null>(null);
-
     const [fontColor, setFontColor] = useState<string>('#000000'); // Novo estado para a cor da fonte
+
+    const [selectedFont, setSelectedFont] = useState('Arial');
 
 
     useEffect(() => {
@@ -74,7 +76,10 @@ const ShareScreen = ({ navigation }) => {
         };
     }, []);
 
-
+    const handleFontConfirm = (fontName: string) => {
+        console.log("Fonte confirmada:", fontName);
+        setSelectedFont(fontName);
+    };
 
     //-----------------------------------------------------------------------------------------------------------------
 
@@ -213,6 +218,7 @@ const ShareScreen = ({ navigation }) => {
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
                         backgroundColor={backgroundColor} // Passa a cor de fundo
                         fontColor={fontColor} // Passa a cor da fonte
+                        fontFamily={selectedFont}  // Passa a fonte selecionada
                     />
 
                 </ViewShot>
@@ -266,6 +272,7 @@ const ShareScreen = ({ navigation }) => {
                 onImageSelected={handleSelectImage}
                 onColorConfirm={(color) => handleColorConfirm(color, 'background')} // Para a cor de fundo
                 onFontColorConfirm={(color) => handleColorConfirm(color, 'font')} // Para a cor da fonte
+                onFontConfirm={handleFontConfirm}
             />
 
             <ImageGallery

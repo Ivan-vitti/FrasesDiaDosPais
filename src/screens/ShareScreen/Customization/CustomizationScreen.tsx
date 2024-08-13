@@ -6,6 +6,7 @@ import I18n from '../../../util/i18n';
 import ImageSourceModal from './ImageSourceModal'; // Importe o modal
 import ColorBackground from './ColorBackground'; // Importe o modal de seleção de cor
 import FontColor from './FontColor'; // Certifique-se de que você tenha este componente
+import EditFont from './EditFont';
 
 interface CustomizationScreenProps {
     visible: boolean;
@@ -14,19 +15,26 @@ interface CustomizationScreenProps {
     onImageSelected: (uri: string) => void;
     onColorConfirm: (color: string) => void; // Adicione esta prop
     onFontColorConfirm: (color: string) => void; // Adicione esta prop para cor da fonte
+    onFontConfirm: (fontName: string) => void; // Adicione esta linha
+
 }
 
-const CustomizationScreen: React.FC<CustomizationScreenProps> = ({ 
-    visible, 
-    onClose, 
-    onOpenGallery, 
-    onImageSelected, 
-    onColorConfirm, 
-    onFontColorConfirm 
+const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
+    visible,
+    onClose,
+    onOpenGallery,
+    onImageSelected,
+    onColorConfirm,
+    onFontColorConfirm,
+    onFontConfirm,
 }) => {
+
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
     const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false);
     const [isFontColorVisible, setFontColorVisible] = useState(false); // Corrigido para usar o estado certo
+    const [isFontModalVisible, setFontModalVisible] = useState(false);
+
+
 
     // Abre o modal para escolher a origem da imagem
     const handleOpenImageSourceModal = () => {
@@ -71,6 +79,20 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
     };
 
+    //-------------------Alterar a Fonte----------------------------------------------
+
+    const handleOpenFontModal = () => {
+        setFontModalVisible(true);
+    };
+
+    const handleFontSelect = (fontName: string) => {
+        onFontConfirm(fontName); // Confirma a fonte selecionada
+        onClose(); // Fecha a tela de personalização ao escolher a fonte
+        setFontModalVisible(false); // Fecha o modal de seleção de fonte
+    };
+
+
+
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
@@ -97,7 +119,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                     <Text style={Styles.Title}>{I18n.t('Font')}</Text>
 
                     <View style={Styles.DireçãoRow}>
-                        <TouchableOpacity style={Styles.modalButton}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={handleOpenFontModal}>
                             <Icon name="font" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Font')}</Text>
                         </TouchableOpacity>
@@ -151,6 +173,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                         visible={isFontColorVisible}
                         onClose={handleCloseFontColorModal} // Corrigido para usar a função de fechamento correta
                         onConfirm={handleFontColorConfirm}
+                    />
+
+                    <EditFont
+                        visible={isFontModalVisible}
+                        onClose={() => setFontModalVisible(false)}
+                        onFontSelect={handleFontSelect} // Altere aqui para onFontSelect
                     />
                 </View>
             </View>

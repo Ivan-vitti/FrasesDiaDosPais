@@ -54,6 +54,7 @@ export default {
     Choose_Color: "Elige el color de fondo",
     frames: 'Molduras',
     Font_Color_School: 'Escuela de Color de Fuente',
+    Choose_the_font_type: 'Elige el tipo de fuente',
 
 
 

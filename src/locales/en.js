@@ -54,6 +54,7 @@ export default {
     Choose_Color: "Choose the background color",
     frames: 'Frames',
     Font_Color_School: 'Font Color School ',
+    Choose_the_font_type: 'Choose the font type',
 
 
 
