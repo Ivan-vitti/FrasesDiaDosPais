@@ -37,10 +37,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false);
     const [isFontColorVisible, setFontColorVisible] = useState(false); // Corrigido para usar o estado certo
     const [isFontModalVisible, setFontModalVisible] = useState(false);
-
     const [isFontSizeVisible, setFontSizeVisible] = useState(false); // Novo estado para o modal de tamanho da fonte
-
-
+    const [customizationOpacity, setCustomizationOpacity] = useState(0.95);
 
 
 
@@ -102,10 +100,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     //-------------------Alterar o Tamanho da Fonte----------------------------------------------
     const handleOpenFontSizeModal = () => {
         setFontSizeVisible(true);
+        setCustomizationOpacity(0.1); // Torna a tela de personalização mais transparente
     };
 
     const handleCloseFontSizeModal = () => {
         setFontSizeVisible(false);
+        setCustomizationOpacity(0.95); // Retorna a opacidade original
     };
 
     const handleCloseCustomization = () => {
@@ -121,7 +121,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
-                <View style={[Styles.Container, { opacity: 0.93 }]}>
+                <View style={[Styles.Container, { opacity: customizationOpacity }]}>
                     <Text style={Styles.Title}>{I18n.t('Background_image')}</Text>
 
                     <View style={Styles.DireçãoRow}>

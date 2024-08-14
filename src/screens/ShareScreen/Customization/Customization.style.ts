@@ -21,7 +21,7 @@ const Styles = StyleSheet.create({
     flex: 1, // O modal ocupa todo o espaço disponível
     justifyContent: 'center', // Centraliza o conteúdo verticalmente
     alignItems: 'center', // Centraliza o conteúdo horizontalmente
-    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Fundo escuro semi-transparente para o modal
+    backgroundColor: 'rgba(0, 0, 0, 0. 1)', // Fundo escuro semi-transparente para o modal
   },
   Container: {
     width: '80%', // Largura do modal em 90% da tela

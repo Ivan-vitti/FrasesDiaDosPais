@@ -34,7 +34,7 @@ const FontSize: React.FC<FontSizeProps> = ({ visible, onClose, onFontSizeChange,
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
-                <View style={styles.ContainerLocal}>
+                <View style={[styles.ContainerLocal, { opacity: 0.95 }]}>
                     <Text style={Styles.Title}>{I18n.t('Font_Size')}</Text>
 
                     {/* Slider para ajuste de tamanho da fonte */}
@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
         borderRadius: 25, // Bordas arredondadas do modal
         padding: 10, // Espaçamento interno do modal
         alignItems: 'center', // Alinhamento do conteúdo no centro
+        marginTop: '30%', // Ajuste esse valor para trazer o modal mais para baixo
     },
 
     buttonContainerLocal: {

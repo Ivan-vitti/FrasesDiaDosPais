@@ -34,7 +34,6 @@ const ShareScreen = ({ navigation }) => {
     const [editedPhrase, setEditedPhrase] = useState<string | null>(null);
     const [fontColor, setFontColor] = useState<string>('#000000'); // Novo estado para a cor da fonte
     const [selectedFont, setSelectedFont] = useState('Arial');
-
     const [fontSize, setFontSize] = useState(25); // Novo estado para o tamanho da fonte
 
 
