@@ -181,7 +181,7 @@ const ShareScreen = ({ navigation }) => {
         setGalleryVisible(true);
     };
 
-
+    //---------------------------------------------------------------------------------------------------------------------
 
     // Função atualizada para lidar com a seleção de imagem
     const handleSelectImage = (selectedImageUri: string | null) => {
@@ -192,12 +192,17 @@ const ShareScreen = ({ navigation }) => {
             setBackgroundColor('defaultColor'); // Se desejar manter uma cor de fundo padrão
         }
         setGalleryVisible(false); // Fecha a galeria
+        handleCloseCustomization(); // Fecha o modal de personalização
     };
+
+    //---------------------------------------------------------------------------------------------------------------------
 
     const handleSaveEditedPhrase = (newPhrase: string) => {
         // ALTERAÇÃO AQUI: Salve a nova frase editada
         setEditedPhrase(newPhrase);
     };
+
+    //---------------------------------------------------------------------------------------------------------------------
 
     const handleColorConfirm = (color: string, target: 'background' | 'font') => {
         if (target === 'background') {
@@ -206,8 +211,12 @@ const ShareScreen = ({ navigation }) => {
         } else if (target === 'font') {
             setFontColor(color); // Atualiza a cor da fonte
         }
+        handleCloseCustomization(); // Fecha o modal de personalização
     };
 
+    //---------------------------------------------------------------------------------------------------------------------
+
+    //---------------------------------------------------------------------------------------------------------------------
 
     return (
         <View style={{ flex: 1, backgroundColor: colors.background }}>

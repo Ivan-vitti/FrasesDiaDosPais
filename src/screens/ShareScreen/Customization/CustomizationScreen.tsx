@@ -96,7 +96,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
             <View style={Styles.FundoBackground}>
-                <View style={Styles.Container}>
+                <View style={[Styles.Container, { opacity: 0.93 }]}>
                     <Text style={Styles.Title}>{I18n.t('Background_image')}</Text>
 
                     <View style={Styles.DireçãoRow}>
