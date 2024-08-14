@@ -69,10 +69,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     // Abre o seletor de cor da fonte
     const handleOpenFontColorPicker = () => {
         setFontColorVisible(true); // Corrigido para abrir o modal
+        setCustomizationOpacity(0.); // Torna a tela de personalização mais transparente
     };
 
     const handleCloseFontColorModal = () => {
         setFontColorVisible(false);
+        setCustomizationOpacity(0.95); // Retorna a opacidade original
     };
 
     const handleColorConfirm = (color: string) => {
@@ -198,6 +200,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                         visible={isFontColorVisible}
                         onClose={handleCloseFontColorModal} // Corrigido para usar a função de fechamento correta
                         onConfirm={handleFontColorConfirm}
+                        onCloseCustomization={handleCloseCustomization} // Passa a função para fechar a tela de personalização
                     />
 
                     <EditFont
