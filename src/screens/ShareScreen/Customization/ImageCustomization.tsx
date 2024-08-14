@@ -8,9 +8,18 @@ interface ImageCustomizationProps {
     backgroundColor: string;  // Cor de fundo escolhida
     fontColor: string;        // Cor da fonte escolhida
     fontFamily: string;       // Fonte escolhida
+    fontSize: number;         // Tamanho da fonte escolhida
 }
 
-const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phrase, backgroundColor, fontColor, fontFamily }) => {
+const ImageCustomization: React.FC<ImageCustomizationProps> = ({
+    imageUri,
+    phrase,
+    backgroundColor,
+    fontColor,
+    fontFamily,
+    fontSize, // Adicionando a nova propriedade
+}) => {
+
     console.log('Selected Image URI:', imageUri);
     console.log('Selected Font- fonte selecionadaaaa:', fontFamily); // Log da fonte selecionada
 
@@ -23,7 +32,7 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phras
             {showColorBox ? ( // Se a cor foi escolhida, exibe apenas a cor de fundo e a frase
                 <View style={[Styles.boxPhrase, { backgroundColor }]}>
                     <View style={Styles.textContainer01}>
-                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial' }]}>
+                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
                             {phrase.split(' ').length > 5 ? ( // Divide a frase em partes se tiver mais de 5 palavras
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}
@@ -43,7 +52,7 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({ imageUri, phras
                     imageStyle={Styles.image} // Estilo da imagem
                 >
                     <View style={Styles.textContainer}>
-                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial' }]}>
+                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
                             {phrase.split(' ').length > 5 ? ( // Divide a frase em partes se tiver mais de 5 palavras
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}

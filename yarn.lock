@@ -7693,6 +7693,11 @@ react-native-share@^10.2.1:
   resolved "https://registry.npmjs.org/react-native-share/-/react-native-share-10.2.1.tgz"
   integrity sha512-Z2LWGYWH7raM4H6Oauttv1tEhaB43XSWJAN8iS6oaSG9CnyrUBeYFF4QpU1AH5RgNeylXQdN8CtbizCHHt6coQ==
 
+react-native-slider-text@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.npmjs.org/react-native-slider-text/-/react-native-slider-text-0.0.10.tgz"
+  integrity sha512-/Ou3aCm0eVEu/6OEsA8xemNDano2hQ5e9cfvgANBotISK3OjSWOFstFrKN5J7YAJdcshZIi/wodHLEP7g91mjA==
+
 react-native-vector-icons@^10.1.0:
   version "10.1.0"
   resolved "https://registry.npmjs.org/react-native-vector-icons/-/react-native-vector-icons-10.1.0.tgz"

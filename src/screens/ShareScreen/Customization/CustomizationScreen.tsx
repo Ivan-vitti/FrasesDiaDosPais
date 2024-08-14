@@ -7,6 +7,8 @@ import ImageSourceModal from './ImageSourceModal'; // Importe o modal
 import ColorBackground from './ColorBackground'; // Importe o modal de seleção de cor
 import FontColor from './FontColor'; // Certifique-se de que você tenha este componente
 import EditFont from './EditFont';
+import FontSize from './FontSize';
+
 
 interface CustomizationScreenProps {
     visible: boolean;
@@ -16,6 +18,7 @@ interface CustomizationScreenProps {
     onColorConfirm: (color: string) => void; // Adicione esta prop
     onFontColorConfirm: (color: string) => void; // Adicione esta prop para cor da fonte
     onFontConfirm: (fontName: string) => void; // Adicione esta linha
+    onFontSizeChange: (size: number) => void; // Adicione esta linha
 
 }
 
@@ -27,12 +30,17 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     onColorConfirm,
     onFontColorConfirm,
     onFontConfirm,
+    onFontSizeChange,
 }) => {
 
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
     const [isColorBackgroundVisible, setColorBackgroundVisible] = useState(false);
     const [isFontColorVisible, setFontColorVisible] = useState(false); // Corrigido para usar o estado certo
     const [isFontModalVisible, setFontModalVisible] = useState(false);
+
+    const [isFontSizeVisible, setFontSizeVisible] = useState(false); // Novo estado para o modal de tamanho da fonte
+
+
 
 
 
@@ -91,6 +99,20 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         setFontModalVisible(false); // Fecha o modal de seleção de fonte
     };
 
+    //-------------------Alterar o Tamanho da Fonte----------------------------------------------
+    const handleOpenFontSizeModal = () => {
+        setFontSizeVisible(true);
+    };
+
+    const handleCloseFontSizeModal = () => {
+        setFontSizeVisible(false);
+    };
+
+    const handleFontSizeChange = (size: number) => {
+        onFontSizeChange(size); // CHAMA A FUNÇÃO RECEBIDA PARA PASSAR O TAMANHO DA FONTE
+ 
+    };
+
 
 
     return (
@@ -129,7 +151,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                             <Text style={Styles.subtitle}>{I18n.t('Font_color')}</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={Styles.modalButton}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={handleOpenFontSizeModal}>
                             <Icon name="text-height" style={Styles.iconStyle} />
                             <Text style={Styles.subtitle}>{I18n.t('Size')}</Text>
                         </TouchableOpacity>
@@ -180,6 +202,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                         onClose={() => setFontModalVisible(false)}
                         onFontSelect={handleFontSelect} // Altere aqui para onFontSelect
                     />
+                    <FontSize
+                        visible={isFontSizeVisible}
+                        onClose={handleCloseFontSizeModal}
+                        onFontSizeChange={handleFontSizeChange} // CHAME A FUNÇÃO PARA LIDAR COM O TAMANHO DA FONTE AQUI
+                    />
+
                 </View>
             </View>
         </Modal>

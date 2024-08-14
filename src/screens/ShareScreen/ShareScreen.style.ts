@@ -32,7 +32,6 @@ export const Styles = StyleSheet.create({
 
   // Estilos para Subtitulos 
   subtitle: {
-    fontSize: 25,
     textAlign: 'center', // Alinhamento horizontal centralizado
     marginHorizontal: 20, // Ajuste para garantir que o texto quebre em várias linhas
     lineHeight: 32,

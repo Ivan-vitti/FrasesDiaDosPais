@@ -33,8 +33,10 @@ const ShareScreen = ({ navigation }) => {
     const [isEditModalVisible, setEditModalVisible] = useState(false);
     const [editedPhrase, setEditedPhrase] = useState<string | null>(null);
     const [fontColor, setFontColor] = useState<string>('#000000'); // Novo estado para a cor da fonte
-
     const [selectedFont, setSelectedFont] = useState('Arial');
+
+    const [fontSize, setFontSize] = useState(25); // Novo estado para o tamanho da fonte
+
 
 
     useEffect(() => {
@@ -225,9 +227,10 @@ const ShareScreen = ({ navigation }) => {
                     <ImageCustomization
                         imageUri={imageUri}
                         phrase={editedPhrase ? editedPhrase : (phrase ? I18n.t(phrase) : 'Frase não disponível')}
-                        backgroundColor={backgroundColor} // Passa a cor de fundo
-                        fontColor={fontColor} // Passa a cor da fonte
-                        fontFamily={selectedFont}  // Passa a fonte selecionada
+                        backgroundColor={backgroundColor}
+                        fontColor={fontColor}
+                        fontFamily={selectedFont}
+                        fontSize={fontSize} // Passando o tamanho da fonte aqui
                     />
 
                 </ViewShot>
@@ -282,6 +285,7 @@ const ShareScreen = ({ navigation }) => {
                 onColorConfirm={(color) => handleColorConfirm(color, 'background')} // Para a cor de fundo
                 onFontColorConfirm={(color) => handleColorConfirm(color, 'font')} // Para a cor da fonte
                 onFontConfirm={handleFontConfirm}
+                onFontSizeChange={setFontSize}  // Passa a função de atualização de tamanho da fonte
             />
 
             <ImageGallery
