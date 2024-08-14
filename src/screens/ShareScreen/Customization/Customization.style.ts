@@ -21,17 +21,18 @@ const Styles = StyleSheet.create({
     flex: 1, // O modal ocupa todo o espaço disponível
     justifyContent: 'center', // Centraliza o conteúdo verticalmente
     alignItems: 'center', // Centraliza o conteúdo horizontalmente
-    backgroundColor: 'rgba(0, 0, 0, 0.4)', // Fundo escuro semi-transparente para o modal
+    backgroundColor: 'rgba(0, 0, 0, 0.2)', // Fundo escuro semi-transparente para o modal
   },
   Container: {
-    width: '90%', // Largura do modal em 90% da tela
+    width: '80%', // Largura do modal em 90% da tela
+    height: '66%', // Altura do modal em 60% da tela
     backgroundColor: colors.background, // Cor de fundo do modal definida pelas cores do aplicativo
-    borderRadius: 15, // Bordas arredondadas do modal
-    padding: 20, // Espaçamento interno do modal
+    borderRadius: 25, // Bordas arredondadas do modal
+    padding: 15, // Espaçamento interno do modal
     alignItems: 'center', // Alinhamento do conteúdo no centro
   },
   Title: {
-    fontSize: 24, // Tamanho da fonte do título do modal
+    fontSize: 22, // Tamanho da fonte do título do modal
     fontWeight: 'bold', // Estilo da fonte em negrito
     color: colors.textPrimary, // Cor do texto do título definida pelas cores do aplicativo
     marginVertical: 15, // Margem vertical para espaçamento acima e abaixo do título
@@ -52,7 +53,7 @@ const Styles = StyleSheet.create({
     color: colors.secondary, // Cor do texto ou ícone do botão de fechar
   },
   subtitle: {
-    fontSize: 18,                        // Tamanho da fonte
+    fontSize: 16,                        // Tamanho da fonte
     textAlign: 'left',
     fontWeight: 'bold',                  // Peso da fonte
     color: colors.textPrimary,           // Cor do texto

@@ -55,6 +55,8 @@ export default {
     frames: 'Frames',
     Font_Color_School: 'Font Color School ',
     Choose_the_font_type: 'Choose the font type',
+    Font_Size: 'Font Size',
+    Apply:'Apply',
 
 
 

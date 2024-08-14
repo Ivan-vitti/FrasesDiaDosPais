@@ -108,11 +108,14 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         setFontSizeVisible(false);
     };
 
+    const handleCloseCustomization = () => {
+        onClose(); // Fecha a tela de personalização
+    };
+
     const handleFontSizeChange = (size: number) => {
         onFontSizeChange(size); // CHAMA A FUNÇÃO RECEBIDA PARA PASSAR O TAMANHO DA FONTE
  
     };
-
 
 
     return (
@@ -206,6 +209,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                         visible={isFontSizeVisible}
                         onClose={handleCloseFontSizeModal}
                         onFontSizeChange={handleFontSizeChange} // CHAME A FUNÇÃO PARA LIDAR COM O TAMANHO DA FONTE AQUI
+                        onCloseCustomization={handleCloseCustomization} // Passa a função para fechar a tela de personalização
                     />
 
                 </View>

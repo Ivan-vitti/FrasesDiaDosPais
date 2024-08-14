@@ -56,6 +56,9 @@ export default {
   frames: 'Molduras',
   Font_Color_School: 'Escola a cor da fonte',
   Choose_the_font_type: 'Escolha o tipo de fonte',
+  Font_Size: 'Tamanho da Fonte',
+  Apply:'Aplicar',
+  
 
 
 
