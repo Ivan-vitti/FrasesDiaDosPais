@@ -21,7 +21,7 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
 
     const handleApply = () => {
         onConfirm(selectedColor); // Aplica a cor selecionada
-        // Não fecha o modal, permitindo que o usuário continue ajustando a cor
+        // Não fechar o modal aqui, permitindo que o usuário continue ajustando a cor
     };
 
     return (
@@ -30,7 +30,7 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
             visible={visible}
             onRequestClose={() => {
                 onClose();
-                onCloseCustomization(); // Fecha a tela de personalização ao fechar
+            //    onCloseCustomization(); // Fecha a tela de personalização ao fechar
             }}
         >
             <View style={Styles.FundoBackground}>
@@ -41,12 +41,12 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
                             color={selectedColor}
                             swatchesOnly={false}
                             onColorChange={handleColorChange}
-                            thumbSize={30} // Diminuir o tamanho do thumb
-                            sliderSize={30} // Diminuir o tamanho do slider
+                            thumbSize={40} // Diminuir o tamanho do thumb
+                            sliderSize={20} // Diminuir o tamanho do slider
                             noSnap={true}
                             row={false}
-                            wheelLoadingIndicator={<ActivityIndicator size={15} />} // Diminuir o tamanho do carregador
-                            sliderLoadingIndicator={<ActivityIndicator size={15} />} // Diminuir o tamanho do carregador
+                            wheelLoadingIndicator={<ActivityIndicator size={19} />} // Diminuir o tamanho do carregador
+                            sliderLoadingIndicator={<ActivityIndicator size={19} />} // Diminuir o tamanho do carregador
                             useNativeDriver={false}
                             useNativeLayout={false}
                         />
@@ -56,7 +56,6 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
                                 <Icon name="check-circle" style={Styles.iconStyle} />
                                 <Text style={Styles.subtitle}>{I18n.t('Apply')}</Text>
                             </TouchableOpacity>
-
 
                             <TouchableOpacity onPress={onClose} style={styles.modalButtonLocal} accessibilityLabel="Close" accessibilityHint="Close the color selection">
                                 <Icon name="times-circle" style={Styles.iconStyle} />
@@ -75,11 +74,11 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between', // Muda para 'space-between' para deixar os botões nos extremos
         width: '100%', // Certifique-se de que o container ocupe a largura total
-        paddingTop: 20, // Diminuir o espaço
+        paddingTop: 10, // Diminuir o espaço
     },
     ContainerLocal: {
-        width: '90%', // Largura do modal em 90% da tela
-        height: '45%', // Diminuir a altura do modal
+        width: '80%', // Largura do modal em 90% da tela
+        height: '55%', // Diminuir a altura do modal
         backgroundColor: colors.background, // Cor de fundo do modal
         borderRadius: 15, // Bordas arredondadas do modal
         padding: 10, // Diminuir o espaçamento interno do modal

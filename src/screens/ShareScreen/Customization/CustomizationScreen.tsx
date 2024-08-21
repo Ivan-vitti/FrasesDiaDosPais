@@ -84,7 +84,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
     const handleFontColorConfirm = (color: string) => {
         onFontColorConfirm(color); // Chama a função recebida para passar a cor da fonte
-        handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
+     //   handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
     };
 
     //-------------------Alterar a Fonte----------------------------------------------
@@ -111,8 +111,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     };
 
     const handleCloseCustomization = () => {
+        console.log('Customization Screen closed'); // Adicione um log para depuração
         onClose(); // Fecha a tela de personalização
     };
+    
 
     const handleFontSizeChange = (size: number) => {
         onFontSizeChange(size); // CHAMA A FUNÇÃO RECEBIDA PARA PASSAR O TAMANHO DA FONTE

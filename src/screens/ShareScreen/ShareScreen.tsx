@@ -212,7 +212,7 @@ const ShareScreen = ({ navigation }) => {
         } else if (target === 'font') {
             setFontColor(color); // Atualiza a cor da fonte
         }
-        handleCloseCustomization(); // Fecha o modal de personalização
+    //   handleCloseCustomization(); // Fecha o modal de personalização
     };
 
     //---------------------------------------------------------------------------------------------------------------------
