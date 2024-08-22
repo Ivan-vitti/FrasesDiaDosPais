@@ -1,5 +1,5 @@
 import React from 'react';
-import { Modal, View, Text, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
+import { Modal, View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Button } from 'react-native-elements';
 import I18n from '../../../util/i18n';
@@ -14,14 +14,6 @@ interface AlignmentModalProps {
 const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onAlignmentChange }) => {
     const [selectedAlignment, setSelectedAlignment] = React.useState<'horizontal' | 'vertical'>('horizontal');
 
-    const handleApply = () => {
-        onAlignmentChange(selectedAlignment); // Aplica a alteração sem fechar o modal
-    };
-
-    const horizontalButtons = [I18n.t('Horizontal_left'), I18n.t('Horizontal_center'), I18n.t('Horizontal_right')];
-    const verticalButtons = [I18n.t('Vertical_top'), I18n.t('Vertical_center'), I18n.t('Vertical_bottom')];
-
-    // Função para lidar com o alinhamento horizontal
     const handleHorizontalAlignment = (index: number) => {
         switch (index) {
             case 0:
@@ -34,9 +26,9 @@ const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onAli
                 onAlignmentChange('right'); // Alinhamento à direita
                 break;
         }
+        // Remove onClose() para manter o modal aberto
     };
 
-    // Função para lidar com o alinhamento vertical
     const handleVerticalAlignment = (index: number) => {
         switch (index) {
             case 0:
@@ -49,7 +41,11 @@ const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onAli
                 onAlignmentChange('bottom'); // Alinhamento na parte inferior
                 break;
         }
+        // Remove onClose() para manter o modal aberto
     };
+
+    const horizontalButtons = [I18n.t('Horizontal_left'), I18n.t('Horizontal_center'), I18n.t('Horizontal_right')];
+    const verticalButtons = [I18n.t('Vertical_top'), I18n.t('Vertical_center'), I18n.t('Vertical_bottom')];
 
     return (
         <Modal
@@ -110,45 +106,28 @@ const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onAli
                         </View>
                     )}
 
-                    <ScrollView>
-                        <View style={styles.buttonContainerLocal}>
-                            <TouchableOpacity
-                                onPress={handleApply}
-                                style={styles.modalButtonLocal}
-                                accessibilityLabel="Apply"
-                                accessibilityHint="Apply the selected alignment"
-                            >
-                                <Icon name="check-circle" style={Styles.iconStyle} />
-                                <Text style={Styles.subtitle}>{I18n.t('Apply')}</Text>
-                            </TouchableOpacity>
-
-                            <TouchableOpacity
-                                onPress={onClose}
-                                style={styles.modalButtonLocal}
-                                accessibilityLabel="Close"
-                                accessibilityHint="Close the alignment selection"
-                            >
-                                <Icon name="times-circle" style={Styles.iconStyle} />
-                                <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
-                            </TouchableOpacity>
-                        </View>
-                    </ScrollView>
+                    <View style={styles.buttonContainerLocal}>
+                        <TouchableOpacity
+                            onPress={onClose}
+                            style={styles.modalButtonLocal}
+                            accessibilityLabel="Close"
+                            accessibilityHint="Close the alignment selection"
+                        >
+                            <Icon name="times-circle" style={Styles.iconStyle} />
+                            <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             </View>
         </Modal>
     );
 };
 
-
 const styles = StyleSheet.create({
-    buttonGroupContainer: {
-        marginBottom: 20,
-    },
     buttonGroup: {
         flexDirection: 'row',
-        marginVertical: 10,  
+        marginVertical: 10,
     },
-    
     button: {
         marginHorizontal: 5,
         backgroundColor: colors.secondary, // Cor do botão inativo
@@ -162,7 +141,6 @@ const styles = StyleSheet.create({
         elevation: 6, // Aumenta a sombra para destacar o botão ativo em Android
         transform: [{ scale: 1.05 }], // Leve aumento no tamanho para dar destaque
     },
-
     buttonContainerLocal: {
         flexDirection: 'row',
         justifyContent: 'space-between',

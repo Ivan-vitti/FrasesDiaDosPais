@@ -124,6 +124,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     };
 
     // -----------------Função para abrir o modal de alinhamento----------------------------------
+
     const handleOpenAlignmentModal = () => {
         setAlignmentModalVisible(true);
         setCustomizationOpacity(0.0); // Torna a tela de personalização mais transparente
@@ -139,8 +140,9 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     const handleAlignmentChange = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
         console.log(`Novo alinhamento Adicionado: ${newAlignment}`);
         setAlignment(newAlignment);
-    //    handleCloseAlignmentModal(); // Fecha o modal após a seleção
+        // handleCloseAlignmentModal(); // Fecha o modal após a seleção (opcional)
     };
+
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
@@ -234,7 +236,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                     <AlignmentModal
                         visible={isAlignmentModalVisible}
                         onClose={handleCloseAlignmentModal}
-                        onAlignmentChange={handleAlignmentChange} // Isso agora deve funcionar com todos os valores possíveis
+                        onAlignmentChange={handleAlignmentChange}
                     />
                 </View>
             </View>
