@@ -57,6 +57,14 @@ export default {
     Choose_the_font_type: 'Choose the font type',
     Font_Size: 'Font Size',
     Apply:'Apply',
+    Positioning:'Positioning',
+    Select_Alignment:'Select Alignment',
+    Horizontal_left:'Left',
+    Horizontal_center:'Center',
+    Horizontal_right:'Right',
+    Vertical_top:'Top',
+    Vertical_center:'Center',
+    Vertical_bottom:'Bottom',
 
 
 

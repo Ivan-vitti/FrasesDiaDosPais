@@ -58,11 +58,15 @@ export default {
   Choose_the_font_type: 'Escolha o tipo de fonte',
   Font_Size: 'Tamanho da Fonte',
   Apply:'Aplicar',
+  Positioning:'Posicionamento',
+  Select_Alignment: 'Selecionar Alinhamento',
+  Horizontal_left:'Esquerda',
+  Horizontal_center:'Centro',
+  Horizontal_right:'Direita',
+  Vertical_top:'Topo',
+  Vertical_center:'Centro',
+  Vertical_bottom:'Fundo',
   
-
-
-
-
 
 
 

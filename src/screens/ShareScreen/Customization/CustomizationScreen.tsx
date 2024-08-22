@@ -8,6 +8,7 @@ import ColorBackground from './ColorBackground'; // Importe o modal de seleção
 import FontColor from './FontColor'; // Certifique-se de que você tenha este componente
 import EditFont from './EditFont';
 import FontSize from './FontSize';
+import AlignmentModal from './AlignmentModal';
 
 
 interface CustomizationScreenProps {
@@ -38,8 +39,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     const [isFontColorVisible, setFontColorVisible] = useState(false); // Corrigido para usar o estado certo
     const [isFontModalVisible, setFontModalVisible] = useState(false);
     const [isFontSizeVisible, setFontSizeVisible] = useState(false); // Novo estado para o modal de tamanho da fonte
-    const [customizationOpacity, setCustomizationOpacity] = useState(0.95);
+    const [customizationOpacity, setCustomizationOpacity] = useState(1.0);
 
+    const [isAlignmentModalVisible, setAlignmentModalVisible] = useState(false);
+    const [alignment, setAlignment] = useState<'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'>('horizontal');
 
 
     // Abre o modal para escolher a origem da imagem
@@ -84,7 +87,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
     const handleFontColorConfirm = (color: string) => {
         onFontColorConfirm(color); // Chama a função recebida para passar a cor da fonte
-     //   handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
+        //   handleCloseFontColorModal(); // Fecha o seletor de cor da fonte
     };
 
     //-------------------Alterar a Fonte----------------------------------------------
@@ -102,25 +105,42 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     //-------------------Alterar o Tamanho da Fonte----------------------------------------------
     const handleOpenFontSizeModal = () => {
         setFontSizeVisible(true);
-        setCustomizationOpacity(0.1); // Torna a tela de personalização mais transparente
+        setCustomizationOpacity(0.0); // Torna a tela de personalização mais transparente
     };
 
     const handleCloseFontSizeModal = () => {
         setFontSizeVisible(false);
-        setCustomizationOpacity(0.95); // Retorna a opacidade original
+        setCustomizationOpacity(1.0); // Retorna a opacidade original
     };
 
     const handleCloseCustomization = () => {
         console.log('Customization Screen closed'); // Adicione um log para depuração
         onClose(); // Fecha a tela de personalização
     };
-    
 
     const handleFontSizeChange = (size: number) => {
         onFontSizeChange(size); // CHAMA A FUNÇÃO RECEBIDA PARA PASSAR O TAMANHO DA FONTE
- 
+
     };
 
+    // -----------------Função para abrir o modal de alinhamento----------------------------------
+    const handleOpenAlignmentModal = () => {
+        setAlignmentModalVisible(true);
+        setCustomizationOpacity(0.0); // Torna a tela de personalização mais transparente
+    };
+
+    // Função para fechar o modal de alinhamento
+    const handleCloseAlignmentModal = () => {
+        setAlignmentModalVisible(false);
+        setCustomizationOpacity(1.0); // Retorna a opacidade original
+    };
+
+    // Função para mudar o alinhamento
+    const handleAlignmentChange = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
+        console.log(`Novo alinhamento Adicionado: ${newAlignment}`);
+        setAlignment(newAlignment);
+    //    handleCloseAlignmentModal(); // Fecha o modal após a seleção
+    };
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>
@@ -167,14 +187,9 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                     <Text style={Styles.Title}>{I18n.t('Alignment')}</Text>
 
                     <View style={Styles.DireçãoRow}>
-                        <TouchableOpacity style={Styles.modalButton}>
-                            <Icon name="align-left" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>{I18n.t('Horizontal')}</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={Styles.modalButton}>
+                        <TouchableOpacity style={Styles.modalButton} onPress={handleOpenAlignmentModal}>
                             <Icon name="align-center" style={Styles.iconStyle} />
-                            <Text style={Styles.subtitle}>{I18n.t('Vertical')}</Text>
+                            <Text style={Styles.subtitle}>{I18n.t('Positioning')}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -216,7 +231,11 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                         onFontSizeChange={handleFontSizeChange} // CHAME A FUNÇÃO PARA LIDAR COM O TAMANHO DA FONTE AQUI
                         onCloseCustomization={handleCloseCustomization} // Passa a função para fechar a tela de personalização
                     />
-
+                    <AlignmentModal
+                        visible={isAlignmentModalVisible}
+                        onClose={handleCloseAlignmentModal}
+                        onAlignmentChange={handleAlignmentChange} // Isso agora deve funcionar com todos os valores possíveis
+                    />
                 </View>
             </View>
         </Modal>
