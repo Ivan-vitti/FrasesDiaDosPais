@@ -8,40 +8,42 @@ import Styles, { colors } from './Customization.style';
 interface AlignmentModalProps {
     visible: boolean;
     onClose: () => void;
-    onAlignmentChange: (alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => void; // Inclua todos os valores possíveis
+    onConfirm: (alignment: "horizontal" | "vertical" | "left" | "center" | "right" | "top" | "bottom") => void; // Adicione esta linha
 }
 
-const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onAlignmentChange }) => {
+const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onConfirm }) => {
     const [selectedAlignment, setSelectedAlignment] = React.useState<'horizontal' | 'vertical'>('horizontal');
 
+
+
+
+    
     const handleHorizontalAlignment = (index: number) => {
         switch (index) {
             case 0:
-                onAlignmentChange('left'); // Alinhamento à esquerda
+                onConfirm('left');
                 break;
             case 1:
-                onAlignmentChange('center'); // Alinhamento centralizado
+                onConfirm('center');
                 break;
             case 2:
-                onAlignmentChange('right'); // Alinhamento à direita
+                onConfirm('right');
                 break;
         }
-        // Remove onClose() para manter o modal aberto
     };
 
     const handleVerticalAlignment = (index: number) => {
         switch (index) {
             case 0:
-                onAlignmentChange('top'); // Alinhamento no topo
+                onConfirm('top');
                 break;
             case 1:
-                onAlignmentChange('center'); // Alinhamento centralizado
+                onConfirm('center');
                 break;
             case 2:
-                onAlignmentChange('bottom'); // Alinhamento na parte inferior
+                onConfirm('bottom');
                 break;
         }
-        // Remove onClose() para manter o modal aberto
     };
 
     const horizontalButtons = [I18n.t('Horizontal_left'), I18n.t('Horizontal_center'), I18n.t('Horizontal_right')];
@@ -130,16 +132,15 @@ const styles = StyleSheet.create({
     },
     button: {
         marginHorizontal: 5,
-        backgroundColor: colors.secondary, // Cor do botão inativo
-        padding: 11, // Aumentar o preenchimento para melhor estética
-        borderRadius: 20, // Deixa as bordas arredondadas
+        backgroundColor: colors.secondary,
+        padding: 11,
+        borderRadius: 20,
     },
     selectedButton: {
-        marginHorizontal: 5,
-        backgroundColor: colors.iconActive02, // Cor do botão selecionado
-        borderRadius: 20, // Mantém as bordas arredondadas no botão ativo
-        elevation: 6, // Aumenta a sombra para destacar o botão ativo em Android
-        transform: [{ scale: 1.05 }], // Leve aumento no tamanho para dar destaque
+        backgroundColor: colors.iconActive02,
+        borderRadius: 20,
+        elevation: 6,
+        transform: [{ scale: 1.05 }],
     },
     buttonContainerLocal: {
         flexDirection: 'row',

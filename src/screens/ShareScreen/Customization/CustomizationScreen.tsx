@@ -20,7 +20,8 @@ interface CustomizationScreenProps {
     onFontColorConfirm: (color: string) => void; // Adicione esta prop para cor da fonte
     onFontConfirm: (fontName: string) => void; // Adicione esta linha
     onFontSizeChange: (size: number) => void; // Adicione esta linha
-
+    onAlignmentConfirm: (alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => void;
+    alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'; // Passando o alinhamento como prop
 }
 
 const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
@@ -32,6 +33,7 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     onFontColorConfirm,
     onFontConfirm,
     onFontSizeChange,
+    onAlignmentConfirm,
 }) => {
 
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
@@ -43,6 +45,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
     const [isAlignmentModalVisible, setAlignmentModalVisible] = useState(false);
     const [alignment, setAlignment] = useState<'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'>('horizontal');
+    const [isCustomizationVisible, setCustomizationVisible] = useState(false);
+
 
 
     // Abre o modal para escolher a origem da imagem
@@ -125,22 +129,17 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
     // -----------------Função para abrir o modal de alinhamento----------------------------------
 
+    // Função para abrir o modal de alinhamento
     const handleOpenAlignmentModal = () => {
         setAlignmentModalVisible(true);
-        setCustomizationOpacity(0.0); // Torna a tela de personalização mais transparente
+        setCustomizationOpacity(0.0);
     };
+    const handleCloseAlignmentModal = () => setAlignmentModalVisible(false);
 
-    // Função para fechar o modal de alinhamento
-    const handleCloseAlignmentModal = () => {
-        setAlignmentModalVisible(false);
+    const handleAlignmentConfirm = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
+        onAlignmentConfirm(newAlignment);
         setCustomizationOpacity(1.0); // Retorna a opacidade original
-    };
-
-    // Função para mudar o alinhamento
-    const handleAlignmentChange = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
-        console.log(`Novo alinhamento Adicionado: ${newAlignment}`);
-        setAlignment(newAlignment);
-        // handleCloseAlignmentModal(); // Fecha o modal após a seleção (opcional)
+        setAlignmentModalVisible(false); // Fecha o modal de alinhamento
     };
 
 
@@ -236,8 +235,10 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
                     <AlignmentModal
                         visible={isAlignmentModalVisible}
                         onClose={handleCloseAlignmentModal}
-                        onAlignmentChange={handleAlignmentChange}
+                        onConfirm={handleAlignmentConfirm}
                     />
+
+
                 </View>
             </View>
         </Modal>
@@ -245,3 +246,4 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 };
 
 export default CustomizationScreen;
+

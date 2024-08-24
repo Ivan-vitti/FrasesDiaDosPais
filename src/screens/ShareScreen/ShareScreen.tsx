@@ -36,6 +36,8 @@ const ShareScreen = ({ navigation }) => {
     const [selectedFont, setSelectedFont] = useState('Arial');
     const [fontSize, setFontSize] = useState(25); // Novo estado para o tamanho da fonte
 
+    const [alignment, setAlignment] = useState<'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'>('horizontal');
+
 
 
     useEffect(() => {
@@ -212,11 +214,15 @@ const ShareScreen = ({ navigation }) => {
         } else if (target === 'font') {
             setFontColor(color); // Atualiza a cor da fonte
         }
-    //   handleCloseCustomization(); // Fecha o modal de personalização
+        //   handleCloseCustomization(); // Fecha o modal de personalização
     };
 
     //---------------------------------------------------------------------------------------------------------------------
-
+    const handleAlignmentConfirm = (alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
+        setAlignment(alignment);
+    };
+    
+    
     //---------------------------------------------------------------------------------------------------------------------
 
     return (
@@ -230,6 +236,7 @@ const ShareScreen = ({ navigation }) => {
                         fontColor={fontColor}
                         fontFamily={selectedFont}
                         fontSize={fontSize} // Passando o tamanho da fonte aqui
+                        alignment={alignment}
                     />
 
                 </ViewShot>
@@ -285,6 +292,8 @@ const ShareScreen = ({ navigation }) => {
                 onFontColorConfirm={(color) => handleColorConfirm(color, 'font')} // Para a cor da fonte
                 onFontConfirm={handleFontConfirm}
                 onFontSizeChange={setFontSize}  // Passa a função de atualização de tamanho da fonte
+                onAlignmentConfirm={handleAlignmentConfirm}
+                alignment={alignment} 
             />
 
             <ImageGallery
