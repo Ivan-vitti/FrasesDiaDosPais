@@ -134,14 +134,16 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         setAlignmentModalVisible(true);
         setCustomizationOpacity(0.0);
     };
-    const handleCloseAlignmentModal = () => setAlignmentModalVisible(false);
-
+    
     const handleAlignmentConfirm = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
         onAlignmentConfirm(newAlignment);
-        setCustomizationOpacity(1.0); // Retorna a opacidade original
-        setAlignmentModalVisible(false); // Fecha o modal de alinhamento
+
     };
 
+    const handleCloseAlignmentModal = () => {
+        setAlignmentModalVisible(false);
+        setCustomizationOpacity(1.0);
+    };
 
     return (
         <Modal visible={visible} animationType="slide" transparent={true}>

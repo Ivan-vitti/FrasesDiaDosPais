@@ -81,7 +81,7 @@ export const Styles = StyleSheet.create({
     width: '98%', // Largura total
     height: height * 0.5, // Altura da caixa para 50% da altura da tela
     alignSelf: 'center',
-    justifyContent: 'flex-start', // Alinha o conteúdo para o topo
+    justifyContent: 'center', // Alinha o conteúdo para o topo
     padding: 0, // Remove padding
     backgroundColor: colors.background,
     overflow: 'hidden', // Evita que o conteúdo saia da caixa

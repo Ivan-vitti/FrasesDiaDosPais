@@ -1,6 +1,6 @@
 import React from 'react';
-import { ImageBackground, Text, View, ViewStyle } from 'react-native';
-import Styles from '../ShareScreen.style';
+import { Dimensions, ImageBackground, StyleSheet, Text, View, ViewStyle } from 'react-native';
+import Styles, { colors } from '../ShareScreen.style';
 
 
 
@@ -52,11 +52,12 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
     };
 
     return (
-        <View style={[Styles.boxPhrase01, { backgroundColor }]}>
+        <View style={[styles.boxPhrase01, { backgroundColor }]}>
             {showColorBox ? (
-                <View style={[Styles.boxPhrase, { backgroundColor }, alignmentStyle]}>
-                    <View style={Styles.textContainer01}>
-                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
+                
+                <View style={[styles.textContainer01, alignmentStyle]}>
+                        <Text style={[styles.subtitle01, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
+                            
                             {phrase.split(' ').length > 5 ? (
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}
@@ -68,7 +69,6 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
                             )}
                         </Text>
                     </View>
-                </View>
             ) : (
                 <ImageBackground
                     source={imageUri ? { uri: imageUri } : require('../../../assets/images/Moldura.png')} // Mostra a imagem ou a padrão
@@ -76,7 +76,8 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
                     imageStyle={Styles.image} // Estilo da imagem
                 >
                     <View style={[Styles.textContainer, alignmentStyle]}>
-                        <Text style={[Styles.subtitle, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
+                        <Text style={[styles.subtitle01, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
+                            
                             {phrase.split(' ').length > 5 ? (
                                 <>
                                     {phrase.split(' ').slice(0, 5).join(' ')}
@@ -93,5 +94,33 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
         </View>
     );
 };
+
+const { height, width } = Dimensions.get('window'); // Obtém a altura e largura da tela
+
+const styles = StyleSheet.create({
+    
+
+    boxPhrase01: {
+        height: height * 0.47, // Define a altura como 50% da altura da tela      
+        width: width * 0.98,   // Define a largura como 80% da largura da tela
+        alignSelf: 'center', // Centraliza a caixa horizontalmente
+        marginTop: height * 0.094, // Move o box para baixo, a 20% da altura da tela
+        overflow: 'hidden', // Evita que o conteúdo saia da caixa
+    },
+    subtitle01: {
+        textAlign: 'center',   // Alinhamento horizontal centralizado
+        marginHorizontal: 20,  // Espaço nas laterais para evitar que o texto toque as bordas
+        color: colors.textPrimary,
+        marginBottom: 10,
+        flexWrap: 'wrap',      // Garante que o texto quebre em várias linhas
+      },
+      textContainer01: {
+        flex: 1,
+        width: '100%', 
+        backgroundColor: 'transparent', 
+        borderColor: 'transparent', 
+      },
+
+});
 
 export default ImageCustomization;
