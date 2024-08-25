@@ -20,8 +20,9 @@ interface CustomizationScreenProps {
     onFontColorConfirm: (color: string) => void; // Adicione esta prop para cor da fonte
     onFontConfirm: (fontName: string) => void; // Adicione esta linha
     onFontSizeChange: (size: number) => void; // Adicione esta linha
-    onAlignmentConfirm: (alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => void;
-    alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'; // Passando o alinhamento como prop
+    onAlignmentConfirm: (horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'center' | 'bottom') => void;
+    horizontalAlignment: 'left' | 'center' | 'right';
+    verticalAlignment: 'top' | 'center' | 'bottom';
 }
 
 const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
@@ -34,6 +35,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
     onFontConfirm,
     onFontSizeChange,
     onAlignmentConfirm,
+    horizontalAlignment,
+    verticalAlignment
 }) => {
 
     const [isImageSourceModalVisible, setImageSourceModalVisible] = useState(false);
@@ -135,10 +138,11 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         setCustomizationOpacity(0.0);
     };
     
-    const handleAlignmentConfirm = (newAlignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
-        onAlignmentConfirm(newAlignment);
-
+    const handleAlignmentConfirm = (horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'center' | 'bottom') => {
+        console.log(`Horizontal: ${horizontal}, Vertical: ${vertical}`);
+        onAlignmentConfirm(horizontal, vertical);
     };
+    
 
     const handleCloseAlignmentModal = () => {
         setAlignmentModalVisible(false);

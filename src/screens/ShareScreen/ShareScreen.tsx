@@ -36,7 +36,9 @@ const ShareScreen = ({ navigation }) => {
     const [selectedFont, setSelectedFont] = useState('Arial');
     const [fontSize, setFontSize] = useState(25); // Novo estado para o tamanho da fonte
 
-    const [alignment, setAlignment] = useState<'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'>('horizontal');
+    const [horizontalAlignment, setHorizontalAlignment] = useState<'left' | 'center' | 'right'>('center');
+    const [verticalAlignment, setVerticalAlignment] = useState<'top' | 'center' | 'bottom'>('center');
+
 
 
 
@@ -218,11 +220,12 @@ const ShareScreen = ({ navigation }) => {
     };
 
     //---------------------------------------------------------------------------------------------------------------------
-    const handleAlignmentConfirm = (alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom') => {
-        setAlignment(alignment);
+    const handleAlignmentConfirm = (horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'center' | 'bottom') => {
+        setHorizontalAlignment(horizontal);
+        setVerticalAlignment(vertical);
     };
-    
-    
+
+
     //---------------------------------------------------------------------------------------------------------------------
 
     return (
@@ -236,7 +239,8 @@ const ShareScreen = ({ navigation }) => {
                         fontColor={fontColor}
                         fontFamily={selectedFont}
                         fontSize={fontSize} // Passando o tamanho da fonte aqui
-                        alignment={alignment}
+                        horizontalAlignment={horizontalAlignment} // Passando o estado
+                        verticalAlignment={verticalAlignment}     // Passando o estado
                     />
 
                 </ViewShot>
@@ -293,7 +297,8 @@ const ShareScreen = ({ navigation }) => {
                 onFontConfirm={handleFontConfirm}
                 onFontSizeChange={setFontSize}  // Passa a função de atualização de tamanho da fonte
                 onAlignmentConfirm={handleAlignmentConfirm}
-                alignment={alignment} 
+                horizontalAlignment={horizontalAlignment}
+                verticalAlignment={verticalAlignment}
             />
 
             <ImageGallery

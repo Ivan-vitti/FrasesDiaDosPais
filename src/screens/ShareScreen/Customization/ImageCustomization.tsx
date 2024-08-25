@@ -11,7 +11,8 @@ interface ImageCustomizationProps {
     fontColor: string;        // Cor da fonte escolhida
     fontFamily: string;       // Fonte escolhida
     fontSize: number;         // Tamanho da fonte escolhida
-    alignment: 'horizontal' | 'vertical' | 'left' | 'center' | 'right' | 'top' | 'bottom'; // Alinhamento
+    horizontalAlignment: 'left' | 'center' | 'right'; 
+    verticalAlignment: 'top' | 'center' | 'bottom';  
 }
 
 const ImageCustomization: React.FC<ImageCustomizationProps> = ({
@@ -21,7 +22,8 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
     fontColor,
     fontFamily,
     fontSize,
-    alignment,
+    horizontalAlignment,
+    verticalAlignment,
 }) => {
 
     console.log('Selected Image URI:', imageUri);
@@ -31,25 +33,29 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
     const isColorSelected = backgroundColor !== '#FFFFFF'; // Define o que é considerado a cor padrão (branco)
     const showColorBox = isColorSelected && !imageUri; // Se a cor foi escolhida e não há imagem
 
-    // Determina o alinhamento do texto
-    const alignmentStyle: ViewStyle = {
-        alignItems: 
-            alignment === 'horizontal' || alignment === 'center' 
-                ? 'center' 
-                : alignment === 'left' 
-                    ? 'flex-start' 
-                    : alignment === 'right' 
-                        ? 'flex-end' 
-                        : 'center',
-        justifyContent: 
-            alignment === 'vertical' || alignment === 'center' 
-                ? 'center' 
-                : alignment === 'top' 
-                    ? 'flex-start' 
-                    : alignment === 'bottom' 
-                        ? 'flex-end' 
-                        : 'center',
+    // Alinhamento horizontal
+    const horizontalAlignmentStyle: ViewStyle = {
+        alignItems:
+            horizontalAlignment === 'left'
+                ? 'flex-start'
+                : horizontalAlignment === 'right'
+                    ? 'flex-end'
+                    : 'center',
     };
+
+    // Alinhamento vertical
+    const verticalAlignmentStyle: ViewStyle = {
+        justifyContent:
+            verticalAlignment === 'top'
+                ? 'flex-start'
+                : verticalAlignment === 'bottom'
+                    ? 'flex-end'
+                    : 'center',
+    };
+
+    // Combina os dois alinhamentos
+    const alignmentStyle = { ...horizontalAlignmentStyle, ...verticalAlignmentStyle };
+
 
     return (
         <View style={[styles.boxPhrase01, { backgroundColor }]}>

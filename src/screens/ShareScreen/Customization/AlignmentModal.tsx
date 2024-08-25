@@ -8,41 +8,29 @@ import Styles, { colors } from './Customization.style';
 interface AlignmentModalProps {
     visible: boolean;
     onClose: () => void;
-    onConfirm: (alignment: "horizontal" | "vertical" | "left" | "center" | "right" | "top" | "bottom") => void; // Adicione esta linha
+    onConfirm: (horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'center' | 'bottom') => void;
 }
 
 const AlignmentModal: React.FC<AlignmentModalProps> = ({ visible, onClose, onConfirm }) => {
     const [selectedAlignment, setSelectedAlignment] = React.useState<'horizontal' | 'vertical'>('horizontal');
+    const [selectedHorizontal, setSelectedHorizontal] = React.useState<'left' | 'center' | 'right'>('left');
+    const [selectedVertical, setSelectedVertical] = React.useState<'top' | 'center' | 'bottom'>('top');
 
-
-
-
-    
     const handleHorizontalAlignment = (index: number) => {
-        switch (index) {
-            case 0:
-                onConfirm('left');
-                break;
-            case 1:
-                onConfirm('center');
-                break;
-            case 2:
-                onConfirm('right');
-                break;
+        const horizontalAlignments: ('left' | 'center' | 'right')[] = ['left', 'center', 'right'];
+        const selectedHorizontal = horizontalAlignments[index];
+        setSelectedHorizontal(selectedHorizontal);
+        if (selectedAlignment === 'horizontal') {
+            onConfirm(selectedHorizontal, selectedVertical);
         }
     };
 
     const handleVerticalAlignment = (index: number) => {
-        switch (index) {
-            case 0:
-                onConfirm('top');
-                break;
-            case 1:
-                onConfirm('center');
-                break;
-            case 2:
-                onConfirm('bottom');
-                break;
+        const verticalAlignments: ('top' | 'center' | 'bottom')[] = ['top', 'center', 'bottom'];
+        const selectedVertical = verticalAlignments[index];
+        setSelectedVertical(selectedVertical);
+        if (selectedAlignment === 'vertical') {
+            onConfirm(selectedHorizontal, selectedVertical);
         }
     };
 
