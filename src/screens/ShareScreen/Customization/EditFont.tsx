@@ -13,26 +13,26 @@ interface EditFontProps {
 
 const EditFont: React.FC<EditFontProps> = ({ visible, onClose, onFontSelect }) => {
     const fonts = [
-        'Beardsons-Normal',
-        'Blinker-Regular',
-        'BungeeTint-Regular',
-        'ComingSoon-Regular',
-        'DancingScript-Regular',
-        'DeansgateCondensed-Bold',
+        'Beardsons',
+        'Blinker',
+        'BungeeTint',
+        'ComingSoon',
+        'DancingScript',
+        'Deansgate_Condensed',
         'Fearce',
-        'FjallaOne-Regular',
+        'FjallaOne',
         'Gellaghan',
-        'GreyQo-Regular',
-        'IndieFlower-Regular',
-        'Lobster-Regular',
-        'Matemasie-Regular',
-        'NewAmsterdam-Regular',
+        'GreyQo',
+        'IndieFlower',
+        'Lobster',
+        'Matemasie',
+        'NewAmsterdam',
         'Queensila',
-        'Roboto-Regular',
-        'Sora-VariableFont_wght',
-        'TheaterBrillionDEMO',
-        'Unna-Regular',
-        'VarelaRound-Regular'
+        'Roboto',
+        'Sora_Variable',
+        'Theater_Brillion',
+        'Unna',
+        'Varela_Round'
     ];
 
     const [selectedFont, setSelectedFont] = useState<string | null>(null);

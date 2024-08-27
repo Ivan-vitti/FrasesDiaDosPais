@@ -26,7 +26,7 @@ const Styles = StyleSheet.create({
   },
   Container: {
     width: '80%', // Largura do modal em 90% da tela
-    height: '66%', // Altura do modal em 60% da tela
+    height: '70%', // Altura do modal em 60% da tela
     backgroundColor: colors.background, // Cor de fundo do modal definida pelas cores do aplicativo
     borderRadius: 25, // Bordas arredondadas do modal
     padding: 15, // Espaçamento interno do modal

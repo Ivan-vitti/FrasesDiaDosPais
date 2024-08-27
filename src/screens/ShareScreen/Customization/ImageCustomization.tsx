@@ -107,15 +107,16 @@ const styles = StyleSheet.create({
     
 
     boxPhrase01: {
-        height: height * 0.47, // Define a altura como 50% da altura da tela      
-        width: width * 0.98,   // Define a largura como 80% da largura da tela
+        height: height * 0.5, // Define a altura como 50% da altura da tela      
+        width: width * 0.9,   // Define a largura como 80% da largura da tela
         alignSelf: 'center', // Centraliza a caixa horizontalmente
-        marginTop: height * 0.094, // Move o box para baixo, a 20% da altura da tela
+        marginTop: height * 0.06, // Move o box para baixo, a 20% da altura da tela
         overflow: 'hidden', // Evita que o conteúdo saia da caixa
     },
+
     subtitle01: {
         textAlign: 'center',   // Alinhamento horizontal centralizado
-        marginHorizontal: 20,  // Espaço nas laterais para evitar que o texto toque as bordas
+        marginHorizontal: 5,  // Espaço nas laterais para evitar que o texto toque as bordas
         color: colors.textPrimary,
         marginBottom: 10,
         flexWrap: 'wrap',      // Garante que o texto quebre em várias linhas
@@ -125,6 +126,7 @@ const styles = StyleSheet.create({
         width: '100%', 
         backgroundColor: 'transparent', 
         borderColor: 'transparent', 
+        paddingHorizontal: 5, // Ajuste o padding horizontal se necessário
       },
 
 });

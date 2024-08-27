@@ -34,8 +34,8 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
             }}
         >
             <View style={Styles.FundoBackground}>
-                <View style={[styles.ContainerLocal, { opacity: 0.95 }]}>
-                    <Text style={Styles.Title}>{I18n.t('Font_Color_School')}</Text>
+                <View style={[styles.ContainerLocal, { opacity: 0.98 }]}>
+                    <Text style={styles.Title01}>{I18n.t('Font_Color_School')}</Text>
                     <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                         <ColorPicker
                             color={selectedColor}
@@ -45,21 +45,21 @@ const FontColor: React.FC<FontColorProps> = ({ visible, onClose, onConfirm, onCl
                             sliderSize={20} // Diminuir o tamanho do slider
                             noSnap={true}
                             row={false}
-                            wheelLoadingIndicator={<ActivityIndicator size={19} />} // Diminuir o tamanho do carregador
-                            sliderLoadingIndicator={<ActivityIndicator size={19} />} // Diminuir o tamanho do carregador
+                            wheelLoadingIndicator={<ActivityIndicator size={15} />} // Diminuir o tamanho do carregador
+                            sliderLoadingIndicator={<ActivityIndicator size={15} />} // Diminuir o tamanho do carregador
                             useNativeDriver={false}
                             useNativeLayout={false}
                         />
 
                         <View style={styles.buttonContainerLocal}>
                             <TouchableOpacity onPress={handleApply} style={styles.modalButtonLocal} accessibilityLabel="Apply" accessibilityHint="Apply the selected color">
-                                <Icon name="check-circle" style={Styles.iconStyle} />
-                                <Text style={Styles.subtitle}>{I18n.t('Apply')}</Text>
+                                <Icon name="check-circle" style={styles.iconStyle} />
+                                <Text style={styles.subtitle}>{I18n.t('Apply')}</Text>
                             </TouchableOpacity>
 
                             <TouchableOpacity onPress={onClose} style={styles.modalButtonLocal} accessibilityLabel="Close" accessibilityHint="Close the color selection">
-                                <Icon name="times-circle" style={Styles.iconStyle} />
-                                <Text style={Styles.subtitle}>{I18n.t('Close')}</Text>
+                                <Icon name="times-circle" style={styles.iconStyle} />
+                                <Text style={styles.subtitle}>{I18n.t('Close')}</Text>
                             </TouchableOpacity>
                         </View>
                     </ScrollView>
@@ -78,12 +78,12 @@ const styles = StyleSheet.create({
     },
     ContainerLocal: {
         width: '80%', // Largura do modal em 90% da tela
-        height: '55%', // Diminuir a altura do modal
+        height: '54%', // Diminuir a altura do modal
         backgroundColor: colors.background, // Cor de fundo do modal
         borderRadius: 15, // Bordas arredondadas do modal
         padding: 10, // Diminuir o espaçamento interno do modal
         alignItems: 'center', // Alinhamento do conteúdo no centro
-        marginTop: '50%', // Ajustar a posição do modal
+        marginTop: '65%', // Ajustar a posição do modal
     },
     modalButtonLocal: {
         flexDirection: 'column',
@@ -92,8 +92,25 @@ const styles = StyleSheet.create({
         flex: 1, // Adiciona flex para cada botão ocupar igual espaço
     },
     subtitle: {
-        fontSize: 14, // Diminuir o tamanho da fonte
-    },
+        fontSize: 16,                        // Tamanho da fonte
+        textAlign: 'left',
+        fontWeight: 'bold',                  // Peso da fonte
+        color: colors.textPrimary,           // Cor do texto
+        fontFamily: 'Arial, sans-serif',     // Fonte
+
+      },
+
+    Title01: {
+        fontSize: 22, // Tamanho da fonte do título do modal
+        fontWeight: 'bold', // Estilo da fonte em negrito
+        color: colors.textPrimary, // Cor do texto do título definida pelas cores do aplicativo
+        marginVertical: 0, // Margem vertical para espaçamento acima e abaixo do título
+      },
+
+      iconStyle: {
+        fontSize: 30,            // Tamanho do ícone
+        color: colors.iconActive, // Cor do ícone
+      },
 });
 
 export default FontColor;

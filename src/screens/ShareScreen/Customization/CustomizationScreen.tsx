@@ -252,4 +252,3 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 };
 
 export default CustomizationScreen;
-

@@ -33,11 +33,7 @@ const images = [
     require('../../../assets/images/Moldura18.png'),
     require('../../../assets/images/Moldura19.png'),
     require('../../../assets/images/Moldura20.png'),
-    require('../../../assets/images/Moldura21.png'),
-    require('../../../assets/images/Moldura22.png'),
-    require('../../../assets/images/Moldura23.png'),
     require('../../../assets/images/Moldura24.png'),
-    require('../../../assets/images/Moldura25.png'),
 
     // Adicione mais imagens conforme necessário
 ];
