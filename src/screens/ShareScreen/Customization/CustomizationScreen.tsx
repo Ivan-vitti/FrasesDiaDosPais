@@ -101,12 +101,17 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
     const handleOpenFontModal = () => {
         setFontModalVisible(true);
+        setCustomizationOpacity(0.0); // Reduz a opacidade da tela de personalização
     };
 
     const handleFontSelect = (fontName: string) => {
-        onFontConfirm(fontName); // Confirma a fonte selecionada
-        onClose(); // Fecha a tela de personalização ao escolher a fonte
+        onFontConfirm(fontName); // Aplica a fonte selecionada na tela de compartilhamento
+        // Não feche o modal de fonte aqui, apenas ajuste a opacidade
+    };
+
+    const handleFontModalClose = () => {
         setFontModalVisible(false); // Fecha o modal de seleção de fonte
+        setCustomizationOpacity(1.0); // Retorna a opacidade original da tela de personalização
     };
 
     //-------------------Alterar o Tamanho da Fonte----------------------------------------------
@@ -137,12 +142,12 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
         setAlignmentModalVisible(true);
         setCustomizationOpacity(0.0);
     };
-    
+
     const handleAlignmentConfirm = (horizontal: 'left' | 'center' | 'right', vertical: 'top' | 'center' | 'bottom') => {
         console.log(`Horizontal: ${horizontal}, Vertical: ${vertical}`);
         onAlignmentConfirm(horizontal, vertical);
     };
-    
+
 
     const handleCloseAlignmentModal = () => {
         setAlignmentModalVisible(false);
@@ -229,8 +234,8 @@ const CustomizationScreen: React.FC<CustomizationScreenProps> = ({
 
                     <EditFont
                         visible={isFontModalVisible}
-                        onClose={() => setFontModalVisible(false)}
-                        onFontSelect={handleFontSelect} // Altere aqui para onFontSelect
+                        onClose={handleFontModalClose} // Passa a função para fechar o modal
+                        onFontSelect={handleFontSelect} // Passa a função para aplicar a fonte
                     />
                     <FontSize
                         visible={isFontSizeVisible}

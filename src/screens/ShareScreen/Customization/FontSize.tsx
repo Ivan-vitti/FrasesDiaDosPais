@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
         borderRadius: 25, // Bordas arredondadas do modal
         padding: 10, // Espaçamento interno do modal
         alignItems: 'center', // Alinhamento do conteúdo no centro
-        marginTop: '30%', // Ajuste esse valor para trazer o modal mais para baixo
+        marginTop: '50%', // Ajuste esse valor para trazer o modal mais para baixo
     },
 
     buttonContainerLocal: {
