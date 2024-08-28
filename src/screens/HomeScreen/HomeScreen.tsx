@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import I18n from '../../util/i18n';
 import GlobalStyles from "../../Styles/GlobalStyles";
 import PHRASES from "../../services/PhrasesMockService";
@@ -9,11 +9,17 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
 
 
+
 const HomeScreen = ({ navigation }) => {
 
     const [premium, setPremium] = useState(false); // cria uma variavel que indique se é premium ou não
     const [phrase, setPhrase] = useState('p0');
     const bannerRef = useRef<BannerAd>(null);
+
+    const images = [
+        require('../../assets/images/Home01.png'),
+    ];
+
 
     // Verifica se o usuario é premium
     useEffect(() => {
@@ -63,29 +69,38 @@ const HomeScreen = ({ navigation }) => {
                         <Icon name={'share-alt-square'} size={40} color={colors.iconColorBotão} />
                         <Text style={Styles.buttonTextPrimary}>{I18n.t('share')}</Text>
                     </TouchableOpacity>
+                    <Image
+                        source={images[0]}
+                        style={{
+                            width: '100%',               // 1. Largura completa do contêiner pai
+                            aspectRatio: 2 / 3,          // 2. Proporção da imagem (largura:altura)
+                            resizeMode: 'cover',         // 3. Como a imagem deve ser ajustada ao contêiner
+                            position: 'absolute',        // 4. Posição da imagem em relação ao contêiner pai
+                            top: 0,                      // 5. Distância do topo do contêiner pai
+                            left: 0,                     // 6. Distância da esquerda do contêiner pai
+                            zIndex: -1,                  // 7. Ordem de empilhamento da imagem em relação aos outros elementos
+                        }}
+                    />
                 </View>
             </View>
-            <View style={{ backgroundColor: colors.background}}>
-                {!premium ?
+
+            <View style={{ backgroundColor: colors.background }}>
+                {!premium ? (
                     <BannerAd
                         ref={bannerRef}
                         unitId='ca-app-pub-8667301238982350/7038765928'
                         size={BannerAdSize.ANCHORED_ADAPTIVE_BANNER}
-
-                        // Adiciona um log para quando o anúncio carregar com sucesso
                         onAdLoaded={() => {
-                            console.log('Ad loaded So VAiiiiiii');
+                            console.log('Ad loaded');
                         }}
-                        // Adiciona um log para quando o anúncio falhar ao carregar
                         onAdFailedToLoad={(error) => {
-                            console.error('Ad failed to load: Falha ao carregar o Anuncio ', error);
+                            console.error('Ad failed to load: ', error);
                         }}
                     />
-                    : null}
+                ) : null}
             </View>
         </View>
     );
 }
 
 export default HomeScreen;
-
