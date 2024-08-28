@@ -60,7 +60,6 @@ const ImageCustomization: React.FC<ImageCustomizationProps> = ({
     return (
         <View style={[styles.boxPhrase01, { backgroundColor }]}>
             {showColorBox ? (
-                
                 <View style={[styles.textContainer01, alignmentStyle]}>
                         <Text style={[styles.subtitle01, { color: fontColor, fontFamily: fontFamily || 'Arial', fontSize }]}>
                             
@@ -107,7 +106,7 @@ const styles = StyleSheet.create({
     
 
     boxPhrase01: {
-        height: height * 0.5, // Define a altura como 50% da altura da tela      
+        height: height * 0.44, // Define a altura como 50% da altura da tela      
         width: width * 0.9,   // Define a largura como 80% da largura da tela
         alignSelf: 'center', // Centraliza a caixa horizontalmente
         marginTop: height * 0.06, // Move o box para baixo, a 20% da altura da tela

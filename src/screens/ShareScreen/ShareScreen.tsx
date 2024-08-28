@@ -35,6 +35,7 @@ const ShareScreen = ({ navigation }) => {
     const [fontColor, setFontColor] = useState<string>('#000000'); // Novo estado para a cor da fonte
     const [selectedFont, setSelectedFont] = useState('Arial');
     const [fontSize, setFontSize] = useState(25); // Novo estado para o tamanho da fonte
+    const [customizationOpacity, setCustomizationOpacity] = useState(1.0);
 
     const [horizontalAlignment, setHorizontalAlignment] = useState<'left' | 'center' | 'right'>('center');
     const [verticalAlignment, setVerticalAlignment] = useState<'top' | 'center' | 'bottom'>('center');
@@ -205,6 +206,7 @@ const ShareScreen = ({ navigation }) => {
     const handleSaveEditedPhrase = (newPhrase: string) => {
         // ALTERAÇÃO AQUI: Salve a nova frase editada
         setEditedPhrase(newPhrase);
+        setCustomizationOpacity(1.0); // Reduz a opacidade da tela de personalização
     };
 
     //---------------------------------------------------------------------------------------------------------------------

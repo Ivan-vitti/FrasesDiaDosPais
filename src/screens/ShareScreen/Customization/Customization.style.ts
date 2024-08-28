@@ -15,6 +15,7 @@ export const colors = {
   iconColorBotão: '#FFFFFF', // Cor para ícones de botões
   iconActive02: '#9dd6fc',   // Cor para ícones ativos
   selectedBackground: '#c0e6ff',  // Adicione esta linha
+ 
 };
 
 // Criação dos estilos utilizando StyleSheet do React Native
