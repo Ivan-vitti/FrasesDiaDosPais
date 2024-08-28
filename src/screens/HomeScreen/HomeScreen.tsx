@@ -36,7 +36,7 @@ const HomeScreen = ({ navigation }) => {
             const dataAtual = new Date().toLocaleDateString();
 
             if (dataOpen !== dataAtual) {
-                let numberRamdom = Math.floor(Math.random() * 199);
+                let numberRamdom = Math.floor(Math.random() * 99);
                 await AsyncStorage.setItem('dataOpen', dataAtual);
                 await AsyncStorage.setItem('idFrase', '' + numberRamdom);
                 setPhrase(PHRASES[numberRamdom].phrase);

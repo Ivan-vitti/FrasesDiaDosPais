@@ -2,7 +2,6 @@ import React, { useEffect, useRef, useState } from "react";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 import PHRASES from "../../services/PhrasesMockService";
 import I18n from '../../util/i18n';
-import GlobalStyles from "../../Styles/GlobalStyles";
 import Styles, { colors } from "./PhrasesScreen.style";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { BannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
