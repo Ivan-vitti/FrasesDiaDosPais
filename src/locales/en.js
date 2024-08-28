@@ -65,6 +65,7 @@ export default {
     Vertical_top:'Top',
     Vertical_center:'Center',
     Vertical_bottom:'Bottom',
+    Rate_Our_App: 'Rate Our App',
 
 
 

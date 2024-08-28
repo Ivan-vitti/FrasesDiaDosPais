@@ -66,6 +66,7 @@ export default {
   Vertical_top:'Topo',
   Vertical_center:'Centro',
   Vertical_bottom:'Fundo',
+  Rate_Our_App: 'Avaliar nosso Aplicativo',
   
 
 

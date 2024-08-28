@@ -65,6 +65,7 @@ export default {
     Vertical_top:'Superior',
     Vertical_center:'Centro',
     Vertical_bottom:'Inferior',
+    Rate_Our_App: 'Califica Nuestra Aplicación',
 
 
 

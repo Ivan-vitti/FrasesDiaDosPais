@@ -13,7 +13,9 @@ export const colors = {
     success: '#4CAF50',        // Verde (mensagens de sucesso)
     link: '#3498DB',           // Azul Claro (links)
     iconActive: '#3498DB',     // Cor para ícones ativos
-    iconInactive: '#757575'    // Cor para ícones inativos
+    iconInactive: '#757575',    // Cor para ícones inativos
+    contorno: '#000033',        // cor de contorno do texto
+    iconColorBotão: '#FFFFFF', // Cor do ícone do botão
 };
 
 // Definindo os estilos globais
@@ -53,13 +55,36 @@ export const Styles = StyleSheet.create({
         marginBottom: 15,                           // Margem inferior para espaçamento da base
         marginTop: 5,                               // Margem superior para espaçamento do texto anterior
     },
-
     bannerContainer: {
         position: 'absolute', // Posiciona o banner de forma absoluta
         bottom: 0, // Posiciona o banner na base da tela
         width: '100%', // Largura completa da tela
         alignItems: 'center', // Centraliza o banner horizontalmente
         backgroundColor: colors.background, // Cor de fundo para evitar sobreposição de conteúdo
+    },
+    buttonPrimary: {
+        backgroundColor: colors.primary,     // Cor de fundo do botão
+        color: colors.textPrimary,           // Cor do texto do botão
+        marginVertical: 15,                  // Margem vertical
+        paddingVertical: 10,                 // Espaçamento vertical interno
+        paddingHorizontal: 15,               // Espaçamento horizontal interno
+        borderRadius: 20,                    // Raio da borda
+        flexDirection: 'row',                // Direção dos itens (imagem e texto)
+        alignItems: 'center',                // Alinhamento vertical dos itens
+        justifyContent: 'flex-start',            // Alinhamento horizontal dos itens
+        height: 45,                          // Altura total do botão
+        width: '82%',                        // Largura total do botão
+        alignSelf: 'center',                 // Centraliza o botão horizontalmente
+    },
+    buttonTextPrimary: {
+        color: '#FFFFFF',                    // Cor do texto
+        fontWeight: 'bold',                  // Peso da fonte
+        fontSize: 22,                        // Tamanho da fonte
+        marginLeft: 15,                      // Espaçamento à esquerda da imagem
+        lineHeight: 28,                      // Altura da linha do texto
+        textShadowColor: colors.contorno,   // Cor da sombra
+        textShadowOffset: { width: 2, height: 1.5 }, // Offset da sombra
+        textShadowRadius: 2,                 // Raio da sombra
     },
 });
 
